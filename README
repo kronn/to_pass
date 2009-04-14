@@ -2,4 +2,4 @@ Transformation of a String to a Password.
 
 Password should be easy to remember and hard to guess.
 
-One technique is to have a sentence which can be easily remembered transformed to a password. This Module provides a String.to_pwd Method which transforms a sentence to a password. 
+One technique is to have a sentence which can be easily remembered transformed to a password. This Module provides a String.to_pwd Method which transforms a sentence to a password.
