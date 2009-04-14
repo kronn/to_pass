@@ -1,11 +1,47 @@
 module PasswordTransformation
 	def to_pwd
-		string = self.dup
-		string.convert_numbers.first_chars.leetify.one_word
+		PasswordString.new(self.to_s)
+	end
+end
+
+class PasswordString < String
+	attr_reader :password
+
+	def initialize( string )
+		@password = string.clone
+
+		if @password.include? ' '
+			@password = from_sentence
+		else
+			@password = from_word
+		end
+	end
+
+	def to_s
+		@password
+	end
+
+	def inspect
+		to_s
 	end
 
 	protected
+	
+	def from_sentence
+		@password = convert_numbers
+		@password = first_chars
+		@password = convert_symbols
+		@password = one_word
+	end
 
+	def from_word
+		@password = separate_chars
+		@password = convert_chars
+		@password = convert_symbols
+		@password = one_word
+	end
+
+	# unterscheidung nach sprachen?
 	WORD_TO_NUMBER = {
 		:ein => 1,
 		:eine => 1,
@@ -18,34 +54,47 @@ module PasswordTransformation
 		:acht => 8,
 		:neun => 9
 	}
-	# unterscheidung nach sprachen?
+	CHAR_TO_SYMBOL = {
+		:a => '@'
+	}
+	CHAR_TO_NUMBER = {
+		:a => 4,
+		:e => 3,
+		:i => 1,
+		:o => 0,
+		:s => 5
+	}
+
 	def convert_numbers
 		convert(WORD_TO_NUMBER)
 	end
+	def convert_chars
+		convert(CHAR_TO_NUMBER)
+	end
+	def convert_symbols
+		convert(CHAR_TO_SYMBOL)
+	end
 
 	def first_chars
-		array = self.split(' ').map do |word|
+		array = @password.split(' ').map do |word|
 			word[0].chr
 		end
 
 		array.join(' ')
 	end
 
-	def one_word
-		self.split(' ').join()
+	def separate_chars
+		@password.split('').join(' ')
 	end
 
-	LEETIFY_DEFINITIONS = {
-		:a => '@'
-	}
-	def leetify
-		convert(LEETIFY_DEFINITIONS)
+	def one_word
+		@password.split(' ').join()
 	end
 
 	private
 
 	def convert(table)
-		array = self.split(' ').map do |part|
+		array = @password.split(' ').map do |part|
 			psym = part.downcase.to_sym
 
 			if table.include? psym
@@ -63,4 +112,4 @@ class String
 	include PasswordTransformation
 end
 
-puts "Da steht ein Pferd auf dem Flur".to_pwd
+# puts "Da steht ein Pferd auf dem Flur".to_pwd
