@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+# vim:ft=ruby:enc=utf-8
+
+base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
+$LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
+
+require 'lib/password_transformation'
+
+# Pluggable Algorithms
+Dir["#{base_path}/vendor/*.rb"].each do |file|
+  require file
+end
+
+# parse arguments
+# TODO: optparse or so would scale better here
+string, algorithm = case ARGV.size
+                    when 1
+                      [ ARGV[0], PasswordString ]
+                    when 2
+                      [ ARGV[0], eval(ARGV[1]) ]
+                    else # i like this one :-)
+                      [ $stdin.read, PasswordString ]
+                    end
+
+# perform "heavy" work
+password = algorithm.new( string )
+
+$stdout << password
