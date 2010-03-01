@@ -1,14 +1,8 @@
-module PasswordTransformation
-	def to_pwd
-		PasswordString.new(self.to_s)
-	end
-end
-
-class PasswordString < String
+class PasswordString
 	attr_reader :password
 
 	def initialize( string )
-		@password = string.clone
+		@password = string
 
 		if @password.include? ' '
 			@password = from_sentence
@@ -88,7 +82,7 @@ class PasswordString < String
 	end
 
 	def one_word
-		@password.split(' ').join()
+		@password.split(' ').join('')
 	end
 
 	private
@@ -108,8 +102,14 @@ class PasswordString < String
 	end
 end
 
-class String
-	include PasswordTransformation
-end
-
+# module PasswordTransformation
+# 	def to_pwd( klass = PasswordString )
+# 		klass.new(self.to_s)
+# 	end
+# end
+# 
+# class String
+# 	include PasswordTransformation
+# end
+# 
 # puts "Da steht ein Pferd auf dem Flur".to_pwd
