@@ -1,0 +1,32 @@
+desc: Basic Algorithm with a german usage in mind
+name: basic_de
+sentence:
+  - table: words
+  - first_chars
+  - table: symbols
+  - one_word
+word:
+  - separate_chars
+  - table: chars
+  - table: symbols
+  - one_word
+tables:
+  words:
+    ein: 1
+    eine: 1
+    zwei: 2
+    drei: 3
+    vier: 4
+    fuenf: 5
+    sechs: 6
+    sieben: 7
+    acht: 8
+    neun: 9
+  symbols:
+    a: '@'
+  chars:
+    a: 4
+    e: 3
+    i: 1
+    o: 0
+    s: 5
