@@ -5,6 +5,7 @@
 base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
 $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
 
+require 'optparse'
 require 'lib/to_pwd'
 
 # Pluggable Algorithms
@@ -12,18 +13,30 @@ Dir["#{base_path}/vendor/*.rb"].each do |file|
   require file
 end
 
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{__FILE__} [options] passphrase"
+  opts.separator ""
+
+  opts.on('-a', '--algorithm ALGORITM', "use algorithm for transformation") do |value|
+    options[:algorithm] = value || 'PasswordString'
+  end
+
+  options[:pipe_usage] = ARGV[0].nil?
+
+  opts.separator ""
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end.parse!
+
 # parse arguments
-# TODO: optparse or so would scale better here
-string, algorithm = case ARGV.size
-                    when 1
-                      [ ARGV[0], PasswordString ]
-                    when 2
-                      [ ARGV[0], eval(ARGV[1]) ]
-                    else # i like this one :-)
-                      [ $stdin.read, PasswordString ]
-                    end
+string, algorithm = [ ( ARGV[0] || $stdin.read ), Kernel.const_get(options[:algorithm]) ]
 
 # perform "heavy" work
 password = algorithm.new( string )
 
 $stdout << password
+$stdput << "\n" unless options[:pipe_usage]
