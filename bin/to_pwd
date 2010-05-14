@@ -5,7 +5,7 @@
 base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
 $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
 
-require 'lib/password_transformation'
+require 'lib/to_pwd'
 
 # Pluggable Algorithms
 Dir["#{base_path}/vendor/*.rb"].each do |file|
