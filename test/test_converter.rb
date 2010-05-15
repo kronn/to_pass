@@ -54,9 +54,14 @@ class TestConverter < Test::Unit::TestCase
     result = converter.convert("fun4test")
     assert_equal "fUn4TeSt", result
   end
+  def test_multiple_rules
+    converter(basic_rules.merge({
+      'from_word' => [{'table' => 'special'}, 'swapcase']
+    }))
+
+    assert_equal( "t35T", converter.convert('test'))
   end
-  # def test_multiple_rules
-  # end
+
 
   protected
 
