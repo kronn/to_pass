@@ -23,18 +23,6 @@ class TestConverter < Test::Unit::TestCase
   end
 
   # mock-tests to ensure presence and calling of internal methods
-  def test_from_word
-    assert_respond_to converter, :from_word
-    converter.expects(:from_word).once
-
-    converter.convert("test")
-  end
-  def test_from_sentence
-    assert_respond_to converter, :from_sentence
-    converter.expects(:from_sentence).once
-
-    converter.convert("test test test")
-  end
   def test_replace
     assert_respond_to converter, :replace
     converter.expects(:replace).once
