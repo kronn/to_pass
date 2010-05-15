@@ -1,3 +1,7 @@
+module ToPwd
+  autoload :Converter,  'lib/to_pwd/converter'
+end
+
 class PasswordString
   attr_reader :password
 
