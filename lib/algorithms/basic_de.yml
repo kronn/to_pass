@@ -4,12 +4,10 @@ sentence:
   - table: words
   - first_chars
   - table: symbols
-  - one_word
+  - collapse_chars
 word:
-  - separate_chars
   - table: chars
   - table: symbols
-  - one_word
 tables:
   words:
     ein: 1

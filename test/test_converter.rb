@@ -30,19 +30,19 @@ class TestConverter < Test::Unit::TestCase
     converter.convert("test")
   end
   def test_swapcase
-    converter({'from_word' => ['swapcase']})
+    converter({'word' => ['swapcase']})
     assert_respond_to converter, :swapcase
     converter.expects(:swapcase).once
     converter.convert("test")
   end
   def test_first_chars
-    converter({'from_sentence' => ['first_chars']})
+    converter({'sentence' => ['first_chars']})
     assert_respond_to converter, :first_chars
     converter.expects(:first_chars).once
     converter.convert("test test")
   end
   def test_collapse_chars
-    converter({'from_sentence' => ['collapse_chars']})
+    converter({'sentence' => ['collapse_chars']})
     assert_respond_to converter, :collapse_chars
     converter.expects(:collapse_chars).once
     converter.convert("test test")
@@ -54,12 +54,12 @@ class TestConverter < Test::Unit::TestCase
     assert_equal "t35t", result
   end
   def test_case_swapping
-    converter({'from_word' => ['swapcase']})
+    converter({'word' => ['swapcase']})
     result = converter.convert("test")
     assert_equal "tEsT", result
   end
   def test_case_swapping_ignores_numbers
-    converter({'from_word' => ['swapcase']})
+    converter({'word' => ['swapcase']})
     result = converter.convert("test4fun")
     assert_equal "tEsT4fUn", result
 
@@ -67,18 +67,18 @@ class TestConverter < Test::Unit::TestCase
     assert_equal "fUn4TeSt", result
   end
   def test_char_collapsing
-    converter({'from_sentence' => ['collapse_chars']})
+    converter({'sentence' => ['collapse_chars']})
     assert_equal( "abc", converter.convert("a b c"))
   end
   def test_select_first_chars
-    converter({'from_sentence' => ['first_chars']})
+    converter({'sentence' => ['first_chars']})
     assert_equal( "t a t f t", converter.convert('test all the fucking time'))
   end
 
   # more complex/real-life setups
   def test_multiple_rules
     converter(basic_rules.merge({
-      'from_word' => [{'table' => 'special'}, 'swapcase']
+      'word' => [{'table' => 'special'}, 'swapcase']
     }))
 
     assert_equal( "t35T", converter.convert('test'))
@@ -96,7 +96,7 @@ class TestConverter < Test::Unit::TestCase
 
   def basic_rules
     {
-      'from_word' => [{ 'table' => 'special' }],
+      'word' => [{ 'table' => 'special' }],
       'tables' => {
         'special' => {
           'e' => '3',
@@ -107,7 +107,7 @@ class TestConverter < Test::Unit::TestCase
   end
   def complex_rules
     {
-      'from_sentence' => [{'table'=>'words'},'first_chars','collapse_chars',{'table'=>'symbols'}],
+      'sentence' => [{'table'=>'words'},'first_chars','collapse_chars',{'table'=>'symbols'}],
       'tables' => {
         'words' => { 'ein' => '1' },
         'symbols' => { 'a' => '@' }

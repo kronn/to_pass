@@ -1,6 +1,9 @@
+require 'pathname'
+
 module ToPwd
   autoload :Converter,         'lib/to_pwd/converter'
   autoload :StringConversions, 'lib/to_pwd/string_conversions'
+  autoload :Base,              'lib/to_pwd/base'
 end
 
 # class PasswordString

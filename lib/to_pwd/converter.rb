@@ -20,9 +20,9 @@ module ToPwd
 
     def rules_for( string )
       if string.include? ' '
-        @rules['from_sentence']
+        @rules['sentence']
       else
-        @rules['from_word']
+        @rules['word']
       end
     end
 
