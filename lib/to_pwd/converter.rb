@@ -44,9 +44,17 @@ module ToPwd
 
     def swapcase(string)
       pwd = ""
+      last_upcase = true
       string.each_char do |char|
-        last_upcase = ( pwd.size == 0 || ( pwd[-1].chr == pwd[-1].chr.upcase ) )
-        pwd << ( last_upcase ? char.downcase : char.upcase )
+        pwd << if char.between?("0", "9")
+                 char
+               elsif last_upcase
+                 last_upcase = false
+                 char.downcase
+               else
+                 last_upcase = true
+                 char.upcase
+               end
       end
       pwd
     end

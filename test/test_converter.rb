@@ -50,6 +50,10 @@ class TestConverter < Test::Unit::TestCase
     converter({'from_word' => ['swapcase']})
     result = converter.convert("test4fun")
     assert_equal "tEsT4fUn", result
+
+    result = converter.convert("fun4test")
+    assert_equal "fUn4TeSt", result
+  end
   end
   # def test_multiple_rules
   # end
