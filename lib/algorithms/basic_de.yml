@@ -1,5 +1,5 @@
 desc: Basic Algorithm with a german usage in mind
-name: basic_de
+name: Basic (german)
 sentence:
   - table: words
   - first_chars
