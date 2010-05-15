@@ -22,7 +22,7 @@ class TestConverter < Test::Unit::TestCase
     end
   end
 
-  # mock-tests to ensure presence and calling of internal methods
+  # mock-tests to ensure presence and calling of protected methods
   def test_replace
     assert_respond_to converter, :replace
     converter.expects(:replace).once
@@ -34,6 +34,18 @@ class TestConverter < Test::Unit::TestCase
     assert_respond_to converter, :swapcase
     converter.expects(:swapcase).once
     converter.convert("test")
+  end
+  def test_first_chars
+    converter({'from_sentence' => ['first_chars']})
+    assert_respond_to converter, :first_chars
+    converter.expects(:first_chars).once
+    converter.convert("test test")
+  end
+  def test_collapse_chars
+    converter({'from_sentence' => ['collapse_chars']})
+    assert_respond_to converter, :collapse_chars
+    converter.expects(:collapse_chars).once
+    converter.convert("test test")
   end
 
   # actual result-testing
@@ -54,6 +66,16 @@ class TestConverter < Test::Unit::TestCase
     result = converter.convert("fun4test")
     assert_equal "fUn4TeSt", result
   end
+  def test_char_collapsing
+    converter({'from_sentence' => ['collapse_chars']})
+    assert_equal( "abc", converter.convert("a b c"))
+  end
+  def test_select_first_chars
+    converter({'from_sentence' => ['first_chars']})
+    assert_equal( "t a t f t", converter.convert('test all the fucking time'))
+  end
+
+  # more complex/real-life setups
   def test_multiple_rules
     converter(basic_rules.merge({
       'from_word' => [{'table' => 'special'}, 'swapcase']
@@ -61,7 +83,10 @@ class TestConverter < Test::Unit::TestCase
 
     assert_equal( "t35T", converter.convert('test'))
   end
-
+  def test_sentence
+    converter(complex_rules)
+    assert_equal( "Ds1P@dF", converter.convert("Da steht ein Pferd auf dem Flur"))
+  end
 
   protected
 
@@ -77,6 +102,15 @@ class TestConverter < Test::Unit::TestCase
           'e' => '3',
           's' => '5'
         }
+      }
+    }
+  end
+  def complex_rules
+    {
+      'from_sentence' => [{'table'=>'words'},'first_chars','collapse_chars',{'table'=>'symbols'}],
+      'tables' => {
+        'words' => { 'ein' => '1' },
+        'symbols' => { 'a' => '@' }
       }
     }
   end

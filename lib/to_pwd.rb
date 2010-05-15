@@ -1,5 +1,6 @@
 module ToPwd
-  autoload :Converter,  'lib/to_pwd/converter'
+  autoload :Converter,         'lib/to_pwd/converter'
+  autoload :StringConversions, 'lib/to_pwd/string_conversions'
 end
 
 # class PasswordString
