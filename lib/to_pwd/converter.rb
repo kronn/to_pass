@@ -19,7 +19,7 @@ module ToPwd
     private
 
     def rules_for( string )
-      if string.include? ' '
+      if string.include? ' ' or /\s/.match(string)
         @rules['sentence']
       else
         @rules['word']

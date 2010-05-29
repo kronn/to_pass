@@ -1,0 +1,32 @@
+desc: Basic Algorithm with a english usage in mind
+name: Basic (english)
+sentence:
+  - table: words
+  - first_chars
+  - table: symbols
+  - collapse_chars
+word:
+  - table: chars
+  - table: symbols
+tables:
+  words:
+    one: 1
+    single: 1
+    two: 2
+    too: 2
+    three: 3
+    four: 4
+    for: 4
+    five: 5
+    six: 6
+    seven: 7
+    eight: 8
+    nine: 9
+  symbols:
+    a: '@'
+  chars:
+    a: 4
+    e: 3
+    i: 1
+    o: 0
+    s: 5

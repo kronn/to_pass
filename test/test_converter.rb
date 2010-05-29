@@ -87,6 +87,12 @@ class TestConverter < Test::Unit::TestCase
     converter(complex_rules)
     assert_equal( "Ds1P@dF", converter.convert("Da steht ein Pferd auf dem Flur"))
   end
+  def test_sentence_with_whitespace
+    converter(complex_rules)
+    assert_equal( "Ds1P@dF", converter.convert("Da	steht	ein
+
+Pferd	auf	dem	Flur"))
+  end
 
   protected
 
