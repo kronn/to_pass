@@ -18,4 +18,13 @@ class TestIntegration < Test::Unit::TestCase
       assert_equal 't35t', `echo "test" | bin/to_pwd`
     end
   end
+
+  def test_module_integration
+    assert_nothing_raised do
+      str = "test"
+      str.instance_eval "class << self; include ToPwd::Integration; end"
+
+      assert_equal 't35t', str.to_pwd
+    end
+  end
 end
