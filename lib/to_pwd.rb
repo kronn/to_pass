@@ -1,4 +1,5 @@
 require 'pathname'
+require 'yaml'
 
 module ToPwd
   autoload :Converter,         'lib/to_pwd/converter'
