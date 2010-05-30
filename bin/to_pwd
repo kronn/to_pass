@@ -41,7 +41,7 @@ end.parse!
 string= unless options[:pipe_usage]
           ARGV[0]
         else
-          $stdin.read
+          $stdin.read.chomp
         end
 
 # perform "heavy" work
