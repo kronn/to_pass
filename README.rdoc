@@ -1,0 +1,47 @@
+= to_pwd
+
+== Transformation of a String to a Password.
+
+Passwords should be easy to remember and hard to guess.
+
+One technique is to have a sentence which can be easily remembered transformed to a password.
+
+ToPwd::Integration provides a to_pwd Method which transforms a sentence to a password.
+
+Currently, only two algorithms are provided. But they are YAML-Files, so it's extensible.
+
+== Usage
+
+=== IRB
+
+irb> require 'lib/to_pwd'
+irb> String.send(:include, ToPwd::Integration)
+irb> "Da steht ein Pferd auf dem Flur".to_pwd
+=> "Ds1P@dF"
+
+=== CLI
+
+$ cd path/to/to_pwd
+$ bin/to_pwd "test"   # => t35t
+$ bin/to_pwd "there is one problem for us, too" -a basic_en # => ti1p4u2
+
+=== CLI with Pipes
+
+This example is Mac OSX-centric, but you should get the point
+
+$ cd path/to/to_pwd
+$ echo "test" | bin/to_pwd | pbcopy
+
+== Note on Patches/Pull Requests
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2010 Matthias Viehweger. See LICENSE for details.
