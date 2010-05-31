@@ -1,10 +1,5 @@
-# optional libraries
-%w[ redgreen ].each do |lib|
-  begin
-    require lib
-  rescue LoadError
-  end
-end
+# -*- coding: utf-8 -*-
+# vim:ft=ruby:enc=utf-8
 
 begin
   require 'jeweler'
@@ -48,6 +43,13 @@ end
 # end
 
 task :test, :needs => [:check_dependencies] do
+  # optional libraries
+  %w[ redgreen ].each do |lib|
+    begin
+      require lib
+    rescue LoadError
+    end
+  end
   ( ['test/unit', 'test/helper'] + Dir['test/test_*.rb'] ).each do |file|
     require file
   end
