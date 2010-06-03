@@ -13,6 +13,7 @@ One technique is to have a sentence which can be easily remembered transformed t
     gem.authors = ["Matthias Viehweger"]
 
     gem.add_development_dependency 'mocha'
+    gem.add_development_dependency 'sdoc'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
