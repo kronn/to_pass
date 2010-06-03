@@ -32,15 +32,17 @@ end
 #   end
 # end
 
-# require 'rake/rdoctask'
-# Rake::RDocTask.new do |rdoc|
-#   version = File.exist?('VERSION') ? File.read('VERSION') : ""
-#
-#   rdoc.rdoc_dir = 'rdoc'
-#   rdoc.title = "to_pwd #{version}"
-#   rdoc.rdoc_files.include('README*')
-#   rdoc.rdoc_files.include('lib/**/*.rb')
-# end
+%w[ rake/rdoctask sdoc ].each { |lib| require lib }
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+
+  rdoc.rdoc_dir = 'doc/rdoc'
+  rdoc.title = "to_pwd #{version}"
+  rdoc.options << '--fmt' << 'shtml'
+  rdoc.template = 'direct'
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
 
 task :test, :needs => [:check_dependencies] do
   # optional libraries

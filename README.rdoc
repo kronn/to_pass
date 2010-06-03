@@ -14,23 +14,21 @@ Currently, only two algorithms are provided. But they are YAML-Files, so it's ex
 
 === IRB
 
-irb> require 'lib/to_pwd'
-irb> String.send(:include, ToPwd::Integration)
-irb> "Da steht ein Pferd auf dem Flur".to_pwd
-=> "Ds1P@dF"
+  irb> require 'lib/to_pwd'
+  irb> String.send(:include, ToPwd::Integration)
+  irb> "Da steht ein Pferd auf dem Flur".to_pwd
+  # => "Ds1P@dF"
 
 === CLI
 
-$ cd path/to/to_pwd
-$ bin/to_pwd "test"   # => t35t
-$ bin/to_pwd "there is one problem for us, too" -a basic_en # => ti1p4u2
+  $ to_pwd "test"   # => t35t
+  $ to_pwd "there is one problem for us, too" -a basic_en # => ti1p4u2
 
 === CLI with Pipes
 
 This example is Mac OSX-centric, but you should get the point
 
-$ cd path/to/to_pwd
-$ echo "test" | bin/to_pwd | pbcopy
+  $ echo "test" | to_pwd | pbcopy
 
 == Note on Patches/Pull Requests
 
