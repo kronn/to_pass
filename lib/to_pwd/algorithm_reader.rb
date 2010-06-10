@@ -2,8 +2,18 @@ require 'pathname'
 require 'yaml'
 
 class ToPwd::AlgorithmReader
+  attr_reader :load_path
+
   def initialize(algorithm)
     @algorithm = algorithm
+    @load_path = []
+    [
+      '~/.to_pass/algorithms',
+      "#{File.dirname(__FILE__)}/../algorithms"
+    ].each do |dir|
+      dir = Pathname.new(dir)
+      @load_path << dir.expand_path if dir.exist?
+    end
   end
 
   class << self
