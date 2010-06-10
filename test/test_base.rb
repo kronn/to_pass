@@ -1,11 +1,7 @@
 require File.dirname(__FILE__)+'/helper'
 
 class TestBase < Test::Unit::TestCase
-  def test_presence
-    assert defined?(ToPwd)
-    assert defined?(ToPwd::Base)
-    assert_kind_of Class, ToPwd::Base
-  end
+  test_presence ToPwd::Base
 
   def test_usage
     assert_nothing_raised do

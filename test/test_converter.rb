@@ -6,10 +6,7 @@ class TestConverter < Test::Unit::TestCase
   end
 
   # basic presence and api-testing
-  def test_presence
-    assert defined?(ToPwd)
-    assert defined?(ToPwd::Converter)
-  end
+  test_presence ToPwd::Converter
   def test_instantiation
     assert_nothing_raised do
       ToPwd::Converter.new({})
