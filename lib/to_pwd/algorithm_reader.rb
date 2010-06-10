@@ -23,12 +23,16 @@ class ToPwd::AlgorithmReader
   end
 
   def load_from_file
-    YAML.load_file(algorithm_file_name.expand_path)
-  end
+    fn = load_path.map do |dir|
+      file = Pathname.new("#{dir}/#{@algorithm}.yml")
 
-  private
+      if file.exist?
+        file
+      else
+        nil
+      end
+    end.compact.first
 
-  def algorithm_file_name
-    Pathname.new("#{File.dirname(__FILE__)}/../algorithms/#{@algorithm}.yml")
+    YAML.load_file(fn.expand_path)
   end
 end
