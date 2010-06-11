@@ -1,5 +1,6 @@
 module ToPwd
   VERSION = File.read(File.join(File.dirname(__FILE__), '../VERSION')).strip
+  APP_NAME = 'to_pwd'
 
   autoload :Converter,         'lib/to_pwd/converter'
   autoload :StringConversions, 'lib/to_pwd/string_conversions'

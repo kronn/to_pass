@@ -13,4 +13,8 @@ class TestBase < Test::Unit::TestCase
   def test_version
     assert_equal Pathname.new("#{File.dirname(__FILE__)}/../VERSION").expand_path.read.chomp, ToPwd::VERSION
   end
+
+  def test_appname
+    assert_equal "to_pwd", ToPwd::APP_NAME
+  end
 end
