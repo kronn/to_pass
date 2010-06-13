@@ -1,0 +1,9 @@
+UP NEXT
+============================================================================
+- test and enble class methods of Converter-class
+
+SOMEDAY
+============================================================================
+- move decision wether a string is a word or not into algorithm definition.
+- make conversion-functions more pluggable
+- test on windows

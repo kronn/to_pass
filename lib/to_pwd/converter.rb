@@ -17,6 +17,17 @@ module ToPwd
       process(string, rules_for(string))
     end
 
+    # class << self
+    #   # convenience method to apply conversion rules to a string
+    #   def apply(rules, string)
+    #     new(rules).convert(string)
+    #   end
+    #   # convenience method to convert a string based on rules
+    #   def convert(string, rules)
+    #     new(rules).convert(string)
+    #   end
+    # end
+
     protected
 
     include StringConversions
