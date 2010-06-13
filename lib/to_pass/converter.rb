@@ -1,4 +1,4 @@
-module ToPwd
+module ToPass
   # converts a given string into a password-like word
   #
   # the string can be a word or a sentence. everthing which

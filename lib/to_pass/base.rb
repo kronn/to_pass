@@ -1,5 +1,5 @@
-module ToPwd
-  # ToPwd::Base is mostly a facade for the library.
+module ToPass
+  # ToPass::Base is mostly a facade for the library.
   #
   # Given a string and a algorithm identifier, the right rules
   # are loaded and applied to the string. With a simple "to_s",

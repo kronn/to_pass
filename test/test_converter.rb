@@ -6,10 +6,10 @@ class TestConverter < Test::Unit::TestCase
   end
 
   # basic presence and api-testing
-  test_presence ToPwd::Converter
+  test_presence ToPass::Converter
   def test_instantiation
     assert_nothing_raised do
-      ToPwd::Converter.new({})
+      ToPass::Converter.new({})
     end
   end
   def test_convert
@@ -67,7 +67,7 @@ Pferd	auf	dem	Flur"))
   protected
 
   def converter(rules = basic_rules)
-    @converter ||= ToPwd::Converter.new(rules)
+    @converter ||= ToPass::Converter.new(rules)
   end
 
   def basic_rules

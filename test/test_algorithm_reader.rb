@@ -1,7 +1,7 @@
 require File.dirname(__FILE__)+'/helper'
 
 class TestAlgorithmReader < Test::Unit::TestCase
-  test_presence ToPwd::AlgorithmReader
+  test_presence ToPass::AlgorithmReader
 
   def test_initialize
     assert_nothing_raised do
@@ -36,7 +36,7 @@ class TestAlgorithmReader < Test::Unit::TestCase
   protected
 
   def klass
-    ToPwd::AlgorithmReader
+    ToPass::AlgorithmReader
   end
   def reader(algorithm = :basic_de)
     @reader ||= klass.new(algorithm)

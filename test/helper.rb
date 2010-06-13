@@ -23,4 +23,4 @@ Test::Unit::TestCase.class_eval do
   end
 end
 
-require 'lib/to_pwd'
+require 'lib/to_pass'

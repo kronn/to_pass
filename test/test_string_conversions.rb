@@ -1,6 +1,5 @@
 require File.dirname(__FILE__)+'/helper'
 
-
 class TestStringConversion < Test::Unit::TestCase
   def test_replacement
     result = converter.replace("test", {
@@ -32,7 +31,7 @@ class TestStringConversion < Test::Unit::TestCase
 
   def converter
     klass = Class.new
-    klass.send(:extend, ToPwd::StringConversions)
+    klass.send(:extend, ToPass::StringConversions)
     klass
   end
 end

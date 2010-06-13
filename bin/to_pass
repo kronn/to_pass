@@ -6,7 +6,7 @@ base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
 $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
 
 require 'optparse'
-require 'lib/to_pwd'
+require 'lib/to_pass'
 
 # parse options
 options = {
@@ -38,7 +38,7 @@ string= unless options[:pipe_usage]
         end
 
 # perform "heavy" work
-password = ToPwd::Base.new( string, options[:algorithm] ).to_s
+password = ToPass::Base.new( string, options[:algorithm] ).to_s
 
 if options[:pipe_usage]
   $stdout << password

@@ -8,12 +8,12 @@
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "to_pwd"
+    gem.name = "to_pass"
     gem.summary = "generate password from words or sentences"
     gem.description = %Q{Passwords should be easy to remember and hard to guess.
 One technique is to have a sentence which can be easily remembered transformed to a password.}
     gem.email = "kronn@kronn.de"
-    gem.homepage = "http://github.com/kronn/to_pwd"
+    gem.homepage = "http://github.com/kronn/to_pass"
     gem.authors = ["Matthias Viehweger"]
 
     gem.add_development_dependency 'mocha'
@@ -29,7 +29,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'doc/rdoc'
-  rdoc.title = "to_pwd #{version}"
+  rdoc.title = "to_pass #{version}"
   rdoc.options << '--fmt' << 'shtml'
   rdoc.template = 'direct'
   rdoc.rdoc_files.include('README*')

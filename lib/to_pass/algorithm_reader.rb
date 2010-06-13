@@ -9,7 +9,7 @@ require 'yaml'
 # 1. ~/.to_pass/algorithms
 # 2. bundled algorithms of gem
 #
-class ToPwd::AlgorithmReader
+class ToPass::AlgorithmReader
   attr_reader :load_path
 
   def initialize(algorithm) # :nodoc:

@@ -1,4 +1,4 @@
-module ToPwd
+module ToPass
   # The StringConversions-Module is a collection of available
   # Transformations. Every method is given a string as single argument
   # and is expected to return a transformed string. The only exception

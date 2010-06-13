@@ -1,4 +1,4 @@
-= to_pwd
+= to_pass
 
 == Transformation of a String to a Password.
 
@@ -13,24 +13,24 @@ extensible.
 
 === IRB
 
-ToPwd::Integration provides a to_pwd Method which transforms a sentence to a
+ToPass::Integration provides a to_pass Method which transforms a sentence to a
 password.
 
-  irb> require 'lib/to_pwd'
-  irb> String.send(:include, ToPwd::Integration)
-  irb> "Da steht ein Pferd auf dem Flur".to_pwd
+  irb> require 'lib/to_pass'
+  irb> String.send(:include, ToPass::Integration)
+  irb> "Da steht ein Pferd auf dem Flur".to_pass
   # => "Ds1P@dF"
 
 === CLI
 
-  $ to_pwd "test"   # => t35t
-  $ to_pwd "there is one problem for us, too" -a basic_en # => ti1p4u2
+  $ to_pass "test"   # => t35t
+  $ to_pass "there is one problem for us, too" -a basic_en # => ti1p4u2
 
 === CLI with Pipes
 
 This example is Mac OSX-centric, but you should get the point.
 
-  $ echo "test" | to_pwd | pbcopy
+  $ echo "test" | to_pass | pbcopy
 
 == Note on Patches/Pull Requests
 
