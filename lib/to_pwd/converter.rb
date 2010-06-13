@@ -3,11 +3,16 @@ module ToPwd
   #
   # the string can be a word or a sentence. everthing which
   # contains whitespace is considered a sentence
+  #
+  # a more complete description of the algorithm capabilities
+  # is still pending.
   class Converter
+    # create a new converter, based on a set of conversion-rules
     def initialize( rules )
       @rules = rules
     end
 
+    # convert a string into a password
     def convert( string )
       process(string, rules_for(string))
     end
@@ -18,6 +23,10 @@ module ToPwd
 
     private
 
+    # return the applicable rules for a given string.
+    #
+    # everything which contains whitespace is considered a sentence,
+    # otherwise it is most likely a word.
     def rules_for( string )
       if string.include? ' ' or /\s/.match(string)
         @rules['sentence']
@@ -26,6 +35,7 @@ module ToPwd
       end
     end
 
+    # process the string, rule by rule
     def process(string, rules)
       rules.inject(string) do |pwd, rule|
         if rule.is_a?(String) and respond_to?(rule.to_sym)
