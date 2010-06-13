@@ -45,33 +45,6 @@ class TestConverter < Test::Unit::TestCase
     converter.convert("test test")
   end
 
-  # actual result-testing
-  def test_replacement
-    result = converter.convert("test")
-    assert_equal "t35t", result
-  end
-  def test_case_swapping
-    converter({'word' => ['swapcase']})
-    result = converter.convert("test")
-    assert_equal "tEsT", result
-  end
-  def test_case_swapping_ignores_numbers
-    converter({'word' => ['swapcase']})
-    result = converter.convert("test4fun")
-    assert_equal "tEsT4fUn", result
-
-    result = converter.convert("fun4test")
-    assert_equal "fUn4TeSt", result
-  end
-  def test_char_collapsing
-    converter({'sentence' => ['collapse_chars']})
-    assert_equal( "abc", converter.convert("a b c"))
-  end
-  def test_select_first_chars
-    converter({'sentence' => ['first_chars']})
-    assert_equal( "t a t f t", converter.convert('test all the fucking time'))
-  end
-
   # more complex/real-life setups
   def test_multiple_rules
     converter(basic_rules.merge({
