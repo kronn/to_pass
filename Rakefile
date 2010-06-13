@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # vim:ft=ruby:enc=utf-8
 
+# # enable trace to get better error output
+# Rake.application.options.trace = true
+
 # jeweler task
 begin
   require 'jeweler'
@@ -19,26 +22,6 @@ One technique is to have a sentence which can be easily remembered transformed t
   Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
-
-# rcov task (commented out)
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.test_files = FileList['test/test_*.rb']
-    test.output_dir = "doc/rcov"
-    test.verbose = true
-    test.rcov_opts << [
-      "--sort coverage",
-      "--profile",
-      "--include test",
-      "--exclude /gems/,/Library/,spec"
-    ].join(" ")
-  end
-rescue LoadError
-  task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install rcov"
-  end
 end
 
 %w[ rake/rdoctask sdoc ].each { |lib| require lib }
@@ -68,6 +51,3 @@ task :test, :needs => [:check_dependencies] do
 end
 
 task :default => :test
-
-# # enable trace to get better error output
-# Rake.application.options.trace = true
