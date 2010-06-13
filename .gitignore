@@ -1,4 +1,6 @@
 .*.swp
 vendor/*.rb
 doc/rdoc/*
+doc/rcov/*
+tmp/*
 pkg/*

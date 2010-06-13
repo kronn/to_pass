@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim:ft=ruby:enc=utf-8
 
+# jeweler task
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
@@ -20,18 +21,25 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-# begin
-#   require 'rcov/rcovtask'
-#   Rcov::RcovTask.new do |test|
-#     test.libs << 'test'
-#     test.pattern = 'test/**/test_*.rb'
-#     test.verbose = true
-#   end
-# rescue LoadError
-#   task :rcov do
-#     abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-#   end
-# end
+# rcov task (commented out)
+begin
+  require 'rcov/rcovtask'
+  Rcov::RcovTask.new do |test|
+    test.test_files = FileList['test/test_*.rb']
+    test.output_dir = "doc/rcov"
+    test.verbose = true
+    test.rcov_opts << [
+      "--sort coverage",
+      "--profile",
+      "--include test",
+      "--exclude /gems/,/Library/,spec"
+    ].join(" ")
+  end
+rescue LoadError
+  task :rcov do
+    abort "RCov is not available. In order to run rcov, you must: sudo gem install rcov"
+  end
+end
 
 %w[ rake/rdoctask sdoc ].each { |lib| require lib }
 Rake::RDocTask.new do |rdoc|
@@ -45,6 +53,7 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+desc "run tests"
 task :test, :needs => [:check_dependencies] do
   # optional libraries
   %w[ redgreen ].each do |lib|
