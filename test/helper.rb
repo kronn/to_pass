@@ -21,6 +21,13 @@ Test::Unit::TestCase.class_eval do
       assert_class_defined klass
     end
   end
+
+
+  def with_algorithm_in_user_dir
+    `mkdir -p ~/to_pass/algorithms; cp -f #{File.dirname(__FILE__)}/fixtures/user_alg.yml ~/.to_pass/algorithms/user_alg.yml`
+    yield
+    `rm ~/.to_pass/algorithms/user_alg.yml`
+  end
 end
 
 require 'lib/to_pass'

@@ -27,4 +27,11 @@ class TestIntegration < Test::Unit::TestCase
       assert_equal 't35t', str.to_pass
     end
   end
+
+  def test_cli_usage_with_user_algorithm
+    with_algorithm_in_user_dir do
+      assert_equal "le1/2%z", `bin/to_pass 'leasbpc' -a user_alg`.chomp
+      assert_equal "le1/2%z", `bin/to_pass 'luke eats all sausagages because peter cries' -a user_alg`.chomp
+    end
+  end
 end
