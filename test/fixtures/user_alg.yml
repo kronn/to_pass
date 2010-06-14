@@ -1,0 +1,18 @@
+desc: Test Algorithm
+name: Test
+sentence:
+  - first_chars
+  - table: chars
+  - table: symbols
+  - collapse_chars
+word:
+  - table: chars
+  - table: symbols
+tables:
+  symbols:
+    p: '%'
+    s: '/'
+  chars:
+    a: 1
+    b: 2
+    c: z

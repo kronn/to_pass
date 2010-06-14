@@ -33,6 +33,16 @@ class TestAlgorithmReader < Test::Unit::TestCase
     end
   end
 
+  def test_loads_from_user_dir
+    `mkdir -p ~/to_pass/algorithms; cp -f #{File.dirname(__FILE__)}/fixtures/user_alg.yml ~/.to_pass/algorithms/user_alg.yml`
+
+    assert_nothing_raised do
+      assert_kind_of Hash, klass.load(:user_alg)
+    end
+
+    `rm ~/.to_pass/algorithms/user_alg.yml`
+  end
+
   protected
 
   def klass

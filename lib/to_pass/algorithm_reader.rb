@@ -19,8 +19,8 @@ class ToPass::AlgorithmReader
       '~/.to_pass/algorithms',
       "#{File.dirname(__FILE__)}/../algorithms"
     ].each do |dir|
-      dir = Pathname.new(dir)
-      @load_path << dir.expand_path if dir.exist?
+      dir = Pathname.new(dir).expand_path
+      @load_path << dir if dir.exist?
     end
   end
 
@@ -38,9 +38,11 @@ class ToPass::AlgorithmReader
       if file.exist?
         file
       else
-        nil
+        next
       end
     end.compact.first
+
+    raise LoadError, "algorithm #{@algorithm} could not be found in #{load_path}" if fn.nil?
 
     YAML.load_file(fn.expand_path)
   end
