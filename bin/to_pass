@@ -5,43 +5,6 @@
 base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
 $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
 
-require 'optparse'
 require 'lib/to_pass'
 
-# parse options
-options = {
-  :pipe_usage => ARGV[0].nil?,
-  :algorithm  => 'basic_de'
-}
-
-OptionParser.new do |opts|
-  opts.banner = "Usage: #{__FILE__} [options] passphrase"
-  opts.separator ""
-
-  opts.on('-a', '--algorithm ALGORITM', "use specified algorithm for transformation") do |value|
-    options[:algorithm] = value
-  end
-
-  opts.separator ""
-
-  opts.on_tail("-h", "--help", "Show this message") do
-    puts opts
-    exit
-  end
-end.parse!
-
-# get input string
-string= unless options[:pipe_usage]
-          ARGV[0]
-        else
-          $stdin.read.chomp
-        end
-
-# perform "heavy" work
-password = ToPass::Base.new( string, options[:algorithm] ).to_s
-
-if options[:pipe_usage]
-  $stdout << password
-else
-  puts password
-end
+ToPass::Cli.new.output

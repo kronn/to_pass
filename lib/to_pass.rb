@@ -9,9 +9,10 @@ module ToPass
   # name of gem
   APP_NAME = 'to_pass'
 
-  autoload :Converter,         'lib/to_pass/converter'
-  autoload :StringConversions, 'lib/to_pass/string_conversions'
-  autoload :Base,              'lib/to_pass/base'
-  autoload :Integration,       'lib/to_pass/integration'
   autoload :AlgorithmReader,   'lib/to_pass/algorithm_reader'
+  autoload :Base,              'lib/to_pass/base'
+  autoload :Cli,               'lib/to_pass/cli.rb'
+  autoload :Converter,         'lib/to_pass/converter'
+  autoload :Integration,       'lib/to_pass/integration'
+  autoload :StringConversions, 'lib/to_pass/string_conversions'
 end
