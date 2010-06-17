@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim:ft=ruby:enc=utf-8
+
 # Any Object can be a password, as long as it has a string representation.
 #
 # This Module provides a shortcut to the password-conversion.

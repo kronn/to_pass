@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim:ft=ruby:enc=utf-8
+
 module ToPass
   # The StringConversions-Module is a collection of available
   # Transformations. Every method is given a string as single argument

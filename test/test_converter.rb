@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim:ft=ruby:enc=utf-8
+
 require File.dirname(__FILE__)+'/helper'
 
 class TestConverter < Test::Unit::TestCase

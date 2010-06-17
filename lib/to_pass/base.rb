@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim:ft=ruby:enc=utf-8
+
 module ToPass
   # ToPass::Base is mostly a facade for the library.
   #

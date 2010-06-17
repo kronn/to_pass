@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim:ft=ruby:enc=utf-8
+
 # Library to convert a String into a Password
 module ToPass
   # version of gem, read directly from the VERSION-File
