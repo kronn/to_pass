@@ -16,6 +16,17 @@ UP NEXT
   - Provide man pages for your binaries
   - If possible, maintain a backward-compatible API
 
+- Man-Pages http://www.linuxhowtos.org/System/creatingman.htm
+  order:
+    NAME
+    SYNOPSIS
+    DESCRIPTION
+    OPTIONS
+    BUGS
+    AUTHOR
+    SEE ALSO
+
+
 SOMEDAY
 ============================================================================
 - move decision wether a string is a word or not into algorithm definition.
