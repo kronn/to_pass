@@ -24,16 +24,20 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-%w[ rake/rdoctask sdoc ].each { |lib| require lib }
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+# documentation task
+begin
+  %w[ rake/rdoctask sdoc ].each { |lib| require lib }
+  Rake::RDocTask.new do |rdoc|
+    version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
-  rdoc.rdoc_dir = 'doc/rdoc'
-  rdoc.title = "to_pass #{version}"
-  rdoc.options << '--fmt' << 'shtml'
-  rdoc.template = 'direct'
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+    rdoc.rdoc_dir = 'doc/rdoc'
+    rdoc.title = "to_pass #{version}"
+    rdoc.options << '--fmt' << 'shtml'
+    rdoc.template = 'direct'
+    rdoc.rdoc_files.include('README*')
+    rdoc.rdoc_files.include('lib/**/*.rb')
+  end
+rescue LoadError
 end
 
 desc "run tests"
