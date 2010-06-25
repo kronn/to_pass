@@ -5,6 +5,17 @@ UP NEXT
 - output a list of available converters
 - also search in user-dir for converters
 
+- make it debian compatible (most of which is common sense anyway)
+  http://pkg-ruby-extras.alioth.debian.org/upstream-devs.html
+  - Distribute your software as a source code archive
+  - Use setup.rb
+  - Remove all references to rubygems in the software you ship
+  - Don’t make your Rakefile depend on RubyGems
+  - Make your tests and examples usable outside of your directory tree
+  - Use a shebang that works everywhere
+  - Provide man pages for your binaries
+  - If possible, maintain a backward-compatible API
+
 SOMEDAY
 ============================================================================
 - move decision wether a string is a word or not into algorithm definition.
