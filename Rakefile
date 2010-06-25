@@ -41,7 +41,7 @@ rescue LoadError
 end
 
 desc "run tests"
-task :test, :needs => [:check_dependencies] do
+task :test do
   # optional libraries
   %w[ redgreen ].each do |lib|
     begin
