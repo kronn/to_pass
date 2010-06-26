@@ -12,7 +12,7 @@ module ToPass
     end
 
     def output
-      if @options[:pipe_usage]
+      if @options[:pipe_out]
         $stdout << @password
       else
         puts @password
@@ -24,7 +24,9 @@ module ToPass
     # parse the options
     def parse_options
       options = {
-        :algorithm  => 'basic_de'
+        :algorithm => 'basic_de',
+        :pipe_out  => false,
+        :pipe_in   => false
       }
 
       OptionParser.new do |opts|
@@ -35,6 +37,10 @@ module ToPass
           options[:algorithm] = value
         end
 
+        opts.on('-p', '--[no-]pipe', "pipe result to stdout (without trailing linebreak)") do |value|
+          options[:pipe_out] = value
+        end
+
         opts.separator ""
 
         opts.on_tail("-h", "--help", "Show this message") do
@@ -43,14 +49,16 @@ module ToPass
         end
       end.parse!
 
-      options[:pipe_usage] = ARGV[0].nil?
+      if ARGV[0].nil?
+        options[:pipe_in] = options[:pipe_out] = true
+      end
 
       options
     end
 
     # get the input string
     def get_input_string
-      unless @options[:pipe_usage]
+      unless @options[:pipe_in]
         ARGV[0]
       else
         $stdin.read.chomp

@@ -24,6 +24,18 @@ class TestCli < Test::Unit::TestCase
     end
   end
 
+  def test_cli_usage_with_pipe_input
+    assert_nothing_raised do
+      assert_equal 't35t', `echo "test" | bin/to_pass --no-pipe`.chomp
+    end
+  end
+
+  def test_cli_usage_with_pipe_output
+    assert_nothing_raised do
+      assert_equal 't35t', `bin/to_pass test --pipe`
+    end
+  end
+
 
   def test_cli_usage_with_user_algorithm
     with_algorithm_in_user_dir do
