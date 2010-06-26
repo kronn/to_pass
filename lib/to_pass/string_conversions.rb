@@ -10,45 +10,14 @@ module ToPass
   #
   # This enables chaining and eases extending the capabilities.
   module StringConversions
-    # all the blanks are removed.
-    #
-    # this is useful if you convert a sentence into a password.
-    def collapse_chars(string)
-      string = string.split(' ').join('')
-    end
+    autoload :CollapseChars, 'lib/to_pass/converters/collapse_chars.rb'
+    autoload :FirstChars,    'lib/to_pass/converters/first_chars.rb'
+    autoload :Replace,       'lib/to_pass/converters/replace.rb'
+    autoload :Swapcase,      'lib/to_pass/converters/swapcase.rb'
 
-    # reduces every word to its first character, preserving case
-    def first_chars(string)
-      string.split(' ').map do |word|
-        word[0].chr
-      end.join(' ')
-    end
-
-    # alternate case of letter (not numbers)
-    def swapcase(string)
-      pwd = ""
-      last_upcase = true
-
-      string.each_char do |char|
-        char = if char.between?("0", "9")
-                 char
-               elsif last_upcase
-                 last_upcase = false
-                 char.downcase
-               else
-                 last_upcase = true
-                 char.upcase
-               end
-        pwd << char
-      end
-      pwd
-    end
-
-    # perform replacements on a string, based on a replacment table
-    def replace(string, table)
-      table.inject(string) do |pwd, map|
-        pwd = pwd.gsub(/#{map[0].to_s}/, map[1].to_s)
-      end
-    end
+    include CollapseChars
+    include FirstChars
+    include Replace
+    include Swapcase
   end
 end
