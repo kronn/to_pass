@@ -4,7 +4,7 @@
 require 'pathname'
 require 'yaml'
 
-# The AlgorithmReader's primary API is the load the rules from a YAML-file
+# The AlgorithmReader's primary API is to load the rules from a YAML-file
 # into a Hash.
 #
 # Algorithms are searched in the following locations
