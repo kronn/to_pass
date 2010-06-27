@@ -14,5 +14,5 @@ module ToPass
   autoload :Cli,               'lib/to_pass/cli.rb'
   autoload :Converter,         'lib/to_pass/converter'
   autoload :Integration,       'lib/to_pass/integration'
-  autoload :StringConversions, 'lib/to_pass/string_conversions'
+  # autoload :StringConversions, 'lib/to_pass/string_conversions'
 end

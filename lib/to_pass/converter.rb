@@ -33,7 +33,7 @@ module ToPass
 
     protected
 
-    include StringConversions
+    # include StringConversions
 
     private
 
