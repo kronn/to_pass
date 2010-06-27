@@ -31,6 +31,12 @@ Test::Unit::TestCase.class_eval do
     yield
     `rm ~/.to_pass/algorithms/user_alg.yml`
   end
+
+  def with_converters_in_user_dir
+    `mkdir -p ~/.to_pass/converters; cp -f #{File.dirname(__FILE__)}/fixtures/user_converter.rb ~/.to_pass/converters/userize.rb`
+    yield
+    `rm ~/.to_pass/converters/userize.rb`
+  end
 end
 
 require 'lib/to_pass'

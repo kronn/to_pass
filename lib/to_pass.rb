@@ -13,6 +13,7 @@ module ToPass
   autoload :Base,              'lib/to_pass/base'
   autoload :Cli,               'lib/to_pass/cli.rb'
   autoload :Converter,         'lib/to_pass/converter'
+  autoload :ConverterReader,   'lib/to_pass/converter_reader'
   autoload :Integration,       'lib/to_pass/integration'
   # autoload :StringConversions, 'lib/to_pass/string_conversions'
 end
