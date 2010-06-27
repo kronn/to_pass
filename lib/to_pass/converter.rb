@@ -13,6 +13,7 @@ module ToPass
     # create a new converter, based on a set of conversion-rules
     def initialize( rules )
       @rules = rules
+      @converters = ConverterReader.load
     end
 
     # convert a string into a password
