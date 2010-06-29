@@ -25,33 +25,34 @@ class TestConverter < Test::Unit::TestCase
   # mock-tests to ensure presence and calling of protected methods
   def test_replace
     assert_respond_to converter, :replace
-    converter.expects(:replace).once
+    converter.expects(:apply_rule).with("test", {'replace'=>'special'}).once
 
     converter.convert("test")
   end
   def test_swapcase
     converter({'word' => ['swapcase']})
     assert_respond_to converter, :swapcase
-    converter.expects(:swapcase).once
+    converter.expects(:apply_rule).with("test",  'swapcase' ).once
     converter.convert("test")
   end
   def test_first_chars
     converter({'sentence' => ['first_chars']})
     assert_respond_to converter, :first_chars
-    converter.expects(:first_chars).once
+    converter.expects(:apply_rule).with("test test", 'first_chars').once
     converter.convert("test test")
   end
   def test_collapse_chars
     converter({'sentence' => ['collapse_chars']})
     assert_respond_to converter, :collapse_chars
-    converter.expects(:collapse_chars).once
+    converter.expects(:apply_rule).with("test test", 'collapse_chars').once
     converter.convert("test test")
   end
+
 
   # more complex/real-life setups
   def test_multiple_rules
     converter(basic_rules.merge({
-      'word' => [{'table' => 'special'}, 'swapcase']
+      'word' => [{'replace' => 'special'}, 'swapcase']
     }))
 
     assert_equal( "t35T", converter.convert('test'))
@@ -67,6 +68,34 @@ class TestConverter < Test::Unit::TestCase
 Pferd	auf	dem	Flur"))
   end
 
+
+  # actual result-testing
+  def test_replacement
+    rules = {
+      'replacements' => {
+        'numbers' => {
+          :e => 3,
+          :s => 5
+        }
+      }
+    }
+    result = converter(rules).send(:apply_rule, "test", {'replace'=>'numbers'})
+    assert_equal "t35t", result
+  end
+  def test_case_swapping
+    assert_equal "tEsT", converter.send(:apply_rule, "test", 'swapcase')
+  end
+  def test_case_swapping_ignores_numbers
+    assert_equal "tEsT4fUn", converter.send(:apply_rule, "test4fun", 'swapcase')
+    assert_equal "fUn4TeSt", converter.send(:apply_rule, "fun4test", 'swapcase')
+  end
+  def test_char_collapsing
+    assert_equal "abc", converter.send(:apply_rule, "a b c", 'collapse_chars')
+  end
+  def test_select_first_chars
+    assert_equal "t a t f t", converter.send(:apply_rule, "test all the fucking time", 'first_chars')
+  end
+
   protected
 
   def converter(rules = basic_rules)
@@ -75,8 +104,8 @@ Pferd	auf	dem	Flur"))
 
   def basic_rules
     {
-      'word' => [{ 'table' => 'special' }],
-      'tables' => {
+      'word' => [{ 'replace' => 'special' }],
+      'replacements' => {
         'special' => {
           'e' => '3',
           's' => '5'
@@ -86,8 +115,8 @@ Pferd	auf	dem	Flur"))
   end
   def complex_rules
     {
-      'sentence' => [{'table'=>'words'},'first_chars','collapse_chars',{'table'=>'symbols'}],
-      'tables' => {
+      'sentence' => [{'replace'=>'words'},'first_chars','collapse_chars',{'replace'=>'symbols'}],
+      'replacements' => {
         'words' => { 'ein' => '1' },
         'symbols' => { 'a' => '@' }
       }

@@ -10,10 +10,12 @@ module ToPass
   # a more complete description of the algorithm capabilities
   # is still pending.
   class Converter
+    attr_accessor :converters, :rules
     # create a new converter, based on a set of conversion-rules
     def initialize( rules )
       @rules = rules
-      @converters = ConverterReader.load
+      @reader = ConverterReader.new
+      @converters = @reader.discover
     end
 
     # convert a string into a password
@@ -32,9 +34,16 @@ module ToPass
     #   end
     # end
 
-    protected
-
-    # include StringConversions
+    # proxy to converters
+    def respond_to?(method_name) # :nodoc:
+      if [:convert, :rules_for, :process].include? method_name.to_sym
+        true
+      elsif @converters.include? method_name.to_sym
+        true
+      else
+        super
+      end
+    end
 
     private
 
@@ -53,13 +62,20 @@ module ToPass
     # process the string, rule by rule
     def process(string, rules)
       rules.inject(string) do |pwd, rule|
-        if rule.is_a?(String) and respond_to?(rule.to_sym)
-          send(rule.to_sym, pwd)
-        elsif rule.is_a?(Hash) and rule.has_key?('table')
-          replace(pwd, @rules['tables'][rule.fetch('table')])
-        else
-          pwd
-        end
+        apply_rule(pwd, rule)
+      end
+    end
+
+    # apply a single rule to the password-to-be
+    def apply_rule(pwd, rule)
+      cmd, args = rule.to_a.flatten
+      m = @reader.load(cmd.to_sym).method(cmd.to_sym)
+
+      case m.arity
+      when 1
+        m.call(pwd)
+      when 3, -2
+        m.call(pwd, @rules, *args)
       end
     end
   end
