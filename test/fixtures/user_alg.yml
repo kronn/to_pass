@@ -2,13 +2,13 @@ desc: Test Algorithm
 name: Test
 sentence:
   - first_chars
-  - table: chars
-  - table: symbols
+  - replace: chars
+  - replace: symbols
   - collapse_chars
 word:
-  - table: chars
-  - table: symbols
-tables:
+  - replace: chars
+  - replace: symbols
+replacements:
   symbols:
     p: '%'
     s: '/'

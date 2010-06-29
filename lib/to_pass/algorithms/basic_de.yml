@@ -1,14 +1,14 @@
 desc: Basic Algorithm with a german usage in mind
 name: Basic (german)
 sentence:
-  - table: words
+  - replace: words
   - first_chars
-  - table: symbols
+  - replace: symbols
   - collapse_chars
 word:
-  - table: chars
-  - table: symbols
-tables:
+  - replace: chars
+  - replace: symbols
+replacements:
   words:
     ein: 1
     eine: 1

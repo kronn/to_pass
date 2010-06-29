@@ -1,14 +1,14 @@
 desc: Basic Algorithm with a english usage in mind
 name: Basic (english)
 sentence:
-  - table: words
+  - replace: words
   - first_chars
-  - table: symbols
+  - replace: symbols
   - collapse_chars
 word:
-  - table: chars
-  - table: symbols
-tables:
+  - replace: chars
+  - replace: symbols
+replacements:
   words:
     one: 1
     single: 1
