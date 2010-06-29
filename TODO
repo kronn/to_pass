@@ -1,6 +1,5 @@
 UP NEXT
 ============================================================================
-- extract converters into their own directory (for flexibility)
 - make converters plugins
 - output a list of available converters
 - also search in user-dir for converters
