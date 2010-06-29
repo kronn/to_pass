@@ -32,6 +32,15 @@ class ToPass::AlgorithmReader
     def load(algorithm)
       new(algorithm).load_from_file
     end
+
+    # searches for available algorithms
+    def discover
+      new(nil).load_path.collect do |dir|
+        Dir["#{dir}/*.yml"]
+      end.flatten.compact.map do |fn|
+        File.basename(fn).gsub('.yml', '')
+      end
+    end
   end
 
   def load_from_file # :nodoc:

@@ -17,6 +17,11 @@ class TestAlgorithmReader < Test::Unit::TestCase
     assert_kind_of Hash, klass.load(:basic_de)
   end
 
+  def test_discover
+    assert_respond_to klass, :discover
+    assert_kind_of Array, klass.discover
+  end
+
   def test_has_load_path
     assert_respond_to reader, :load_path
     assert_kind_of Array, reader.load_path
