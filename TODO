@@ -26,3 +26,5 @@ SOMEDAY
 ============================================================================
 - move decision wether a string is a word or not into algorithm definition.
 - test on windows
+* add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
+* rescue OptionParser::InvalidOption with help screen
