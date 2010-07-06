@@ -30,7 +30,7 @@ module ToPass
       }
 
       OptionParser.new do |opts|
-        opts.banner = "Usage: #{__FILE__} [options] passphrase"
+        opts.banner = "Usage: #{$0} [options] passphrase"
         opts.separator ""
 
         opts.on('-a', '--algorithm ALGORITM', "use specified algorithm for transformation") do |value|
