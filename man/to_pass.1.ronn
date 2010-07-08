@@ -1,0 +1,67 @@
+to_pass(1) -- transform a string to a password
+==============================================
+
+## SYNOPSIS
+
+`to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br>
+`to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;
+
+## DESCRIPTION
+
+**to_pass** converts a string (be it a word, a sentence or a whole book) into a
+password. The transformation is done according to a algorithm which basically is
+a list of conversion steps.
+
+Some algorithms and conversions are supplied, but you can easily add your own.
+User supplied Algorithms are searched in `~/.to_pass/algorithms/`, converter
+classes are searched in `~/.to_pass/converters/`.
+
+to_pass-algorithm(5) files are written in yaml, to_pass-converter(5) classes are
+ruby(1) classes.
+
+## FILES
+
+The `to_pass` command can reads both algorithms and converters.
+
+Algorithm names should match the filenames so that the library can find and
+load them.  Search locations are the user-directory ~/.to_pass/algorithm/ and
+the bundled algorithms. The file is expected to have a ".yml"-extension
+
+Converters should be names like the method they provide. Details about the
+expected class can be found in to_pass-converter(5).
+
+
+## OPTIONS
+
+The following options are supported:
+
+  * `-a ALGORITHM`, `--algorithm ALGORITHM`:
+    Use the named algorithm.
+
+  * `--pipe`:
+    Output just the resulting string, without a line-ending.
+
+
+## EXAMPLES
+
+Transform the word "test" into a password:
+
+    $ to_pass test
+    t35t
+
+Transform a phrase into a password using a different algorithm:
+
+    $ to_pass "there is one problem with this sentence: its too long to type into a password field" -a basic_en
+    ti1pwtsi2ltti@pf
+
+## BUGS
+
+So far, no bugs are known.
+
+## COPYRIGHT
+
+ToPass is Copyright (C) 2010 Matthias Viehweger
+
+## SEE ALSO
+
+to_pass-converter(5), to_pass-algorithm(5)

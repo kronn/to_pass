@@ -1,0 +1,79 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TO_PASS" "1" "July 2010" "" ""
+.
+.SH "NAME"
+\fBto_pass\fR \- transform a string to a password
+.
+.SH "SYNOPSIS"
+\fBto_pass\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] string
+.
+.br
+\fBto_pass\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] < <file>
+.
+.SH "DESCRIPTION"
+\fBto_pass\fR converts a string (be it a word, a sentence or a whole book) into a password\. The transformation is done according to a algorithm which basically is a list of conversion steps\.
+.
+.P
+Some algorithms and conversions are supplied, but you can easily add your own\. User supplied Algorithms are searched in \fB~/\.to_pass/algorithms/\fR, converter classes are searched in \fB~/\.to_pass/converters/\fR\.
+.
+.P
+to_pass\-algorithm(5) files are written in yaml, to_pass\-converter(5) classes are ruby(1) classes\.
+.
+.SH "FILES"
+The \fBto_pass\fR command can reads both algorithms and converters\.
+.
+.P
+Algorithm names should match the filenames so that the library can find and load them\. Search locations are the user\-directory ~/\.to_pass/algorithm/ and the bundled algorithms\. The file is expected to have a "\.yml"\-extension
+.
+.P
+Converters should be names like the method they provide\. Details about the expected class can be found in to_pass\-converter(5)\.
+.
+.SH "OPTIONS"
+The following options are supported:
+.
+.TP
+\fB\-a ALGORITHM\fR, \fB\-\-algorithm ALGORITHM\fR
+Use the named algorithm\.
+.
+.TP
+\fB\-\-pipe\fR
+Output just the resulting string, without a line\-ending\.
+.
+.SH "EXAMPLES"
+Transform the word "test" into a password:
+.
+.IP "" 4
+.
+.nf
+
+$ to_pass test
+t35t
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Transform a phrase into a password using a different algorithm:
+.
+.IP "" 4
+.
+.nf
+
+$ to_pass "there is one problem with this sentence: its too long to type into a password field" \-a basic_en
+ti1pwtsi2ltti@pf
+.
+.fi
+.
+.IP "" 0
+.
+.SH "BUGS"
+So far, no bugs are known\.
+.
+.SH "COPYRIGHT"
+ToPass is Copyright (C) 2010 Matthias Viehweger
+.
+.SH "SEE ALSO"
+to_pass\-converter(5), to_pass\-algorithm(5)
