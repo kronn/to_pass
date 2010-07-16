@@ -47,6 +47,12 @@ class TestConverter < Test::Unit::TestCase
     converter.expects(:apply_rule).with("test test", 'collapse_chars').once
     converter.convert("test test")
   end
+  def test_downcase
+    converter({'word' => ['downcase']})
+    assert_respond_to converter, :downcase
+    converter.expects(:apply_rule).with("TeSt",  'downcase' ).once
+    converter.convert("TeSt")
+  end
 
 
   # more complex/real-life setups
@@ -94,6 +100,9 @@ Pferd	auf	dem	Flur"))
   end
   def test_select_first_chars
     assert_equal "t a t f t", converter.send(:apply_rule, "test all the fucking time", 'first_chars')
+  end
+  def test_downcasing
+    assert_equal "test", converter.send(:apply_rule, "tEsT", 'downcase')
   end
 
   protected
