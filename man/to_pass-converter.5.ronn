@@ -1,0 +1,71 @@
+to_pass-converter(5) -- converter-class for to_pass(1)
+===================================================
+
+## DESCRIPTION
+
+Every converter class is a ruby(1) class which converts a string into a more
+password-suitable form.
+
+The converter classes should satisfy the following constraints:
+
+- the class is scoped inside `ToPass::Converters`
+- the class is named like the camelized version of the converter name
+- the class provides a class-method with the lowercased, underscored version of
+  the converter name
+
+All converters are called with the string as the first parameter. This string
+is the result of the previous conversion or the input string, if it is the
+first converter in the list.
+
+If the converter accepts an additional argument (like replace), then the second
+parameter is the complete rules hash. The third parameter is the argument from
+the algorithm file.
+
+The method is expected to return a string which should be the result of the 
+intended conversion.
+
+## EXAMPLES
+
+simple converter class
+
+    module ToPass::Converters
+      class FirstChars
+
+        # reduces every word to its first character, preserving case
+        def self.first_chars(string)
+          string.split(' ').map do |word|
+            word[0].chr
+          end.join(' ')
+        end
+
+      end
+    end
+
+converter which receives additional parameters
+
+    module ToPass::Converters
+      class Replace
+        class << self
+
+          # perform replacements on a string, based on a replacment table
+          def replace(string, rules, tablename)
+            rules['replacements'][tablename].inject(string) do |pwd, map|
+              pwd = pwd.gsub(/#{map[0].to_s}/, map[1].to_s)
+            end
+          end
+
+        end
+      end
+    end
+
+## CAVEATS
+
+Naming is probaly most biggest concern. The name of the converter should be unique to avoid breaking other algorithms.
+
+## AUTHOR
+
+Matthias Viehweger
+
+## SEE ALSO
+
+to_pass(1), to_pass-algorithm(5), ruby(1)
