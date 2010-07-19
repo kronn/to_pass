@@ -16,7 +16,7 @@ Some algorithms and conversions are supplied, but you can easily add your own.
 User supplied Algorithms are searched in `~/.to_pass/algorithms/`, converter
 classes are searched in `~/.to_pass/converters/`.
 
-to_pass-algorithm(5) files are written in yaml, to_pass-converter(5) classes are
+to_pass-algorithm(5) files are written in yaml(3pm), to_pass-converter(5) classes are
 ruby(1) classes.
 
 ## FILES
@@ -27,7 +27,7 @@ Algorithm names should match the filenames so that the library can find and
 load them.  Search locations are the user-directory ~/.to_pass/algorithm/ and
 the bundled algorithms. The file is expected to have a ".yml"-extension
 
-Converters should be names like the method they provide. Details about the
+Converters should be named like the method they provide. Details about the
 expected class can be found in to_pass-converter(5).
 
 
