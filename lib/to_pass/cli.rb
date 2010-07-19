@@ -5,8 +5,8 @@ require 'optparse'
 
 module ToPass
   class Cli
-    def initialize
-      @options =  parse_options
+    def initialize(options = {})
+      @options =  parse_options(options)
       @string =   get_input_string
       @password = transform
     end
@@ -22,12 +22,12 @@ module ToPass
     protected
 
     # parse the options
-    def parse_options
+    def parse_options(options = {})
       options = {
         :algorithm => 'basic_de',
         :pipe_out  => false,
         :pipe_in   => false
-      }
+      }.merge(options)
 
       OptionParser.new do |opts|
         opts.banner = "Usage: #{$0} [options] passphrase"

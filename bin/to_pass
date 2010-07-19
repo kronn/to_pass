@@ -7,4 +7,8 @@ $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
 
 require 'lib/to_pass'
 
-ToPass::Cli.new.output
+ToPass::Cli.new({
+  :algorithm => 'basic_de',
+  :pipe_out  => false,
+  :pipe_in   => false
+}).output
