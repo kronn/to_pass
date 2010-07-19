@@ -24,7 +24,7 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-# documentation task
+# documentation tasks
 begin
   %w[ rake/rdoctask sdoc ].each { |lib| require lib }
   Rake::RDocTask.new do |rdoc|
@@ -38,6 +38,15 @@ begin
     rdoc.rdoc_files.include('lib/**/*.rb')
   end
 rescue LoadError
+end
+begin
+  desc 'generate manpages for project'
+  task :man do
+    files = Dir['./man/*.ronn'].join(' ')
+    command = "ronn --html --roff --style=toc #{files}"
+
+    `#{command}`
+  end
 end
 
 desc "run tests"
