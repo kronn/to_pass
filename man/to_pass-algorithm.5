@@ -1,0 +1,87 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TO_PASS\-ALGORITHM" "5" "July 2010" "" ""
+.
+.SH "NAME"
+\fBto_pass\-algorithm\fR \- algorithm\-description for to_pass(1)
+.
+.SH "DESCRIPTION"
+An algorithms is a simple list of conversions which are applied to the input string\. The algorithm file is a yaml(3pm) file\. \fByaml\fR looks like a list of key\-value pairs\. Nesting is done by indentation (2 spaces)\. Consecutive lines which begin with a \fB\-\fR are considered an array\.
+.
+.P
+The following keys should be supported:
+.
+.SS "META"
+.
+.IP "\(bu" 4
+\fBdesc\fR short description of the algorithm
+.
+.IP "\(bu" 4
+\fBname\fR name of the algorithm (think: title)
+.
+.IP "" 0
+.
+.SS "COMMON"
+.
+.IP "\(bu" 4
+\fBsentence\fR list of rules which are applied to a string which contains whitespace\.
+.
+.IP "\(bu" 4
+\fBword\fR list of rules which are applied to everything which is not a sentence\.
+.
+.IP "" 0
+.
+.SS "SUPPORT AND ARGUMENTS"
+These keys are highly dependent on the use conversions\. In the bundled algorithms, \fBreplace\fR needs a replacement table\. Inside the converter code of \fBreplace\fR, the replacements\-key is required\.
+.
+.P
+It is up to the developer/distributor of the converter to document this\.
+.
+.SH "EXAMPLES"
+.
+.nf
+
+desc: Basic Algorithm with a english usage in mind
+name: Basic (english)
+sentence:
+  \- replace: words
+  \- first_chars
+  \- replace: symbols
+  \- collapse_chars
+word:
+  \- replace: chars
+  \- replace: symbols
+replacements:
+  words:
+    one: 1
+    single: 1
+    two: 2
+    too: 2
+    three: 3
+    four: 4
+    for: 4
+    five: 5
+    six: 6
+    seven: 7
+    eight: 8
+    nine: 9
+  symbols:
+    a: \'@\'
+  chars:
+    a: 4
+    e: 3
+    i: 1
+    o: 0
+    s: 5
+.
+.fi
+.
+.SH "CAVEATS"
+The decision, wether a string is a word or a sentence is built into the gem and not configurable\.
+.
+.SH "AUTHOR"
+Matthias Viehweger
+.
+.SH "SEE ALSO"
+to_pass(1), to_pass\-converter(5), yaml(3pm)

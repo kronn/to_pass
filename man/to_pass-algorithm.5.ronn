@@ -1,0 +1,84 @@
+to_pass-algorithm(5) -- algorithm-description for to_pass(1)
+=========================================================
+
+## DESCRIPTION
+
+An algorithms is a simple list of conversions which are applied to the input
+string. The algorithm file is a yaml(3pm) file. `yaml` looks like a list of
+key-value pairs. Nesting is done by indentation (2 spaces). Consecutive lines
+which begin with a `-` are considered an array.
+
+The following keys should be supported:
+
+### META
+
+  * `desc`
+    short description of the algorithm
+
+  * `name`
+    name of the algorithm (think: title)
+
+### COMMON
+
+  * `sentence`
+    list of rules which are applied to a string which contains whitespace.
+
+  * `word`
+    list of rules which are applied to everything which is not a sentence.
+
+### SUPPORT AND ARGUMENTS
+
+These keys are highly dependent on the use conversions. In the bundled
+algorithms, `replace` needs a replacement table. Inside the converter code of
+`replace`, the replacements-key is required. 
+
+It is up to the developer/distributor of the converter to document this.
+
+
+## EXAMPLES
+
+    desc: Basic Algorithm with a english usage in mind
+    name: Basic (english)
+    sentence:
+      - replace: words
+      - first_chars
+      - replace: symbols
+      - collapse_chars
+    word:
+      - replace: chars
+      - replace: symbols
+    replacements:
+      words:
+        one: 1
+        single: 1
+        two: 2
+        too: 2
+        three: 3
+        four: 4
+        for: 4
+        five: 5
+        six: 6
+        seven: 7
+        eight: 8
+        nine: 9
+      symbols:
+        a: '@'
+      chars:
+        a: 4
+        e: 3
+        i: 1
+        o: 0
+        s: 5
+
+## CAVEATS
+
+The decision, wether a string is a word or a sentence is built into the gem and not configurable.
+
+
+## AUTHOR
+
+Matthias Viehweger
+
+## SEE ALSO
+
+to_pass(1), to_pass-converter(5), yaml(3pm)
