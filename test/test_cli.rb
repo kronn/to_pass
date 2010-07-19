@@ -12,6 +12,12 @@ class TestCli < Test::Unit::TestCase
     end
   end
 
+  def test_cli_usage_with_password_of
+    assert_nothing_raised do
+      assert_equal "t35t", `bin/password_of test`.chomp
+    end
+  end
+
   def test_cli_usage_with_algorithm
     assert_nothing_raised do
       assert_equal "ti1p4u2", `bin/to_pass 'there is one problem for us, too' -a basic_en`.chomp
