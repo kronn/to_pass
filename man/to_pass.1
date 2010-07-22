@@ -12,6 +12,12 @@
 .br
 \fBto_pass\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] < <file>
 .
+.br
+\fBpassword_of\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] string
+.
+.br
+\fBpassword_of\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] < <file>
+.
 .SH "DESCRIPTION"
 \fBto_pass\fR converts a string (be it a word, a sentence or a whole book) into a password\. The transformation is done according to a algorithm which basically is a list of conversion steps\.
 .
@@ -62,7 +68,7 @@ Transform a phrase into a password using a different algorithm:
 .
 .nf
 
-$ to_pass "there is one problem with this sentence: its too long to type into a password field" \-a basic_en
+$ password_of "there is one problem with this sentence: its too long to type into a password field" \-a basic_en
 ti1pwtsi2ltti@pf
 .
 .fi

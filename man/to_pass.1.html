@@ -84,7 +84,9 @@
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
 <p><code>to_pass</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br />
-<code>to_pass</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;</p>
+<code>to_pass</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;<br />
+<code>password_of</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br />
+<code>password_of</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -130,7 +132,7 @@ t35t
 
 <p>Transform a phrase into a password using a different algorithm:</p>
 
-<pre><code>$ to_pass "there is one problem with this sentence: its too long to type into a password field" -a basic_en
+<pre><code>$ password_of "there is one problem with this sentence: its too long to type into a password field" -a basic_en
 ti1pwtsi2ltti@pf
 </code></pre>
 

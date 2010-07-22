@@ -4,7 +4,9 @@ to_pass(1) -- transform a string to a password
 ## SYNOPSIS
 
 `to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br>
-`to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;
+`to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;<br>
+`password_of` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br>
+`password_of` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;
 
 ## DESCRIPTION
 
@@ -51,7 +53,7 @@ Transform the word "test" into a password:
 
 Transform a phrase into a password using a different algorithm:
 
-    $ to_pass "there is one problem with this sentence: its too long to type into a password field" -a basic_en
+    $ password_of "there is one problem with this sentence: its too long to type into a password field" -a basic_en
     ti1pwtsi2ltti@pf
 
 ## BUGS
