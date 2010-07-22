@@ -1,0 +1,27 @@
+desc: "A basic, but secure password generator"
+name: secure
+sentence:
+  - first_chars
+  - collapse_chars
+  - downcase
+  - replace: symbols
+  - replace: numbers
+  - remove_repetition
+  - swapcase
+word:
+  - downcase
+  - replace: symbols
+  - replace: numbers
+  - remove_repetition
+  - swapcase
+replacements:
+  symbols:
+    x: %
+    d: $
+    i: !
+    a: @
+  numbers:
+    z: 2
+    s: 5
+    g: 9
+    o: 0
