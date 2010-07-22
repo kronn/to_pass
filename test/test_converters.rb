@@ -12,6 +12,12 @@ class TestConverters < Test::Unit::TestCase
     assert_converter 'test', :downcase, 'tEsT'
   end
 
+  def test_remove_repetition
+    assert_converter 'helo', :remove_repetition, 'helo'
+    assert_converter 'hel2o', :remove_repetition, 'hello'
+    assert_converter 'hel3o', :remove_repetition, 'helllo'
+  end
+
   protected
 
   def assert_converter(expected, rule, string = 'test')
