@@ -77,7 +77,7 @@ class ToPass::ConverterReader
       end
     end.compact.first
 
-    raise LoadError, "converter '#{converter}' could not be found in #{load_path}" if fn.nil?
+    raise LoadError, "converter '#{converter}' could not be found in #{load_path.join(' ')}" if fn.nil?
 
     if require fn
       classname converter
