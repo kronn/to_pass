@@ -38,7 +38,10 @@ These keys are highly dependent on the use conversions\. In the bundled algorith
 .P
 It is up to the developer/distributor of the converter to document this\.
 .
-.SH "EXAMPLES"
+.P
+If a conversion step needs arguments, the argument list is expected to follow the converter name, separated by colon\. So far, only simple text arguments are supported\. In theory, anything which is valid yaml could follow the name and would be passed into the converter method\.
+.
+.SH "EXAMPLE"
 .
 .nf
 
@@ -78,7 +81,10 @@ replacements:
 .fi
 .
 .SH "CAVEATS"
-The decision, wether a string is a word or a sentence is built into the gem and not configurable\.
+The decision wether a string is a word or a sentence is built directly into the gem and not configurable\.
+.
+.P
+The algorithm is not turing\-complete\. It\'s not even intended to be\. Some more capabilty (like conditions and restart) may be added at some point\. The overall design however is intentionally simple and constrained\.
 .
 .SH "AUTHOR"
 Matthias Viehweger
