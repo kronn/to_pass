@@ -18,6 +18,14 @@ class TestConverters < Test::Unit::TestCase
     assert_converter 'hel3o', 'remove_repetition', 'helllo'
   end
 
+  def test_expand_below
+    # digest = "#{MD5.hexdigest(string)}#{MD5.hexdigest(string).reverse}"
+    # 1.upto(digest.length / 2).map { |nr| digest[(nr*2-2),2] }.map { |pair| pair.to_i(16).chr }.map { |char| char if char =~ /\w/i }.compact.join
+  end
+
+  def test_reverse
+  end
+
   protected
 
   def assert_converter(expected, rule, string = 'test')
