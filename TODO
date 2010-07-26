@@ -11,19 +11,10 @@ UP NEXT
   - Provide man pages for your binaries
   - If possible, maintain a backward-compatible API
 
-- Man-Pages http://www.linuxhowtos.org/System/creatingman.htm
-  order:
-    NAME
-    SYNOPSIS
-    DESCRIPTION
-    OPTIONS
-    BUGS
-    AUTHOR
-    SEE ALSO
-
 
 SOMEDAY
 ============================================================================
+- add a PostInstall.txt to have some RELEASE-NOTES (does this work?)
 - move decision wether a string is a word or not into algorithm definition.
 - test on windows
 - rescue OptionParser::InvalidOption with help screen
@@ -32,3 +23,4 @@ SOMEDAY
 - add command to generate configuration path
 - add command to output available converters
 - add command to output available algorithms
+- add rake-task to validate user supplied algorithms and converters
