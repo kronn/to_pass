@@ -24,6 +24,7 @@ class TestConverters < Test::Unit::TestCase
   end
 
   def test_reverse
+    assert_converter 'tset', 'reverse', 'test'
   end
 
   protected
