@@ -11,7 +11,10 @@ module ToPass::Converters
             char if char =~ /\w/i
           end.compact.join
 
-          string + extension
+          part1 = extension[0,(extension.length/2).floor]
+          part2 = extension.gsub(part1,'')
+
+          part1 + string + part2
         else
           string
         end

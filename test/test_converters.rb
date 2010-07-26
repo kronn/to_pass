@@ -19,10 +19,9 @@ class TestConverters < Test::Unit::TestCase
   end
 
   def test_expand_below
-    # digest = "#{MD5.hexdigest(string)}#{MD5.hexdigest(string).reverse}"
-    # 1.upto(digest.length / 2).map { |nr| digest[(nr*2-2),2] }.map { |pair| pair.to_i(16).chr }.map { |char| char if char =~ /\w/i }.compact.join
-    assert_converter 'testkFsNoKrb87d', { 'expand_below' => 5 }, 'test'
+    assert_converter 'kFsNotestKrb87d', { 'expand_below' => 5 }, 'test'
     assert_converter 'testtest', { 'expand_below' => 5 }, 'testtest'
+
   end
 
   def test_reverse

@@ -15,8 +15,8 @@ class TestAlgorithms < Test::Unit::TestCase
   end
 
   def test_secure
-    assert_algorithm '$78bRk0N5fKt5Et', 'test', :secure
-    assert_algorithm '5P2fWb0Wf%$52Cm', 'my cat is cute', :secure
+    assert_algorithm '$78bRkT5eT0n5Fk', 'test', :secure
+    assert_algorithm '5P2fWb2Cm0Wf%$5', 'my cat is cute', :secure
   end
 
   protected
