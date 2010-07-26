@@ -3,17 +3,23 @@ name: secure
 sentence:
   - first_chars
   - collapse_chars
+  - expand_below: 8
   - downcase
   - replace: symbols
   - replace: numbers
   - remove_repetition
+  - expand_below: 8
   - swapcase
+  - reverse
 word:
+  - expand_below: 8
   - downcase
   - replace: symbols
   - replace: numbers
   - remove_repetition
+  - expand_below: 8
   - swapcase
+  - reverse
 replacements:
   symbols:
     x: %
