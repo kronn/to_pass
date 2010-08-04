@@ -39,4 +39,3 @@ SOMEDAY
 - add task to validate user supplied algorithms and converters
 - move from Jeweler to gem-release
 - ?? replace Rake with Thor
-- create a Gemfile from gemspec to install dev dependencies easier

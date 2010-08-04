@@ -3,3 +3,5 @@ vendor/*.rb
 doc/rdoc/*
 tmp/*
 pkg/*
+.bundle/
+Gemfile.lock
