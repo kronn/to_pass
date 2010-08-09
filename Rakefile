@@ -4,26 +4,6 @@
 # # enable trace to get better error output
 # Rake.application.options.trace = true
 
-# jeweler task
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "to_pass"
-    gem.summary = "generate password from words or sentences"
-    gem.description = %Q{Passwords should be easy to remember and hard to guess.
-One technique is to have a sentence which can be easily remembered transformed to a password.}
-    gem.email = "kronn@kronn.de"
-    gem.homepage = "http://github.com/kronn/to_pass"
-    gem.authors = ["Matthias Viehweger"]
-
-    gem.add_development_dependency 'mocha'
-    gem.add_development_dependency 'sdoc'
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
-end
-
 # documentation tasks
 begin
   %w[ rake/rdoctask sdoc ].each { |lib| require lib }
