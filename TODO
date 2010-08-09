@@ -29,7 +29,8 @@ UP NEXT
   - add command to output available converters
   - add command to output available algorithms
   - handle CLI with Thor
-- add a PostInstall.txt to have some RELEASE-NOTES (does this work?)
+- have some RELEASE-NOTES or CHANGELOG
+  - GemSpec#post_install_message = filename
 
 
 SOMEDAY
@@ -37,5 +38,4 @@ SOMEDAY
 - test on windows
 - move decision wether a string is a word or not into algorithm definition.
 - add task to validate user supplied algorithms and converters
-- move from Jeweler to gem-release
 - ?? replace Rake with Thor

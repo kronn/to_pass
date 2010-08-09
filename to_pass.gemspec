@@ -31,6 +31,10 @@ spec = Gem::Specification.new do |s|
   s.extra_rdoc_files = ["LICENSE", "README.rdoc", "TODO"]
 
 
+  # for tests, needed
   s.add_development_dependency 'mocha'
+
+  # for release and rdoc, more less optional
   s.add_development_dependency 'sdoc'
+  s.add_development_dependency 'gem-release'
 end
