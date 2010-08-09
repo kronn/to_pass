@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
+require 'lib/to_pass/version.rb'
 
 spec = Gem::Specification.new do |s|
-  s.name = 'to_pass'
-  s.version = "0.5.1"
-  s.date = '2010-08-04'
+  s.name = ToPass::APP_NAME
+  s.version = ToPass::VERSION
+  s.date = ToPass::DATE
 
   s.authors = ["Matthias Viehweger"]
   s.email = 'kronn@kronn.de'

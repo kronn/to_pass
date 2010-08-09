@@ -3,11 +3,9 @@
 
 # Library to convert a String into a Password
 module ToPass
-  # version of gem, read directly from the VERSION-File
-  VERSION = File.read(File.join(File.dirname(__FILE__), '../VERSION')).strip
-
-  # name of gem
-  APP_NAME = 'to_pass'
+  autoload :VERSION,           'lib/to_pass/version'
+  autoload :DATE,              'lib/to_pass/version'
+  autoload :APP_NAME,          'lib/to_pass/version'
 
   autoload :AlgorithmReader,   'lib/to_pass/algorithm_reader'
   autoload :Base,              'lib/to_pass/base'
