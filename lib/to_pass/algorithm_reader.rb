@@ -18,11 +18,9 @@ class ToPass::AlgorithmReader
   def initialize(algorithm) # :nodoc:
     @algorithm = algorithm
     @load_path = []
-    [
-      '~/.to_pass/algorithms',
-      "#{RbConfig::CONFIG['datadir']}/to_pass/algorithms",
-      "#{File.dirname(__FILE__)}/../../data/algorithms"
-    ].each do |dir|
+    ToPass::DIRECTORIES[:standard].map do |dir|
+      dir + '/algorithms'
+    end.each do |dir|
       dir = Pathname.new(dir).expand_path
       @load_path << dir if dir.exist?
     end

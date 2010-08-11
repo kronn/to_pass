@@ -34,10 +34,7 @@ class TestConverterReader < Test::Unit::TestCase
   end
 
   def test_load_path_contains_standard_dirs
-    dirs = [
-      '~/.to_pass/converters',
-      "#{File.dirname(__FILE__)}/../lib/to_pass/converters"
-    ]
+    dirs = standard_directories.map { |path| "#{path}/converters"}
 
     Pathname.any_instance.expects(:exist?).times(dirs.size).returns(true)
 

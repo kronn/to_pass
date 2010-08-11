@@ -21,10 +21,9 @@ class ToPass::ConverterReader
     @load_path  = []
     @loaded     = []
     @discovered = []
-    [
-      '~/.to_pass/converters',
-      "#{File.dirname(__FILE__)}/converters"
-    ].each do |dir|
+    ToPass::DIRECTORIES[:standard].map do |dir|
+      dir + '/converters'
+    end.each do |dir|
       dir = Pathname.new(dir).expand_path
       @load_path << dir if dir.exist?
     end

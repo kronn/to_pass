@@ -28,16 +28,7 @@ class TestAlgorithmReader < Test::Unit::TestCase
   end
 
   def test_load_path_contains_standard_dirs
-    dirs = [
-      # user
-      '~/.to_pass/algorithms' ,
-
-      # installed
-      "#{RbConfig.datadir(ToPass::APP_NAME)}/algorithms",
-
-      # source
-      "#{File.dirname(__FILE__)}/../data/algorithms",
-    ]
+    dirs = standard_directories.map { |path| "#{path}/algorithms"}
 
     Pathname.any_instance.expects(:exist?).times(dirs.size).returns(true)
 
