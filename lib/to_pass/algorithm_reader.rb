@@ -20,7 +20,8 @@ class ToPass::AlgorithmReader
     @load_path = []
     [
       '~/.to_pass/algorithms',
-      "#{File.dirname(__FILE__)}/algorithms"
+      "#{RbConfig::CONFIG['datadir']}/to_pass/algorithms",
+      "#{File.dirname(__FILE__)}/../../data/algorithms"
     ].each do |dir|
       dir = Pathname.new(dir).expand_path
       @load_path << dir if dir.exist?

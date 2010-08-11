@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # vim:ft=ruby:enc=utf-8
 
+require 'rbconfig'
+
 # Library to convert a String into a Password
 module ToPass
   autoload :VERSION,           'lib/to_pass/version'
