@@ -30,4 +30,15 @@ class TestBase < Test::Unit::TestCase
       assert eval(Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.read).validate
     end
   end
+
+  def test_directories
+    dirs = ToPass::DIRECTORIES
+
+    assert defined?(dirs)
+    assert_kind_of Hash, dirs
+
+    assert_equal '~/.to_pass', dirs[:user]
+    assert_equal Pathname.new("#{File.dirname(__FILE__)}/../").expand_path.to_s, dirs[:base]
+    assert_equal "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", dirs[:data]
+  end
 end

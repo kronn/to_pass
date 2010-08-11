@@ -16,4 +16,11 @@ module ToPass
   autoload :ConverterReader,   'lib/to_pass/converter_reader'
   autoload :Converters,        'lib/to_pass/converters'
   autoload :Integration,       'lib/to_pass/integration'
+
+  # Hash of used directories
+  DIRECTORIES = {
+    :user => "~/.#{APP_NAME}",
+    :base => File.expand_path("#{File.dirname(__FILE__)}/.."),
+    :data => "#{RbConfig::CONFIG['data-dir']}/#{APP_NAME}"
+  }
 end
