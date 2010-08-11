@@ -4,13 +4,29 @@
 require 'optparse'
 
 module ToPass
+  # ToPass::Cli wraps the ugly code needed for option-parsing an such
+  #
+  # The default values for the options can be passed in to make different
+  # executables behave differently.
   class Cli
+    # creates a new Cli-wrapper for option-parsing and such. Almost everthing
+    # needed is done inside the initalizer.
+    #
+    # The default options can be overriden. Defaults are:
+    #
+    #   options = {
+    #     :algorithm => 'basic_de',
+    #     :pipe_out  => false,
+    #     :pipe_in   => false
+    #   }
+    #
     def initialize(options = {})
       @options =  parse_options(options)
       @string =   get_input_string
       @password = transform
     end
 
+    # output the result of the string transformation
     def output
       if @options[:pipe_out]
         $stdout << @password

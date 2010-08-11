@@ -2,7 +2,7 @@
 # vim:ft=ruby:enc=utf-8
 
 # Library to convert a String into a Password
-module ToPass
+module ToPass # :nodoc:
   # version of gem, read directly from the VERSION-File
   VERSION = File.read(File.join(File.dirname(__FILE__), '../../VERSION')).strip
 
