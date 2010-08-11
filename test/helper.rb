@@ -4,6 +4,7 @@
 require 'test/unit/testcase'
 require 'test/unit' unless defined?(Test::Unit)
 require 'mocha'
+require 'rbconfig'
 
 base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
 $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
@@ -25,6 +26,13 @@ Test::Unit::TestCase.class_eval do
     end
   end
 
+  def standard_directories
+    [
+      '~/.to_pass' , # user
+      "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", # installed
+      "#{File.dirname(__FILE__)}/../data", # source
+    ]
+  end
 
   def with_algorithm_in_user_dir
     `mkdir -p ~/.to_pass/algorithms; cp -f #{File.dirname(__FILE__)}/fixtures/user_alg.yml ~/.to_pass/algorithms/user_alg.yml`

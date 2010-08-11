@@ -17,10 +17,27 @@ module ToPass
   autoload :Converters,        'lib/to_pass/converters'
   autoload :Integration,       'lib/to_pass/integration'
 
-  # Hash of used directories
-  DIRECTORIES = {
-    :user => "~/.#{APP_NAME}",
-    :base => File.expand_path("#{File.dirname(__FILE__)}/.."),
-    :data => "#{RbConfig::CONFIG['data-dir']}/#{APP_NAME}"
-  }
+  DIRECTORIES = Class.new do
+    class << self
+      def [](key)
+        case key
+        when :user, :data, :base, :source_data
+          all[key]
+        when :standard
+          [ all[:user], all[:data], all[:source_data] ]
+        end
+      end
+
+      private
+
+      def all
+        {
+          :user => "~/.#{APP_NAME}",
+          :data => "#{RbConfig::CONFIG['data-dir']}/#{APP_NAME}",
+          :base => File.expand_path("#{File.dirname(__FILE__)}/.."),
+          :source_data => File.expand_path("#{File.dirname(__FILE__)}/../data"),
+        }
+      end
+    end
+  end
 end

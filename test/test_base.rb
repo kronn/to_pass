@@ -35,10 +35,13 @@ class TestBase < Test::Unit::TestCase
     dirs = ToPass::DIRECTORIES
 
     assert defined?(dirs)
-    assert_kind_of Hash, dirs
+    assert_respond_to dirs, :[]
 
     assert_equal '~/.to_pass', dirs[:user]
-    assert_equal Pathname.new("#{File.dirname(__FILE__)}/../").expand_path.to_s, dirs[:base]
     assert_equal "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", dirs[:data]
+    assert_equal Pathname.new("#{File.dirname(__FILE__)}/../").expand_path.to_s, dirs[:base]
+    assert_equal Pathname.new("#{File.dirname(__FILE__)}/../data").expand_path.to_s, dirs[:source_data]
+
+    assert_equal [ dirs[:user], dirs[:data], dirs[:source_data] ], dirs[:standard]
   end
 end
