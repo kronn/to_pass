@@ -209,7 +209,7 @@ module Setup
     def log_header(phase)
       return if quiet?
       if trial?
-        str = "#{phase.upcase} (trail run)"
+        str = "#{phase.upcase} (trial run)"
       else
         str = "#{phase.upcase}"
       end
@@ -693,7 +693,7 @@ module Setup
       if File.exist?(CONFIG_FILE)
         txt = File.read(CONFIG_FILE)
         return nil if txt == out
-      end          
+      end
       File.open(CONFIG_FILE, 'w'){ |f| f << out }
       true
     end
@@ -861,7 +861,7 @@ module Setup
       opt = opt.flatten
       cmd = "rdoc " + opt.join(' ')
       if trial?
-        puts cmd 
+        puts cmd
       else
         begin
           system(cmd)
@@ -963,7 +963,7 @@ module Setup
       files
     end
     def select_dllext(files)
-      ents = files.select do |file| 
+      ents = files.select do |file|
         File.extname(file) == ".#{dllext}"
       end
       if ents.empty? && !files.empty?
