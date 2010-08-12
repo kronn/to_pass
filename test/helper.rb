@@ -30,7 +30,7 @@ Test::Unit::TestCase.class_eval do
     [
       '~/.to_pass' , # user
       "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", # installed
-      "#{File.dirname(__FILE__)}/../data", # source
+      "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}", # source
     ]
   end
 

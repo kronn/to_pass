@@ -35,7 +35,7 @@ module ToPass
           :user => "~/.#{APP_NAME}",
           :data => "#{RbConfig::CONFIG['data-dir']}/#{APP_NAME}",
           :base => File.expand_path("#{File.dirname(__FILE__)}/.."),
-          :source_data => File.expand_path("#{File.dirname(__FILE__)}/../data"),
+          :source_data => File.expand_path("#{File.dirname(__FILE__)}/../data/#{APP_NAME}"),
         }
       end
     end
