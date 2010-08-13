@@ -34,7 +34,8 @@ spec = Gem::Specification.new do |s|
   # for tests, needed
   s.add_development_dependency 'mocha'
 
-  # for release and rdoc, more less optional
+  # for release and doc generation, more less optional
   s.add_development_dependency 'sdoc'
+  s.add_development_dependency 'ronn'
   s.add_development_dependency 'gem-release'
 end
