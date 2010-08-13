@@ -22,10 +22,13 @@ end
 begin
   desc 'generate manpages for project'
   task :man do
-    files = Dir['./man/*.ronn'].join(' ')
-    command = "ronn --html --roff --style=toc #{files}"
-
-    `#{command}`
+    [1,5].each do |section|
+      files = Dir["./man/*#{section}.ronn"]
+      `ronn --html --roff --style=toc #{files.join(' ')}`
+      FileUtils.mkdir "./man/man#{section}/"
+      FileUtils.mv Dir["./man/*.#{section}.html"], "./man/man#{section}/"
+      FileUtils.mv Dir["./man/*.#{section}"], "./man/man#{section}/"
+    end
   end
 end
 

@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv='content-type' value='text/html;charset=utf8'>
   <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
-  <title>to_pass-algorithm(5) - algorithm-description for to_pass(1)</title>
+  <title>to_pass-converter(5) - converter-class for to_pass(1)</title>
   <style type='text/css' media='all'>
   /* style: man */
   body#manpage {margin:0}
@@ -61,109 +61,88 @@
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
     <a href="#DESCRIPTION">DESCRIPTION</a>
-    <a href="#EXAMPLE">EXAMPLE</a>
+    <a href="#EXAMPLES">EXAMPLES</a>
     <a href="#CAVEATS">CAVEATS</a>
     <a href="#AUTHOR">AUTHOR</a>
     <a href="#SEE-ALSO">SEE ALSO</a>
     </div>
 
   <ol class='man-decor man-head man head'>
-    <li class='tl'>to_pass-algorithm(5)</li>
+    <li class='tl'>to_pass-converter(5)</li>
     <li class='tc'></li>
-    <li class='tr'>to_pass-algorithm(5)</li>
+    <li class='tr'>to_pass-converter(5)</li>
   </ol>
 
   <h2 id="NAME">NAME</h2>
 <p class="man-name">
-  <code>to_pass-algorithm</code> - <span class="man-whatis">algorithm-description for <a href="to_pass.1.html" class="man-ref">to_pass<span class="s">(1)</span></a></span>
+  <code>to_pass-converter</code> - <span class="man-whatis">converter-class for <a href="to_pass.1.html" class="man-ref">to_pass<span class="s">(1)</span></a></span>
 </p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
-<p>An algorithms is a simple list of conversions which are applied to the input
-string. The algorithm file is a <a href="http://man.cx/yaml(3pm)" class="man-ref">yaml<span class="s">(3pm)</span></a> file.  <code>yaml</code> looks like a list of
-key-value pairs. Nesting is done by indentation (2 spaces). Consecutive lines
-which begin with a <code>-</code> are considered an array.</p>
+<p>Every converter class is a <a href="http://man.cx/ruby(1)" class="man-ref">ruby<span class="s">(1)</span></a> class which converts a string into a more
+password-suitable form.</p>
 
-<p>The following keys should be supported:</p>
-
-<h3 id="META">META</h3>
+<p>The converter classes should satisfy the following constraints:</p>
 
 <ul>
-<li><p><code>desc</code>
-short description of the algorithm</p></li>
-<li><p><code>name</code>
-name of the algorithm (think: title)</p></li>
+<li>the class is scoped inside <code>ToPass::Converters</code></li>
+<li>the class is named like the camelized version of the converter name</li>
+<li>the class provides a class-method with the lowercased, underscored version of
+the converter name</li>
 </ul>
 
 
-<h3 id="COMMON">COMMON</h3>
+<p>All converters are called with the string as the first parameter. This string
+is the result of the previous conversion or the input string, if it is the
+first converter in the list.</p>
 
-<ul>
-<li><p><code>sentence</code>
-list of rules which are applied to a string which contains whitespace.</p></li>
-<li><p><code>word</code>
-list of rules which are applied to everything which is not a sentence.</p></li>
-</ul>
+<p>If the converter accepts an additional argument (like replace), then the second
+parameter is the complete rules hash. The third parameter is the argument from
+the algorithm file.</p>
 
+<p>The method is expected to return a string which should be the result of the
+intended conversion.</p>
 
-<h3 id="SUPPORT-AND-ARGUMENTS">SUPPORT AND ARGUMENTS</h3>
+<h2 id="EXAMPLES">EXAMPLES</h2>
 
-<p>These keys are highly dependent on the use conversions. In the bundled
-algorithms, <code>replace</code> needs a replacement table. Inside the converter code of
-<code>replace</code>, the replacements-key is required.</p>
+<p>simple converter class</p>
 
-<p>It is up to the developer/distributor of the converter to document this.</p>
+<pre><code>module ToPass::Converters
+  class FirstChars
 
-<p>If a conversion step needs arguments, the argument list is expected to follow
-the converter name, separated by colon. So far, only simple text arguments are
-supported. In theory, anything which is valid yaml could follow the name and
-would be passed into the converter method.</p>
+    # reduces every word to its first character, preserving case
+    def self.first_chars(string)
+      string.split(' ').map do |word|
+        word[0].chr
+      end.join(' ')
+    end
 
-<h2 id="EXAMPLE">EXAMPLE</h2>
+  end
+end
+</code></pre>
 
-<pre><code>desc: Basic Algorithm with a english usage in mind
-name: Basic (english)
-sentence:
-  - replace: words
-  - first_chars
-  - replace: symbols
-  - collapse_chars
-word:
-  - replace: chars
-  - replace: symbols
-replacements:
-  words:
-    one: 1
-    single: 1
-    two: 2
-    too: 2
-    three: 3
-    four: 4
-    for: 4
-    five: 5
-    six: 6
-    seven: 7
-    eight: 8
-    nine: 9
-  symbols:
-    a: '@'
-  chars:
-    a: 4
-    e: 3
-    i: 1
-    o: 0
-    s: 5
+<p>converter which receives additional parameters</p>
+
+<pre><code>module ToPass::Converters
+  class Replace
+    class &lt;&lt; self
+
+      # perform replacements on a string, based on a replacment table
+      def replace(string, rules, tablename)
+        rules['replacements'][tablename].inject(string) do |pwd, map|
+          pwd = pwd.gsub(/#{map[0].to_s}/, map[1].to_s)
+        end
+      end
+
+    end
+  end
+end
 </code></pre>
 
 <h2 id="CAVEATS">CAVEATS</h2>
 
-<p>The decision wether a string is a word or a sentence is built directly into the
-gem and not configurable.</p>
-
-<p>The algorithm is not turing-complete. It's not even intended to be. Some more
-capabilty (like conditions and restart) may be added at some point. The overall
-design however is intentionally simple and constrained.</p>
+<p>Naming is probaly most biggest concern. The name of the converter should be unique to avoid breaking other algorithms.</p>
 
 <h2 id="AUTHOR">AUTHOR</h2>
 
@@ -171,13 +150,13 @@ design however is intentionally simple and constrained.</p>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
-<p><a href="to_pass.1.html" class="man-ref">to_pass<span class="s">(1)</span></a>, <a href="to_pass-converter.5.html" class="man-ref">to_pass-converter<span class="s">(5)</span></a>, <a href="http://man.cx/yaml(3pm)" class="man-ref">yaml<span class="s">(3pm)</span></a></p>
+<p><a href="to_pass.1.html" class="man-ref">to_pass<span class="s">(1)</span></a>, <a href="to_pass-algorithm.5.html" class="man-ref">to_pass-algorithm<span class="s">(5)</span></a>, <a href="http://man.cx/ruby(1)" class="man-ref">ruby<span class="s">(1)</span></a></p>
 
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>July 2010</li>
-    <li class='tr'>to_pass-algorithm(5)</li>
+    <li class='tc'>August 2010</li>
+    <li class='tr'>to_pass-converter(5)</li>
   </ol>
 
   </div>
