@@ -39,3 +39,4 @@ SOMEDAY
 - move decision wether a string is a word or not into algorithm definition.
 - add task to validate user supplied algorithms and converters
 - ?? replace Rake with Thor
+- update README with install notes
