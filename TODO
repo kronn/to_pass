@@ -1,27 +1,10 @@
 CURRENT
 ============================================================================
-- make it debian compatible (most of which is common sense anyway)
-  http://pkg-ruby-extras.alioth.debian.org/upstream-devs.html
-  ✓ Distribute your software as a source code archive
-    github allows that
-
-  ✓ Use setup.rb
-    http://github.com/proutils/setup
-
-  ✓ Remove all references to rubygems in the software you ship
-  ✓ Don’t make your Rakefile depend on RubyGems
-
-  - Make your tests and examples usable outside of your directory tree
-    this might be achieved by using setup.rb anyway...
-
-  ✓ Use a shebang that works everywhere
-  ✓ Provide man pages for your binaries
-  ✓ If possible, maintain a backward-compatible API
+- update README with install notes
 
 
 UP NEXT
 ============================================================================
-- update README with install notes
 - Improve CLI-Code
   - rescue OptionParser::InvalidOption with help screen
   - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'

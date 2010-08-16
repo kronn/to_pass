@@ -7,7 +7,9 @@ require 'mocha'
 require 'rbconfig'
 
 base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
-$LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
+if File.exist?(base_path + '/lib/to_pass')
+  $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
+end
 
 Test::Unit::TestCase.class_eval do
   def assert_class_defined(klass)
@@ -30,7 +32,7 @@ Test::Unit::TestCase.class_eval do
     [
       '~/.to_pass' , # user
       "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", # installed
-      "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}", # source
+      "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}", # source [in github]
     ]
   end
 
