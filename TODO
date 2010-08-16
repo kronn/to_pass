@@ -5,7 +5,7 @@ CURRENT
   ✓ Distribute your software as a source code archive
     github allows that
 
-  - Use setup.rb
+  ✓ Use setup.rb
     http://github.com/proutils/setup
 
   ✓ Remove all references to rubygems in the software you ship
@@ -21,6 +21,7 @@ CURRENT
 
 UP NEXT
 ============================================================================
+- update README with install notes
 - Improve CLI-Code
   - rescue OptionParser::InvalidOption with help screen
   - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
@@ -31,6 +32,7 @@ UP NEXT
   - handle CLI with Thor
 - have some RELEASE-NOTES or CHANGELOG
   - GemSpec#post_install_message = filename
+    http://github.com/proutils/vclog
 
 
 SOMEDAY
@@ -39,4 +41,3 @@ SOMEDAY
 - move decision wether a string is a word or not into algorithm definition.
 - add task to validate user supplied algorithms and converters
 - ?? replace Rake with Thor
-- update README with install notes
