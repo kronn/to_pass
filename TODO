@@ -1,6 +1,8 @@
 CURRENT
 ============================================================================
-- update README with install notes
+- have some RELEASE-NOTES or CHANGELOG
+  - GemSpec#post_install_message = filename
+    maybe http://github.com/proutils/vclog is useful...
 
 
 UP NEXT
@@ -13,9 +15,6 @@ UP NEXT
   - add command to output available converters
   - add command to output available algorithms
   - handle CLI with Thor
-- have some RELEASE-NOTES or CHANGELOG
-  - GemSpec#post_install_message = filename
-    http://github.com/proutils/vclog
 
 
 SOMEDAY
