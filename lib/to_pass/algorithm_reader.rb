@@ -7,18 +7,15 @@ require 'yaml'
 # The AlgorithmReader's primary API is to load the rules from a YAML-file
 # into a Hash.
 #
-# Algorithms are searched in the following locations
-#
-# 1. ~/.to_pass/algorithms
-# 2. bundled algorithms of gem
-#
+# Algorithms are searched in a list of standard directories. Those are defined
+# and managed in ToPass::Directories
 class ToPass::AlgorithmReader
   attr_reader :load_path
 
   def initialize(algorithm) # :nodoc:
     @algorithm = algorithm
     @load_path = []
-    ToPass::DIRECTORIES[:standard].map do |dir|
+    ToPass::Directories[:standard].map do |dir|
       dir + '/algorithms'
     end.each do |dir|
       dir = Pathname.new(dir).expand_path

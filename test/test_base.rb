@@ -32,7 +32,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_directories
-    dirs = ToPass::DIRECTORIES
+    dirs = ToPass::Directories
 
     assert defined?(dirs)
     assert_respond_to dirs, :[]

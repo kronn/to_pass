@@ -6,10 +6,8 @@ require 'pathname'
 # The ConverterReader's primary API is to load the converters from right
 # directories into an Array
 #
-# Converters are searched in the following locations
-#
-# 1. ~/.to_pass/converters
-# 2. bundled converters of gem
+# Converters are searched in a list of standard directories. Those are defined
+# and managed in ToPass::Directories
 #
 # The bundled converter are, however, lazily loaded with autoload.
 # User-provided converters are always required (for now).
@@ -21,7 +19,7 @@ class ToPass::ConverterReader
     @load_path  = []
     @loaded     = []
     @discovered = []
-    ToPass::DIRECTORIES[:standard].map do |dir|
+    ToPass::Directories[:standard].map do |dir|
       dir + '/converters'
     end.each do |dir|
       dir = Pathname.new(dir).expand_path
