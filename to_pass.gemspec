@@ -23,7 +23,7 @@ spec = Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
   s.executables = ["password_of", "to_pass"]
-  s.files = ["LICENSE", "README.rdoc", "TODO", "VERSION", "Rakefile", "Gemfile"] + Dir['{bin,lib,man,test}/**/*']
+  s.files = ["LICENSE", "README.rdoc", "TODO", "VERSION", "Rakefile", "Gemfile"] + Dir['{bin,lib,data,man,test}/**/*']
   s.test_files = Dir['test/**/*']
 
   s.has_rdoc = true
