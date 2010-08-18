@@ -27,7 +27,7 @@ spec = Gem::Specification.new do |s|
   s.test_files = Dir['test/**/*']
 
   s.has_rdoc = true
-  s.rdoc_options = ["--charset=UTF-8"]
+  s.rdoc_options = ["--charset=utf-8", '--all', '--fmt', 'shtml', '--all']
   s.extra_rdoc_files = ["LICENSE", "README.rdoc", "TODO"]
 
 
