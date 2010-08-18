@@ -3,6 +3,10 @@ require 'md5'
 module ToPass::Converters
   class ExpandBelow
     class << self
+      # Strings below the threshold are expanded with a md5-hash of them.
+      #
+      # The md5 is used to generate extra characters which are then added
+      # before and after the string.
       def expand_below(string, rules, threshold)
         if string.length < threshold.to_i
           digest = "#{MD5.hexdigest(string)}#{MD5.hexdigest(string).reverse}"

@@ -6,7 +6,9 @@ module ToPass
   #
   # Given a string and a algorithm identifier, the right rules
   # are loaded and applied to the string. With a simple "to_s",
-  # you can get the final password
+  # you can get the final password.
+  #
+  # see ToPass::AlgorithmReader and ToPass::Converter for details
   class Base
     # transform a string according to a certain algorithm
     def initialize( string, algorithm )

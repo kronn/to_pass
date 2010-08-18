@@ -12,12 +12,15 @@ begin
 
     rdoc.rdoc_dir = 'doc/rdoc'
     rdoc.title = "to_pass #{version}"
-    rdoc.options << '--fmt' << 'shtml'
+    rdoc.options << '--fmt=shtml'
     rdoc.options << '--all'
-    rdoc.options << '--charset' << 'utf-8'
+    rdoc.options << '--charset=utf-8'
     rdoc.template = 'direct'
     rdoc.rdoc_files.include('README*')
+    # rdoc.rdoc_files.include('LICENSE')
+    rdoc.rdoc_files.include('TODO')
     rdoc.rdoc_files.include('lib/**/*.rb')
+    rdoc.rdoc_files.include('data/**/*.rb')
   end
 rescue LoadError
 end

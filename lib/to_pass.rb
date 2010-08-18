@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# vim:ft=ruby:enc=utf-8
 
 # Library to convert a String into a Password
+#
+# see README.rdoc for details
 module ToPass
   autoload :VERSION,           'lib/to_pass/version'
   autoload :DATE,              'lib/to_pass/version'
@@ -16,3 +17,5 @@ module ToPass
   autoload :Directories,       'lib/to_pass/directories'
   autoload :Integration,       'lib/to_pass/integration'
 end
+
+# vim:ft=ruby:enc=utf-8

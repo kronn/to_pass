@@ -3,9 +3,11 @@
 
 require 'rbconfig'
 
-# Wrapper for the search directories. Primary purpose is to keep the dirty
-# part in one place instead of scattered throughout the project.
 module ToPass
+  # Wrapper for the search directories. Primary purpose is to keep the dirty
+  # part in one place instead of scattered throughout the project.
+  #
+  # Used by ToPass::AlgorithmReader and ToPass::ConverterReader
   class Directories
     class << self
       # get a directory or a list of directories

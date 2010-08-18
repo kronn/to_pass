@@ -9,6 +9,30 @@ This library encapsulates that and satisfies different usage scenarios.
 Currently, only two algorithms are provided. But they are YAML-Files, so it's
 extensible.
 
+
+== Installation
+
+to_pass is distributed as rubygem
+
+  $ gem install to_pass
+
+If you want to install from source, you can download a tarball or zipfile from
+github.
+
+  $ curl -L http://github.com/kronn/to_pass/tarball/v0.5.2 -o to_pass.tar.gz
+  $ tar -xzf to_pass.tar.gz
+  $ cd kronn-to_pass-HASHVALUE
+  $ ./setup.rb install
+
+The tarball contains a directory which has a part of the commit hash in its
+name. I leave it up to the user to change into the right directory. Shouldn't
+be too hard ;-)
+
+The same installation procedure works for git-checkouts, of course.
+
+The setup.rb installation has the additional benefit of installing the manpages
+for the gem and the file-formats.
+
 == Usage
 
 === IRB
@@ -16,10 +40,16 @@ extensible.
 ToPass::Integration provides a to_pass Method which transforms a sentence to a
 password.
 
-  irb> require 'lib/to_pass'
+  irb> require 'to_pass'
   irb> String.send(:include, ToPass::Integration)
   irb> "Da steht ein Pferd auf dem Flur".to_pass
   # => "Ds1P@dF"
+
+A more direct approach is the facade provided by ToPass::Base
+
+  irb> require 'to_pass'
+  irb> ToPass::Base.new('test', :basic_de).to_s
+  # => 't35t'
 
 === CLI
 
@@ -28,11 +58,23 @@ password.
 
 === CLI with Pipes
 
-This example is Mac OSX-centric, but you should get the point.
+This example is a bit Mac OSX-centric, but you should get the point.
 
   $ echo "test" | to_pass | pbcopy
 
-== Note on Patches/Pull Requests
+== Development
+
+If you want to develop it further, patch something or are just plain curious:
+you're welcome.  This should get you started:
+
+  $ git clone git://github.com/kronn/to_pass.git
+  $ bundle install
+  $ rake
+
+Bundler is only used for installing dependencies. ToPass does not have any
+runtime dependencies, so Bundler does not make sense there.
+
+The usual pattern for github-projects applies:
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -41,8 +83,11 @@ This example is Mac OSX-centric, but you should get the point.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a
   commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+* Send me a pull request.
+
+I'll take a look at it and try to integrate it. If I cannot apply your changes
+or don't want to, I'll let you know.
 
 == Copyright
 
-Copyright (c) 2010 Matthias Viehweger. See LICENSE for details.
+Copyright (c) 2009-2010 Matthias Viehweger. See LICENSE for details.

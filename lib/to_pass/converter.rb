@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim:ft=ruby:enc=utf-8
 
-module ToPass
+module ToPass # :nodoc:
   # converts a given string into a password-like word
   #
   # the string can be a word or a sentence. everthing which
@@ -9,6 +9,8 @@ module ToPass
   #
   # a more complete description of the algorithm capabilities
   # is still pending.
+  #
+  # see ToPass::ConverterReader and ToPass::AlgorithmReader
   class Converter
     attr_accessor :converters, :rules
     # create a new converter, based on a set of conversion-rules

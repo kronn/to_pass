@@ -8,6 +8,7 @@
 #   String.send(:include, ToPass::Integration)
 #   puts "Da steht ein Pferd auf dem Flur".to_pass => 'Ds1P@dF'
 #
+# See ToPass::Base for more details
 module ToPass::Integration
   # simplified password-creation
   def to_pass( algorithm = 'basic_de' )
