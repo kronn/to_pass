@@ -16,7 +16,7 @@ begin
     rdoc.options << '--charset=utf-8'
     rdoc.template = 'direct'
     rdoc.rdoc_files.include('README*')
-    # rdoc.rdoc_files.include('LICENSE')
+    rdoc.rdoc_files.include('LICENSE')
     rdoc.rdoc_files.include('TODO')
     rdoc.rdoc_files.include('lib/**/*.rb')
     rdoc.rdoc_files.include('data/**/*.rb')

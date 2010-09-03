@@ -30,8 +30,7 @@ spec = Gem::Specification.new do |s|
 
   s.has_rdoc = true
   s.rdoc_options = ["--charset=utf-8", '--fmt=shtml', '--all', '--include=data/to_pass/converters/']
-  # s.extra_rdoc_files = ["LICENSE", "README.rdoc", "TODO"]
-  s.extra_rdoc_files = ["README.rdoc", "TODO"]
+  s.extra_rdoc_files = ["LICENSE", "README.rdoc", "TODO"]
 
 
   # for tests, needed
