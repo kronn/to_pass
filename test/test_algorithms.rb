@@ -1,6 +1,6 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-require File.dirname(__FILE__)+'/helper'
+require File.expand_path('../helper', __FILE__)
 
 class TestAlgorithms < Test::Unit::TestCase
   def test_basic_de

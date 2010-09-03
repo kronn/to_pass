@@ -1,6 +1,6 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-require 'lib/to_pass/version.rb'
+require File.expand_path('../lib/to_pass/version.rb', __FILE__)
 
 spec = Gem::Specification.new do |s|
   s.name = ToPass::APP_NAME

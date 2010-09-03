@@ -47,7 +47,7 @@ task :test do
     end
   end
   ( ['test/helper'] + Dir['test/test_*.rb'] ).each do |file|
-    require file
+    require File.expand_path("../#{file}", __FILE__)
   end
 end
 
@@ -76,7 +76,7 @@ task :converters, :needs => [:to_pass] do
 end
 
 task :to_pass do
-  require 'lib/to_pass'
+  require File.expand_path('../lib/to_pass', __FILE__)
 end
 
 task :default => :test

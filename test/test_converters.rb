@@ -1,6 +1,6 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-require File.dirname(__FILE__)+'/helper'
+require File.expand_path('../helper', __FILE__)
 
 class TestConverters < Test::Unit::TestCase
   def test_presence
@@ -20,7 +20,6 @@ class TestConverters < Test::Unit::TestCase
   def test_expand_below
     assert_converter 'kFsNotestKrb87d', { 'expand_below' => 5 }, 'test'
     assert_converter 'testtest', { 'expand_below' => 5 }, 'testtest'
-
   end
 
   def test_reverse
