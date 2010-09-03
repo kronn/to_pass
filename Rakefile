@@ -30,9 +30,10 @@ begin
     [1,5].each do |section|
       files = Dir["./man/*#{section}.ronn"]
       `ronn --html --roff --style=toc #{files.join(' ')}`
-      FileUtils.mkdir "./man/man#{section}/"
-      FileUtils.mv Dir["./man/*.#{section}.html"], "./man/man#{section}/"
-      FileUtils.mv Dir["./man/*.#{section}"], "./man/man#{section}/"
+      target_dir = "./man/man#{section}/"
+      FileUtils.mkdir_p target_dir
+      FileUtils.mv Dir["./man/*.#{section}.html"], target_dir
+      FileUtils.mv Dir["./man/*.#{section}"], target_dir
     end
   end
 end

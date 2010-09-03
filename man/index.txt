@@ -1,7 +1,7 @@
 # manuals included in this project
-to_pass(1)              to_pass.1.ronn
-to_pass-converter(5)    to_pass-converter.5.ronn
-to_pass-algorithm(5)    to_pass-algorithm.5.ronn
+to_pass(1)              ../man1/to_pass.1.ronn
+to_pass-converter(5)    ../man5/to_pass-converter.5.ronn
+to_pass-algorithm(5)    ../man5/to_pass-algorithm.5.ronn
 
 # external documentation
 yaml(3pm)               http://man.cx/yaml(3pm)
