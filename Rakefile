@@ -7,14 +7,15 @@
 begin
   %w[ rake/rdoctask sdoc ].each { |lib| require lib }
   Rake::RDocTask.new do |rdoc|
-    version = File.exist?('VERSION') ? File.read('VERSION') : ""
+    require File.expand_path('../lib/to_pass/version', __FILE__)
 
     rdoc.rdoc_dir = 'doc/rdoc'
-    rdoc.title = "to_pass #{version}"
+    rdoc.title = "#{ToPass::APP_NAME} #{ToPass::VERSION}"
     rdoc.options << '--fmt=shtml'
     rdoc.options << '--all'
     rdoc.options << '--charset=utf-8'
     rdoc.template = 'direct'
+
     rdoc.rdoc_files.include('README*')
     rdoc.rdoc_files.include('LICENSE')
     rdoc.rdoc_files.include('TODO')

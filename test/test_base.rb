@@ -13,11 +13,11 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_version
-    assert_equal Pathname.new("#{File.dirname(__FILE__)}/../VERSION").expand_path.read.chomp, ToPass::VERSION
+    assert_match /\d+.\d+.\d+/, ToPass::VERSION
   end
 
   def test_date
-    assert_equal Pathname.new("#{File.dirname(__FILE__)}/../VERSION").expand_path.mtime, ToPass::DATE
+    assert_equal Pathname.new("#{File.dirname(__FILE__)}/../lib/to_pass/version.rb").expand_path.mtime, ToPass::DATE
   end
 
   def test_appname
