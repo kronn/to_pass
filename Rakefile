@@ -39,16 +39,7 @@ end
 
 desc "run tests"
 task :test do
-  # optional libraries
-  %w[ redgreen ].each do |lib|
-    begin
-      require lib
-    rescue LoadError
-    end
-  end
-  ( ['test/helper'] + Dir['test/test_*.rb'] ).each do |file|
-    require File.expand_path("../#{file}", __FILE__)
-  end
+  require File.expand_path('../test/all', __FILE__)
 end
 
 desc "list available algorithms"

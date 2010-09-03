@@ -4,6 +4,12 @@ require 'test/unit'
 require 'mocha'
 require 'rbconfig'
 
+# optional libraries
+begin
+  require 'redgreen'
+rescue LoadError
+end
+
 base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
 if File.exist?(base_path + '/lib/to_pass')
   $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
