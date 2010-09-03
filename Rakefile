@@ -46,7 +46,7 @@ task :test do
     rescue LoadError
     end
   end
-  ( ['test/unit', 'test/helper'] + Dir['test/test_*.rb'] ).each do |file|
+  ( ['test/helper'] + Dir['test/test_*.rb'] ).each do |file|
     require file
   end
 end
