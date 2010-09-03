@@ -1,4 +1,5 @@
-# -*- encoding: utf-8 -*-
+# vim:ft=ruby:fileencoding=utf-8
+
 require 'lib/to_pass/version.rb'
 
 spec = Gem::Specification.new do |s|

@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# vim:ft=ruby:enc=utf-8
+# vim:ft=ruby:fileencoding=utf-8
 
 require 'test/unit/testcase'
 require 'test/unit' unless defined?(Test::Unit)

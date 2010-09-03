@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# vim:ft=ruby:enc=utf-8
+# vim:ft=ruby:fileencoding=utf-8
 
 module ToPass
   # version of gem, read directly from the VERSION-File

@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# vim:ft=ruby:enc=utf-8
+# vim:ft=ruby:fileencoding=utf-8
 
 module ToPass::Converters
   # replace the string "USER" with the current username
