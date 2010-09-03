@@ -24,8 +24,9 @@ spec = Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
   s.executables = ["password_of", "to_pass"]
-  s.files = ["LICENSE", "README.rdoc", "TODO", "VERSION", "Rakefile", "Gemfile"] + Dir['{bin,lib,data,man,test}/**/*']
-  s.test_files = Dir['test/**/*']
+  s.files = ["LICENSE", "README.rdoc", "TODO", "VERSION", "Rakefile", "Gemfile"] +
+    `git ls-files {bin,lib,data,man,test}`.split("\n")
+  s.test_files = `git ls-files test`.split("\n")
 
   s.has_rdoc = true
   s.rdoc_options = ["--charset=utf-8", '--fmt=shtml', '--all', '--include=data/to_pass/converters/']
