@@ -69,7 +69,11 @@ module ToPass # :nodoc:
 
     # apply a single rule to the password-to-be
     def apply_rule(pwd, rule)
-      cmd, args = rule.to_a.flatten
+      cmd, args = if rule.respond_to?(:to_a)
+                    rule.to_a.flatten
+                  else
+                    [ rule, nil ]
+                  end
       m = @reader.load(cmd.to_sym).method(cmd.to_sym)
 
       case m.arity
