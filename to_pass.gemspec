@@ -31,7 +31,4 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency 'ronn'
   s.add_development_dependency 'gem-release'
   s.add_development_dependency 'sdoc'
-
-  # # purely optional, for colored test-output
-  # s.add_development_dependency 'redgreen'
 end
