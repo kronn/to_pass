@@ -21,7 +21,7 @@ module ToPass
 
       private
 
-      # list of all direcotries used by this project
+      # list of all directories used by this project
       def all
         {
           :user => "~/.#{APP_NAME}",

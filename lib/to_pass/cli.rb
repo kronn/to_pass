@@ -45,7 +45,7 @@ module ToPass
       }.merge(options)
 
       OptionParser.new do |opts|
-        opts.banner = "Usage: #{$0} [options] passphrase"
+        opts.banner = "Usage: #{File.basename($0)} [options] passphrase"
         opts.separator ""
 
         opts.on('-a', '--algorithm ALGORITM', "use specified algorithm for transformation") do |value|
