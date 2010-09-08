@@ -20,4 +20,7 @@ module ToPass
 
     Pluggable algorithms and converters allow customization of the transformation process.
   EOD
+
+  # list of file which should be included in rdoc
+  EXTRA_RDOC_FILES = ['doc/CHANGELOG', 'doc/LICENSE', 'README.rdoc', 'TODO'] unless defined?(ToPass::EXTRA_RDOC_FILES)
 end

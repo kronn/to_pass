@@ -16,13 +16,12 @@ spec = Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
   s.executables = ["password_of", "to_pass"]
-  s.files = ["LICENSE", "README.rdoc", "TODO", "Rakefile", "Gemfile"] +
-    `git ls-files {bin,lib,data,man,test}`.split("\n")
+  s.files = `git ls-files {bin,lib,data,man,test,doc}`.split("\n") - ['.gitignore']
   s.test_files = `git ls-files test`.split("\n")
 
   s.has_rdoc = true
-  s.rdoc_options = ["--charset=utf-8", '--fmt=shtml', '--all', '--include=data/to_pass/converters/']
-  s.extra_rdoc_files = ["LICENSE", "README.rdoc", "TODO"]
+  s.rdoc_options = ['--charset=utf-8', '--fmt=shtml', '--all', '--include=data/to_pass/converters/']
+  s.extra_rdoc_files = ToPass::EXTRA_RDOC_FILES
 
 
   # for tests, needed
