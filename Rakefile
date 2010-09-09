@@ -1,42 +1,54 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-# # enable trace to get better error output
-# Rake.application.options.trace = true
+namespace :doc do
+  require 'sdoc' rescue LoadError
 
-# documentation tasks
-begin
-  %w[ rake/rdoctask sdoc ].each { |lib| require lib }
-  Rake::RDocTask.new do |rdoc|
-    require File.expand_path('../lib/to_pass/version', __FILE__)
+  begin
+    %w[ rake/rdoctask ].each { |lib| require lib }
+    Rake::RDocTask.new do |rdoc|
+      require File.expand_path('../lib/to_pass/version', __FILE__)
 
-    rdoc.rdoc_dir = 'doc/rdoc'
-    rdoc.title = "#{ToPass::APP_NAME} #{ToPass::VERSION}"
-    rdoc.options << '--fmt=shtml'
-    rdoc.options << '--all'
-    rdoc.options << '--charset=utf-8'
-    rdoc.template = 'direct'
+      rdoc.rdoc_dir = 'doc/rdoc'
+      rdoc.title = "#{ToPass::APP_NAME} #{ToPass::VERSION}"
+      rdoc.options << '--fmt=shtml'
+      rdoc.options << '--all'
+      rdoc.options << '--charset=utf-8'
+      rdoc.template = 'direct'
 
-    ToPass::EXTRA_RDOC_FILES.each do |file|
-      rdoc.rdoc_files.include(file)
+      ToPass::EXTRA_RDOC_FILES.each do |file|
+        rdoc.rdoc_files.include(file)
+      end
+      rdoc.rdoc_files.include('lib/**/*.rb')
+      rdoc.rdoc_files.include('data/**/*.rb')
     end
-    rdoc.rdoc_files.include('lib/**/*.rb')
-    rdoc.rdoc_files.include('data/**/*.rb')
+  rescue LoadError
   end
-rescue LoadError
-end
-begin
-  desc 'generate manpages for project'
-  task :man do
-    [1,5].each do |section|
-      files = Dir["./man/*#{section}.ronn"]
-      `ronn --html --roff --style=toc #{files.join(' ')}`
-      target_dir = "./man/man#{section}/"
-      FileUtils.mkdir_p target_dir
-      FileUtils.mv Dir["./man/*.#{section}.html"], target_dir
-      FileUtils.mv Dir["./man/*.#{section}"], target_dir
+
+  begin
+    require 'ronn'
+
+    desc 'generate manpages for project'
+    task :man do
+      [1,5].each do |section|
+        files = Dir["./man/*#{section}.ronn"]
+        `ronn --html --roff --style=toc #{files.join(' ')}`
+        target_dir = "./man/man#{section}/"
+        FileUtils.mkdir_p target_dir
+        FileUtils.mv Dir["./man/*.#{section}.html"], target_dir
+        FileUtils.mv Dir["./man/*.#{section}"], target_dir
+      end
     end
+  rescue LoadError
   end
 end
+
+desc 'rebuild documentation'
+task :doc do
+  [:'doc:rerdoc', :'doc:man'].each do |t|
+    puts t
+  end
+end
+
 
 desc "run tests"
 task :test do
