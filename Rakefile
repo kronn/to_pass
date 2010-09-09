@@ -54,6 +54,11 @@ desc "run tests"
 task :test do
   require File.expand_path('../test/all', __FILE__)
 end
+desc "run benchmarked tests"
+task :'test:benchmark' do
+  ENV['BENCHMARK'] = 'yes'
+  Rake::Task[:'test'].invoke
+end
 
 desc "list available algorithms"
 task :algorithms, :needs => [:to_pass] do

@@ -10,6 +10,11 @@ begin
 rescue LoadError
 end
 
+begin
+  require 'test_benchmark' if ENV['BENCHMARK']
+rescue LoadError
+end
+
 base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
 if File.exist?(base_path + '/lib/to_pass')
   $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
