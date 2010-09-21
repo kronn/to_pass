@@ -29,6 +29,5 @@ spec = Gem::Specification.new do |s|
 
   # for release and doc generation, more less optional
   s.add_development_dependency 'ronn'
-  s.add_development_dependency 'gem-release'
   s.add_development_dependency 'sdoc'
 end
