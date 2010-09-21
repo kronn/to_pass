@@ -1,11 +1,25 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-namespace :doc do
-  require 'sdoc' rescue LoadError
+# documentation tasks
+begin
+  desc 'rebuild documentation'
+  task :doc do
+    [:'documentation:rdoc', :'documentation:man'].each do |task_symbol|
+      task = Rake::Task[task_symbol]
+      task.invoke unless task.nil?
+    end
+  end
+end
+
+namespace :documentation do
+  begin
+    require 'sdoc'
+  rescue LoadError
+  end
 
   begin
-    %w[ rake/rdoctask ].each { |lib| require lib }
-    Rake::RDocTask.new do |rdoc|
+    require 'rake/rdoctask'
+    Rake::RDocTask.new() do |rdoc|
       require File.expand_path('../lib/to_pass/version', __FILE__)
 
       rdoc.rdoc_dir = 'doc/rdoc'
@@ -39,13 +53,6 @@ namespace :doc do
       end
     end
   rescue LoadError
-  end
-end
-
-desc 'rebuild documentation'
-task :doc do
-  [:'doc:rerdoc', :'doc:man'].each do |t|
-    puts t
   end
 end
 

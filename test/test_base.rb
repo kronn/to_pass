@@ -43,4 +43,14 @@ class TestBase < Test::Unit::TestCase
 
     assert_equal [ dirs[:user], dirs[:data], dirs[:source_data] ], dirs[:standard]
   end
+
+  def test_release_notes
+    fn = File.expand_path('../../doc/RELEASE_NOTES', __FILE__)
+
+    if File.size?(fn)
+      assert_equal File.read(fn), ToPass::RELEASE_NOTES
+    else
+      assert_nil ToPass::RELEASE_NOTES
+    end
+  end
 end

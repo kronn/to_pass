@@ -88,6 +88,26 @@ The usual pattern for github-projects applies:
 I'll take a look at it and try to integrate it. If I cannot apply your changes
 or don't want to, I'll let you know.
 
+== Documentation
+
+Most of the Documentation is contained in the doc-directory.
+
+* doc/CHANGELOG
+* doc/LICENSE
+* doc/RELEASE_NOTES
+
+There is also RDoc API-Documentation inside doc/rdoc.
+
+The Manpages are located in man/ to be compatible with setup.rb. Alongside the
+roff-version (for `man to_pass`) there are HTML-version if you prefer reading
+docs in the browser.
+
+* man/man1/to_pass.1.html
+* man/man5/to_pass-algorithm.5.html
+* man/man5/to_pass-converter.5.html
+
+And of course, there is a README, but I think you have found it already...
+
 == Copyright
 
-Copyright (c) 2009-2010 Matthias Viehweger. See LICENSE for details.
+Copyright (c) 2009-2010 Matthias Viehweger. See doc/LICENSE for details.

@@ -22,6 +22,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.rdoc_options = ['--charset=utf-8', '--fmt=shtml', '--all', '--include=data/to_pass/converters/']
   s.extra_rdoc_files = ToPass::EXTRA_RDOC_FILES
+  s.post_install_message = ToPass::RELEASE_NOTES
 
 
   # for tests, needed
