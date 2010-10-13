@@ -16,7 +16,7 @@ rescue LoadError
 end
 
 # setup the LoadPath
-lib_path = File.expand_path('../lib', __FILE__)
+lib_path = File.expand_path('../../lib', __FILE__)
 if File.exist?(lib_path)
   $LOAD_PATH << lib_path unless $LOAD_PATH.include?(lib_path)
 end
