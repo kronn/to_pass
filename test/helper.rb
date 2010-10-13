@@ -15,9 +15,10 @@ begin
 rescue LoadError
 end
 
-base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
-if File.exist?(base_path + '/lib/to_pass')
-  $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
+# setup the LoadPath
+lib_path = File.expand_path('../lib', __FILE__)
+if File.exist?(lib_path)
+  $LOAD_PATH << lib_path unless $LOAD_PATH.include?(lib_path)
 end
 
 Test::Unit::TestCase.class_eval do
@@ -58,4 +59,4 @@ Test::Unit::TestCase.class_eval do
   end
 end
 
-require 'lib/to_pass'
+require 'to_pass'
