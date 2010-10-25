@@ -1,23 +1,32 @@
 CURRENT
 ============================================================================
 - Improve CLI-Code
-  - rescue OptionParser::InvalidOption with help screen
-  - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
+  ✔ rescue OptionParser::InvalidOption with help screen
   - add ability to execute commands == handle CLI with Thor ?
   - add command to generate configuration path
   - add command to output available converters
   - add command to output available algorithms
+  - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
 
 
 UP NEXT
 ============================================================================
+- make secure algorithm default
+- make default algorithm configurable in .to_passrc [kronn/to_pass GH-1]
 - make tests faster
+- let tests run separated
 
 
 SOMEDAY
 ============================================================================
-- test on windows
-- move decision wether a string is a word or a sentence into algorithm definition.
-- add task to validate user supplied algorithms and converters
-- make secure algorithm default
-- ?? replace Rake with Thor
+  test on windows
+  move decision wether a string is a word or a sentence into algorithm definition.
+  add task to validate user supplied algorithms and converters
+  ?? replace Rake with Thor
+
+
+LEGEND
+================================
+Planned   = -
+Done      = ✔
+Cancelled = ✘
