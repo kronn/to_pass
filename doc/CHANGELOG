@@ -1,5 +1,43 @@
 RELEASE HISTORY
 
+v0.7.0 / 2010-10-13
+
+tag v0.7.0 (Matthias Viehweger <kronn@kronn.de>)
+
+Changes:
+
+* 28 General Enhancements
+
+    * setup the $LOAD_PATH better
+    * added ability to include RELEASE_NOTES (which are then also displayed after installing...)
+    * made gem-release an optional development dependency
+    * properly namespace documentation tasks in Rakefile
+    * add the ability to Benchmark tests
+    * added truly optional gems to Gemfile to have some means to install them
+    * fixed typos
+    * moved list of extra_rdoc_files into version.rb
+    * added doc/CHANGELOG
+    * moved LICENSE into doc directory
+    * declare the constants defensively
+    * move meta-information into version.rb-file
+    * updated idea/todo list
+    * include LICENSE again in Documentation
+    * move tests to [test/all, test/helper]-pattern
+    * the gem has all the files which are under version control
+    * ruby 1.9.2 compatibility
+    * don't rely on . being in $LOAD_PATH anymore (1.9.2 compat)
+    * fix vim-modeline (works as ruby 1.9 encoding-hint also)
+    * removed redundant require
+    * fixed manpage locations and links
+    * Version 0.6.0 brings mostly "debian compatiblity" as far as i can test it for now.
+    * added note on redgreen, which is purely optional
+    * documentation update
+    * include all methods in RDoc to make it actually useful
+    * added data-dir to gemspec
+    * extracted ToPass::DIRECTORIES into a real class
+    * assume Debian compatibility for now
+
+
 v0.6.0 / 2010-08-18
 
 tag v0.6.0 (Matthias Viehweger <kronn@kronn.de>)
@@ -189,13 +227,13 @@ Version bump to 0.2.1 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 1 Cleanup Enhancements
-
-    * redgreen is only needed and wanted for tests
-
 * 1 General Enhancements
 
     * Version bump to 0.2.0
+
+* 1 Cleanup Enhancements
+
+    * redgreen is only needed and wanted for tests
 
 
 v0.2.0 / 2010-05-30
@@ -242,20 +280,15 @@ Changes:
     * Initial commit
 
 
-HEAD / 2010-09-03
+HEAD / 2010-10-25
 
-Version 0.7.0 is mostly a cleanup and compatibility release.
+Current Development (Matthias Viehweger)
 
-ToPass now runs seamlessly with Ruby 1.8.7, 1.9.2, REE 2010-02. Rubinius works
-mostly, but has some issues.
+Changes:
 
-The Metainformation like version, summary, description and the likes are now
-all in the version.rb-file. This way, they can be queried easier.
+* 3 General Enhancements
 
-The test can now be run through the test/all.rb-script. In fact, this is the
-standard way and internally used by `rake test`. The Manpages are now in the
-right location for setup.rb and RDocs now include the LICENSE and this
-CHANGELOG.
+    * started development after 0.7.0
+    * version bump to 0.7.0
+    * corrected path to lib-directory
 
-The gemspec has the filelist now directly from git instead from the
-filesystem.
