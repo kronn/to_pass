@@ -1,13 +1,5 @@
 CURRENT
 ============================================================================
-- test on multiple rubies (1.8.7, 1.9.2, Rubinius, REE)
-- have some RELEASE-NOTES or CHANGELOG
-  - GemSpec#post_install_message = filename
-  - maybe http://github.com/proutils/vclog is useful...
-
-
-UP NEXT
-============================================================================
 - Improve CLI-Code
   - rescue OptionParser::InvalidOption with help screen
   - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
@@ -15,6 +7,10 @@ UP NEXT
   - add command to generate configuration path
   - add command to output available converters
   - add command to output available algorithms
+
+
+UP NEXT
+============================================================================
 - make tests faster
 
 
@@ -23,4 +19,5 @@ SOMEDAY
 - test on windows
 - move decision wether a string is a word or a sentence into algorithm definition.
 - add task to validate user supplied algorithms and converters
+- make secure algorithm default
 - ?? replace Rake with Thor
