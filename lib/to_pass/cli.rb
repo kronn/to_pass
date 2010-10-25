@@ -44,7 +44,7 @@ module ToPass
         :pipe_in   => false
       }.merge(options)
 
-      OptionParser.new do |opts|
+      cli_options = OptionParser.new do |opts|
         opts.banner = "Usage: #{File.basename($0)} [options] passphrase"
         opts.separator ""
 
@@ -62,13 +62,18 @@ module ToPass
           puts opts
           exit
         end
-      end.parse!
+      end
+      cli_options.parse!
 
       if ARGV[0].nil?
         options[:pipe_in] = options[:pipe_out] = true
       end
 
       options
+
+    rescue OptionParser::InvalidOption
+      puts cli_options
+      exit 0
     end
 
     # get the input string
