@@ -15,6 +15,9 @@ UP NEXT
 - make default algorithm configurable in .to_passrc [kronn/to_pass GH-1]
 - make tests faster
 - let tests run separated
+- integrate better with YARD
+  - add the TODO file, the doc/ directory
+  - also show protected and private methods because I want to have a complete documentation
 
 
 SOMEDAY
