@@ -56,15 +56,30 @@ namespace :documentation do
   end
 end
 
-
 desc "run tests"
 task :test do
   require File.expand_path('../test/all', __FILE__)
 end
-desc "run benchmarked tests"
-task :'test:benchmark' do
-  ENV['BENCHMARK'] = 'yes'
-  Rake::Task[:'test'].invoke
+namespace :test do
+  desc "run benchmarked tests"
+  task :benchmark do
+    ENV['BENCHMARK'] = 'yes'
+    Rake::Task[:'test'].invoke
+  end
+
+  desc "run tests from a separated directory"
+  task :stand_alone do
+    stand_alone_test_path = './tmp/stand_alone_tests/'
+    begin
+      FileUtils.mkdir_p(stand_alone_test_path)
+      FileUtils.cp_r('./test/.', stand_alone_test_path)
+      FileUtils.cd(stand_alone_test_path) do
+        `ruby ./all.rb`
+      end
+    ensure
+      FileUtils.rm_rf(stand_alone_test_path, :secure => true)
+    end
+  end
 end
 
 desc "list available algorithms"
