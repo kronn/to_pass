@@ -71,14 +71,25 @@ namespace :test do
   task :stand_alone do
     stand_alone_test_path = './tmp/stand_alone_tests/'
     begin
+      system('ruby ./setup.rb install')
       FileUtils.mkdir_p(stand_alone_test_path)
       FileUtils.cp_r('./test/.', stand_alone_test_path)
       FileUtils.cd(stand_alone_test_path) do
-        `ruby ./all.rb`
+        STDOUT.sync = true
+        system('ruby all.rb')
       end
     ensure
       FileUtils.rm_rf(stand_alone_test_path, :secure => true)
+      system('ruby ./setup.rb uninstall')
     end
+  end
+
+  desc "run complete tests (for CI)"
+  task :all do
+    puts 'running normal testsuite'
+    Rake::Task[:'test'].invoke
+    # puts 'running standalone tests'
+    # Rake::Task[:'test:stand_alone'].invoke
   end
 end
 
