@@ -35,11 +35,11 @@ class TestConverterReader < Test::Unit::TestCase
   def test_load_path_contains_standard_dirs
     dirs = standard_directories.map { |path| "#{path}/converters"}
 
-    Pathname.any_instance.expects(:exist?).times(dirs.size).returns(true)
+    Pathname.any_instance.expects(:exist?).at_least(dirs.size).returns(true)
 
     dirs.each do |reldir|
       dir = Pathname.new(reldir).expand_path
-      assert( reader.load_path.include?(dir), "#{reader.load_path.inspect} should include #{dir.inspect}" )
+      assert_include dir, reader.load_path
     end
   end
 

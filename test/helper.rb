@@ -3,6 +3,7 @@
 require 'test/unit'
 require 'mocha'
 require 'rbconfig'
+require 'pathname'
 
 # optional libraries
 begin
@@ -38,12 +39,18 @@ Test::Unit::TestCase.class_eval do
     end
   end
 
+  def assert_include(needle, haystack, msg = nil)
+    msg ||= "#{haystack.inspect} should include #{needle.inspect}"
+    assert haystack.include?(needle), msg
+  end
+
   def standard_directories
-    [
-      '~/.to_pass' , # user
-      "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", # installed
-      "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}", # source [in github]
-    ]
+    dirs = []
+    dirs << Pathname.new('~/.to_pass').expand_path # user
+    dirs << "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}" # installed
+    dirs << "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}" if in_to_pass_soure_tree? # source [in github]
+
+    dirs
   end
 
   def with_algorithm_in_user_dir
@@ -57,6 +64,14 @@ Test::Unit::TestCase.class_eval do
     yield
     `rm ~/.to_pass/converters/userize.rb`
   end
+
+  def in_to_pass_soure_tree?
+    Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.exist?
+  end
+end
+
+unless Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.exist?
+  $stderr << "Skipping some assertion as the tests run separated from the source-directory\n"
 end
 
 require 'to_pass'
