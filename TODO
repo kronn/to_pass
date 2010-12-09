@@ -25,6 +25,7 @@ SOMEDAY
   test on windows
   move decision wether a string is a word or a sentence into algorithm definition.
   add task to validate user supplied algorithms and converters
+  check out and maybe integrate https://github.com/stephencelis/rdoctest
   ?? replace Rake with Thor
 
 
