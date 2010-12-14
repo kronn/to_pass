@@ -26,7 +26,7 @@ class TestBase < Test::Unit::TestCase
 
   def test_gemspec_is_valid
     assert_nothing_raised do
-      assert eval(Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.read).validate
+      assert eval(File.read(File.expand_path('../../to_pass.gemspec', __FILE__))).validate
     end
   end
 
