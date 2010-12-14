@@ -3,6 +3,7 @@
 require 'test/unit'
 require 'mocha'
 require 'rbconfig'
+require 'pathname'
 
 # optional libraries
 begin
