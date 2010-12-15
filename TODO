@@ -1,5 +1,6 @@
 CURRENT
 ============================================================================
+✔ let tests run separated
 - Improve CLI-Code
   ✔ rescue OptionParser::InvalidOption with help screen
   - add ability to execute commands == handle CLI with Thor ?
@@ -14,7 +15,6 @@ UP NEXT
 - make secure algorithm default
 - make default algorithm configurable in .to_passrc [kronn/to_pass GH-1]
 - make tests faster
-- let tests run separated
 - integrate better with YARD
   - add the TODO file, the doc/ directory
   - also show protected and private methods because I want to have a complete documentation
