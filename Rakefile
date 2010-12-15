@@ -71,8 +71,7 @@ namespace :test do
   end
 
   desc "run tests from a separated directory"
-  task :stand_alone do
-    stand_alone_test_path = './tmp/stand_alone_tests/'
+  task :standalone do
     begin
       system('ruby ./setup.rb install')
       FileUtils.mkdir_p(stand_alone_test_path)
@@ -93,6 +92,9 @@ namespace :test do
     Rake::Task[:'test'].invoke
     # puts 'running standalone tests'
     # Rake::Task[:'test:stand_alone'].invoke
+
+  def stand_alone_test_path
+    './tmp/stand_alone_tests/'
   end
 end
 
