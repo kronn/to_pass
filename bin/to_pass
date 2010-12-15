@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:ft=ruby:fileencoding=utf-8
 
-base_path = ( File.expand_path(File.dirname(__FILE__)+'/..') )
+base_path = File.expand_path('../../', __FILE__)
 $LOAD_PATH << base_path unless $LOAD_PATH.include?(base_path)
 
 require 'lib/to_pass'
