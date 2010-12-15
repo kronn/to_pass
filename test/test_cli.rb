@@ -80,7 +80,7 @@ class TestCli < Test::Unit::TestCase
     if File.exist?(bin_to_pass)
       File.dirname(bin_to_pass)
     else
-      File.dirname(`which to_pass`)
+      File.dirname(`which -a to_pass`.split.uniq.reject { |p| p =~ /gems/ }.first)
     end + '/'
   end
 end
