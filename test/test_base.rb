@@ -43,7 +43,7 @@ class TestBase < Test::Unit::TestCase
     assert_respond_to dirs, :[]
 
     assert_equal '~/.to_pass', dirs[:user]
-    assert_equal "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", dirs[:data]
+    assert_equal "#{ruby_data_dir}/#{ToPass::APP_NAME}", dirs[:data]
 
     if in_to_pass_soure_tree?
       assert_equal Pathname.new("#{File.dirname(__FILE__)}/../").expand_path.to_s, dirs[:base]
