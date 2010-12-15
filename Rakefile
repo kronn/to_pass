@@ -57,14 +57,17 @@ namespace :documentation do
 end
 
 desc "run tests"
-task :test do
-  require File.expand_path('../test/all', __FILE__)
-end
+task :test => :'test:normal'
+
 namespace :test do
+  task :normal do
+    require File.expand_path('../test/all', __FILE__)
+  end
+
   desc "run benchmarked tests"
   task :benchmark do
     ENV['BENCHMARK'] = 'yes'
-    Rake::Task[:'test'].invoke
+    Rake::Task[:'test:normal'].invoke
   end
 
   desc "run tests from a separated directory"
