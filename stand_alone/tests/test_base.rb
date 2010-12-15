@@ -17,7 +17,7 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_date
-    if in_to_pass_soure_tree?
+    if in_to_pass_source_tree?
       assert_equal Pathname.new("#{File.dirname(__FILE__)}/../lib/to_pass/version.rb").expand_path.mtime, ToPass::DATE
     else
       assert_not_nil ToPass::DATE
@@ -29,9 +29,9 @@ class TestBase < Test::Unit::TestCase
   end
 
   def test_gemspec_is_valid
-    if in_to_pass_soure_tree?
+    if in_to_pass_source_tree?
       assert_nothing_raised do
-        assert eval(File.read(File.expand_path('../../to_pass.gemspec', __FILE__))).validate
+        assert eval(Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.read).validate
       end
     end
   end
@@ -42,10 +42,10 @@ class TestBase < Test::Unit::TestCase
     assert defined?(dirs)
     assert_respond_to dirs, :[]
 
-    assert_equal '~/.to_pass', dirs[:user]
-    assert_equal "#{ruby_data_dir}/#{ToPass::APP_NAME}", dirs[:data]
+    assert_equal '~/.to_pass', dirs[:user], 'should know the "user"-directory'
+    assert_equal "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", dirs[:data], 'should know the "data"-directory'
 
-    if in_to_pass_soure_tree?
+    if in_to_pass_source_tree?
       assert_equal Pathname.new("#{File.dirname(__FILE__)}/../").expand_path.to_s, dirs[:base]
       assert_equal Pathname.new("#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}").expand_path.to_s, dirs[:source_data]
     end

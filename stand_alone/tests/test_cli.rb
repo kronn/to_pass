@@ -56,31 +56,13 @@ class TestCli < Test::Unit::TestCase
     end
   end
 
-  def test_cli_handles_wrong_arguments
-    # i only want to check the return value here
-    system("#{binpath}to_pass 'test' --schnulli >/dev/null 2>/dev/null")
-    to_pass = $?
-
-    assert to_pass.exited?
-    assert_equal 0, to_pass.exitstatus, 'should have exit code 0 (success)'
-  end
-
-  def test_cli_presents_help_on_error
-    # combine everything into result-string
-    result = `#{binpath}to_pass "test" --schnulli 2>&1`
-
-    assert_match /Usage/, result, 'should print usage information'
-    assert_match /Show this message/, result, 'should contain hint for help'
-  end
-
   protected
 
   def binpath
-    bin_to_pass = File.expand_path('../../bin/to_pass', __FILE__)
-    if File.exist?(bin_to_pass)
-      File.dirname(bin_to_pass)
+    if File.exist?(File.expand_path('../../bin/to_pass'))
+      'bin/'
     else
-      File.dirname(`which -a to_pass`.split.uniq.reject { |p| p =~ /gems/ }.first)
-    end + '/'
+      File.dirname(`which to_pass`) + '/'
+    end
   end
 end

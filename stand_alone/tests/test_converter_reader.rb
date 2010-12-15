@@ -39,7 +39,7 @@ class TestConverterReader < Test::Unit::TestCase
 
     dirs.each do |reldir|
       dir = Pathname.new(reldir).expand_path
-      assert_include dir, reader.load_path
+      assert( reader.load_path.include?(dir), "#{reader.load_path.inspect} should include #{dir.inspect}" )
     end
   end
 

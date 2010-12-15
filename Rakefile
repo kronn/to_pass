@@ -56,15 +56,67 @@ namespace :documentation do
   end
 end
 
-
 desc "run tests"
-task :test do
-  require File.expand_path('../test/all', __FILE__)
-end
-desc "run benchmarked tests"
-task :'test:benchmark' do
-  ENV['BENCHMARK'] = 'yes'
-  Rake::Task[:'test'].invoke
+task :test => :'test:normal'
+
+namespace :test do
+  task :normal do
+    require File.expand_path('../test/all', __FILE__)
+  end
+
+  desc "run benchmarked tests"
+  task :benchmark do
+    ENV['BENCHMARK'] = 'yes'
+    Rake::Task[:'test:normal'].invoke
+  end
+
+  desc "run tests from a separated directory"
+  task :standalone do
+    begin
+      puts 'installing for standalone-tests'
+      system('ruby ./setup.rb install 1>/dev/null')
+      FileUtils.mkdir_p(stand_alone_test_path)
+      FileUtils.cp_r('./test/.', stand_alone_test_path)
+      FileUtils.cd(stand_alone_test_path) do
+        STDOUT.sync = true
+        system('RUBYOPTS="" ruby all.rb')
+        @standalone_result = $?
+      end
+    ensure
+      Rake::Task[:'test:cleanup'].invoke
+    end
+  end
+  task :cleanup do
+    puts 'cleanup installation for standalone-tests'
+    FileUtils.rm_rf(stand_alone_test_path, :secure => true)
+    system('ruby ./setup.rb uninstall --force 1>/dev/null')
+  end
+
+  desc "run complete tests (for CI)"
+  task :all do
+    # shelling out to ensure the tests run now, not at_exit
+    puts 'running normal testsuite'
+    system('rake test:normal')
+    normal_result = $?
+
+    puts 'running standalone tests'
+    Rake::Task[:'test:standalone'].invoke
+    Rake::Task[:'test:cleanup'].invoke
+
+    exit(exit_state(normal_result, @standalone_result))
+  end
+
+  def exit_state(normal, standalone)
+    if normal and normal.exited? and standalone and standalone.exited?
+      normal.exitstatus.to_i + standalone.exitstatus.to_i
+    else
+      1
+    end
+  end
+
+  def stand_alone_test_path
+    './tmp/stand_alone_tests/'
+  end
 end
 
 desc "list available algorithms"

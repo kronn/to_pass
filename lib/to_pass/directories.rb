@@ -25,10 +25,14 @@ module ToPass
       def all
         {
           :user => "~/.#{APP_NAME}",
-          :data => "#{RbConfig::CONFIG['data-dir']}/#{APP_NAME}",
+          :data => "#{ruby_data_dir}/#{APP_NAME}",
           :base => File.expand_path("#{File.dirname(__FILE__)}/../.."),
           :source_data => File.expand_path("#{File.dirname(__FILE__)}/../../data/#{APP_NAME}"),
         }
+      end
+
+      def ruby_data_dir
+        RbConfig::CONFIG['data-dir'] || RbConfig::CONFIG['datadir']
       end
     end
   end

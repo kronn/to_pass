@@ -17,7 +17,7 @@ rescue LoadError
 end
 
 # setup the LoadPath
-lib_path = File.expand_path('../../lib', __FILE__)
+lib_path = File.expand_path('../lib', __FILE__)
 if File.exist?(lib_path)
   $LOAD_PATH << lib_path unless $LOAD_PATH.include?(lib_path)
 end
@@ -45,12 +45,18 @@ Test::Unit::TestCase.class_eval do
   end
 
   def standard_directories
-    dirs = []
-    dirs << Pathname.new('~/.to_pass').expand_path # user
-    dirs << "#{ruby_data_dir}/#{ToPass::APP_NAME}" # installed
-    dirs << "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}" if in_to_pass_soure_tree? # source [in github]
+    dirs = [
+      '~/.to_pass' , # user
+      "#{RbConfig::CONFIG['data-dir']}/#{ToPass::APP_NAME}", # installed
+    ]
+
+    dirs << "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}" if in_to_pass_source_tree? # source [in github]
 
     dirs
+  end
+
+  def in_to_pass_source_tree?
+    Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.exist?
   end
 
   def with_algorithm_in_user_dir
@@ -65,17 +71,10 @@ Test::Unit::TestCase.class_eval do
     `rm ~/.to_pass/converters/userize.rb`
   end
 
-  def in_to_pass_soure_tree?
-    Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.exist?
-  end
-
-  def ruby_data_dir
-    RbConfig::CONFIG['data-dir'] || RbConfig::CONFIG['datadir']
-  end
 end
+
+require 'to_pass'
 
 unless Pathname.new("#{File.dirname(__FILE__)}/../to_pass.gemspec").expand_path.exist?
   $stderr << "Skipping some assertion as the tests run separated from the source-directory\n"
 end
-
-require 'to_pass'
