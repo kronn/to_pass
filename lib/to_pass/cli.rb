@@ -82,6 +82,16 @@ module ToPass
           options[:pipe_out] = value
         end
 
+        opts.on('-A', '--algorithms', "list available algorithms") do |value|
+          Cli.algorithms
+          exit
+        end
+
+        opts.on('-C', '--converters', "list available converters for password algorithms") do |value|
+          Cli.converters
+          exit
+        end
+
         opts.separator ""
 
         opts.on_tail("-h", "--help", "Show this message") do

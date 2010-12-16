@@ -73,6 +73,32 @@ class TestCli < Test::Unit::TestCase
     assert_match /Show this message/, result, 'should contain hint for help'
   end
 
+  def test_cli_can_output_algorithms
+    algorithms = %w(basic_de basic_en secure)
+    [
+      `#{binpath}to_pass -A`,
+      `#{binpath}to_pass --algorithms`
+    ].each do |result|
+      assert_match /available password algorithms/, result
+      algorithms.each do |algorithm|
+        assert_match /#{algorithm}/, result
+      end
+    end
+  end
+
+  def test_cli_can_output_converters
+    converters = %w(collapse_chars downcase expand_below first_chars remove_repetition replace reverse swapcase)
+    [
+      `#{binpath}to_pass -C`,
+      `#{binpath}to_pass --converters`
+    ].each do |result|
+      assert_match /available converters for password algorithms/, result
+      converters.each do |converter|
+        assert_match /#{converter}/, result
+      end
+    end
+  end
+
   protected
 
   def binpath
