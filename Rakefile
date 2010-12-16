@@ -121,14 +121,7 @@ end
 
 desc "list available algorithms"
 task :algorithms, :needs => [:to_pass] do
-  puts ""
-  puts "  available password algorithms"
-  puts "  ============================================"
-  ToPass::AlgorithmReader.discover.each do |algorithm|
-    puts "  - #{algorithm}"
-  end
-  puts "  ============================================"
-  puts ""
+  ToPass::Cli.algorithms
 end
 
 desc "list available converters"

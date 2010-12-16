@@ -34,6 +34,20 @@ module ToPass
       end
     end
 
+    class << self
+      # output list of algorithms
+      def algorithms
+        puts ""
+        puts "  available password algorithms"
+        puts "  ============================================"
+        AlgorithmReader.discover.each do |algorithm|
+          puts "  - #{algorithm}"
+        end
+        puts "  ============================================"
+        puts ""
+      end
+    end
+
     protected
 
     # parse the options
