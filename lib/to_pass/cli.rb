@@ -46,6 +46,18 @@ module ToPass
         puts "  ============================================"
         puts ""
       end
+
+      # output list of converters
+      def converters
+        puts ""
+        puts "  available converters for password algorithms"
+        puts "  ============================================"
+        ConverterReader.new.discover.each do |converter|
+          puts "  - #{converter}"
+        end
+        puts "  ============================================"
+        puts ""
+      end
     end
 
     protected

@@ -126,14 +126,7 @@ end
 
 desc "list available converters"
 task :converters, :needs => [:to_pass] do
-  puts ""
-  puts "  available converters for password algorithms"
-  puts "  ============================================"
-  ToPass::ConverterReader.new.discover.each do |converter|
-    puts "  - #{converter}"
-  end
-  puts "  ============================================"
-  puts ""
+  ToPass::Cli.converters
 end
 
 task :to_pass do
