@@ -27,6 +27,7 @@ SOMEDAY
   move decision wether a string is a word or a sentence into algorithm definition.
   add task to validate user supplied algorithms and converters
   check out and maybe integrate https://github.com/stephencelis/rdoctest
+  i18n && l10n of messages
   ?? replace Rake with Thor
 
 
