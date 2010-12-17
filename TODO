@@ -9,12 +9,12 @@ CURRENT
   ✔ add command to output available algorithms
   - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
   - add command to generate configuration path
+- make default algorithm configurable in .to_passrc [kronn/to_pass GH-1]
 
 
 UP NEXT
 ============================================================================
 - make secure algorithm default
-- make default algorithm configurable in .to_passrc [kronn/to_pass GH-1]
 - make tests faster
 - integrate better with YARD
   - add the TODO file, the doc/ directory

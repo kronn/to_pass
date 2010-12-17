@@ -62,4 +62,11 @@ class TestBase < Test::Unit::TestCase
       assert_nil ToPass::RELEASE_NOTES
     end
   end
+
+  # def test_uses_to_passrc_for_configuration
+  #   assert_nothing_raised  do
+  #     # make default algorithm configurable in .to_passrc [kronn/to_pass GH-1]
+  #     fail 'this needs to be implemeted'
+  #   end
+  # end
 end
