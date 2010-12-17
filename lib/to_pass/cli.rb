@@ -87,6 +87,17 @@ module ToPass
           exit
         end
 
+        # not used at the moment
+        # opts.on('-c', '--config [PATH]', "look in PATH for configurations (instead of ~/.to_pass)") do |value|
+        #   if File.exist?(value)
+        #     options[:path] = value
+        #   else
+        #     puts 'configuration path not found'
+        #     puts "run '#{File.basename($0)} --setup --config #{value}' to set it up"
+        #     exit 1
+        #   end
+        # end
+
         opts.on('-C', '--converters', "list available converters for password algorithms") do |value|
           Cli.converters
           exit

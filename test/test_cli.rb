@@ -73,6 +73,25 @@ class TestCli < Test::Unit::TestCase
     assert_match /Show this message/, result, 'should contain hint for help'
   end
 
+
+  # def test_configuration_path_is_configurable
+  #   [
+  #     `#{binpath}to_pass test -c /tmp/my_to_pass`,
+  #     `#{binpath}to_pass test --config /tmp/my_to_pass`
+  #   ].each do |result|
+  #     assert_match /configuration path not found/, result, 'should output an errormessage'
+  #     assert_match %r!to_pass --setup --config /tmp/my_to_pass!, result, 'should provide a hint how to fix it'
+  #   end
+  # end
+
+  # def test_cli_has_setup_command
+  #   result = `#{binpath}to_pass --setup 2>&1`
+  #
+  #   assert path_not_present
+  #   assert_match /successfully created configuration paths/i, result, 'should print success message'
+  #   assert path_present
+  # end
+
   def test_cli_can_output_algorithms
     algorithms = %w(basic_de basic_en secure)
     [
