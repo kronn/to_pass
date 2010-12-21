@@ -14,6 +14,7 @@ module ToPass
   autoload :DATE,              'to_pass/version'
   autoload :APP_NAME,          'to_pass/version'
 
+  autoload :FileReader,        'to_pass/file_reader'
   autoload :AlgorithmReader,   'to_pass/algorithm_reader'
   autoload :Base,              'to_pass/base'
   autoload :Cli,               'to_pass/cli.rb'
