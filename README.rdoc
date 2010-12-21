@@ -62,6 +62,19 @@ This example is a bit Mac OSX-centric, but you should get the point.
 
   $ echo "test" | to_pass | pbcopy
 
+=== Customizing
+
+In order to fully utilize to_pass, you need to make your own algorithm.
+
+You can get a list of existing algorithms through the CLI:
+
+  $ to_pass --algorithms       # or: to_pass -A
+
+Likewise, you can get a list of existing converters:
+
+  $ to_pass --converters       # or: to_pass -C
+
+
 == Development
 
 If you want to develop it further, patch something or are just plain curious:

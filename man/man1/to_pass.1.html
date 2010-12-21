@@ -68,7 +68,7 @@
     <a href="#BUGS">BUGS</a>
     <a href="#COPYRIGHT">COPYRIGHT</a>
     <a href="#SEE-ALSO">SEE ALSO</a>
-    </div>
+  </div>
 
   <ol class='man-decor man-head man head'>
     <li class='tl'>to_pass(1)</li>
@@ -84,9 +84,11 @@
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
 <p><code>to_pass</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br />
-<code>to_pass</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;<br />
-<code>password_of</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br />
-<code>password_of</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;</p>
+<code>to_pass</code> [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; FILE<br />
+<code>to_pass</code> [-A|--algorithms]<br />
+<code>to_pass</code> [-C|--converters]</p>
+
+<p><code>password_of</code> is an alias of <code>to_pass</code></p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -95,7 +97,7 @@ password. The transformation is done according to a algorithm which basically is
 a list of conversion steps.</p>
 
 <p>Some algorithms and conversions are supplied, but you can easily add your own.
-User supplied Algorithms are searched in <code>~/.to_pass/algorithms/</code>, converter
+User supplied algorithms are searched in <code>~/.to_pass/algorithms/</code>, converter
 classes are searched in <code>~/.to_pass/converters/</code>.</p>
 
 <p><a href="../man5/to_pass-algorithm.5.html" class="man-ref">to_pass-algorithm<span class="s">(5)</span></a> files are written in <a href="http://man.cx/yaml(3pm)" class="man-ref">yaml<span class="s">(3pm)</span></a>, <a href="../man5/to_pass-converter.5.html" class="man-ref">to_pass-converter<span class="s">(5)</span></a> classes are
@@ -103,11 +105,12 @@ classes are searched in <code>~/.to_pass/converters/</code>.</p>
 
 <h2 id="FILES">FILES</h2>
 
-<p>The <code>to_pass</code> command can reads both algorithms and converters.</p>
+<p>The <code>to_pass</code> command can read both algorithms and converters.</p>
 
 <p>Algorithm names should match the filenames so that the library can find and
 load them.  Search locations are the user-directory ~/.to_pass/algorithm/ and
-the bundled algorithms. The file is expected to have a ".yml"-extension</p>
+the bundled algorithms. The file is expected to have a ".yml"-extension.
+Details can be found in <a href="../man5/to_pass-algorithm.5.html" class="man-ref">to_pass-algorithm<span class="s">(5)</span></a>.</p>
 
 <p>Converters should be named like the method they provide. Details about the
 expected class can be found in <a href="../man5/to_pass-converter.5.html" class="man-ref">to_pass-converter<span class="s">(5)</span></a>.</p>
@@ -119,6 +122,18 @@ expected class can be found in <a href="../man5/to_pass-converter.5.html" class=
 <dl>
 <dt><code>-a ALGORITHM</code>, <code>--algorithm ALGORITHM</code></dt><dd><p>Use the named algorithm.</p></dd>
 <dt class="flush"><code>--pipe</code></dt><dd><p>Output just the resulting string, without a line-ending.</p></dd>
+</dl>
+
+
+<h3 id="ACTIONS">ACTIONS</h3>
+
+<p>Further, the following switches trigger an action other than converting a
+string to a password</p>
+
+<dl>
+<dt><code>-A</code>, <code>--algorithms</code></dt><dd><p>list all available algorithms</p></dd>
+<dt><code>-C</code>, <code>--converters</code></dt><dd><p>list all converters which can be used for algorithms</p></dd>
+<dt><code>-h</code>, <code>--help</code></dt><dd><p>show usage information</p></dd>
 </dl>
 
 
@@ -138,11 +153,12 @@ ti1pwtsi2ltti@pf
 
 <h2 id="BUGS">BUGS</h2>
 
-<p>So far, no bugs are known.</p>
+<p>So far, no bugs are known. If you encounter any, please file a bugreport under
+https://github.com/kronn/to_pass/issues</p>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>ToPass is Copyright (C) 2010 Matthias Viehweger</p>
+<p>ToPass is Copyright (C) 2010 Matthias Viehweger. It is open sourced under a MIT-license.</p>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
@@ -151,7 +167,7 @@ ti1pwtsi2ltti@pf
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>August 2010</li>
+    <li class='tc'>December 2010</li>
     <li class='tr'>to_pass(1)</li>
   </ol>
 

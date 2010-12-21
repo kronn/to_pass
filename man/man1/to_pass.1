@@ -1,7 +1,7 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "TO_PASS" "1" "August 2010" "" ""
+.TH "TO_PASS" "1" "December 2010" "" ""
 .
 .SH "NAME"
 \fBto_pass\fR \- transform a string to a password
@@ -10,28 +10,31 @@
 \fBto_pass\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] string
 .
 .br
-\fBto_pass\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] < <file>
+\fBto_pass\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] < FILE
 .
 .br
-\fBpassword_of\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] string
+\fBto_pass\fR [\-A|\-\-algorithms]
 .
 .br
-\fBpassword_of\fR [\-a ALG | \-\-algorithm ALG] [\-\-pipe | \-\-no\-pipe] < <file>
+\fBto_pass\fR [\-C|\-\-converters]
+.
+.P
+\fBpassword_of\fR is an alias of \fBto_pass\fR
 .
 .SH "DESCRIPTION"
 \fBto_pass\fR converts a string (be it a word, a sentence or a whole book) into a password\. The transformation is done according to a algorithm which basically is a list of conversion steps\.
 .
 .P
-Some algorithms and conversions are supplied, but you can easily add your own\. User supplied Algorithms are searched in \fB~/\.to_pass/algorithms/\fR, converter classes are searched in \fB~/\.to_pass/converters/\fR\.
+Some algorithms and conversions are supplied, but you can easily add your own\. User supplied algorithms are searched in \fB~/\.to_pass/algorithms/\fR, converter classes are searched in \fB~/\.to_pass/converters/\fR\.
 .
 .P
 to_pass\-algorithm(5) files are written in yaml(3pm), to_pass\-converter(5) classes are ruby(1) classes\.
 .
 .SH "FILES"
-The \fBto_pass\fR command can reads both algorithms and converters\.
+The \fBto_pass\fR command can read both algorithms and converters\.
 .
 .P
-Algorithm names should match the filenames so that the library can find and load them\. Search locations are the user\-directory ~/\.to_pass/algorithm/ and the bundled algorithms\. The file is expected to have a "\.yml"\-extension
+Algorithm names should match the filenames so that the library can find and load them\. Search locations are the user\-directory ~/\.to_pass/algorithm/ and the bundled algorithms\. The file is expected to have a "\.yml"\-extension\. Details can be found in to_pass\-algorithm(5)\.
 .
 .P
 Converters should be named like the method they provide\. Details about the expected class can be found in to_pass\-converter(5)\.
@@ -46,6 +49,21 @@ Use the named algorithm\.
 .TP
 \fB\-\-pipe\fR
 Output just the resulting string, without a line\-ending\.
+.
+.SS "ACTIONS"
+Further, the following switches trigger an action other than converting a string to a password
+.
+.TP
+\fB\-A\fR, \fB\-\-algorithms\fR
+list all available algorithms
+.
+.TP
+\fB\-C\fR, \fB\-\-converters\fR
+list all converters which can be used for algorithms
+.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+show usage information
 .
 .SH "EXAMPLES"
 Transform the word "test" into a password:
@@ -76,10 +94,10 @@ ti1pwtsi2ltti@pf
 .IP "" 0
 .
 .SH "BUGS"
-So far, no bugs are known\.
+So far, no bugs are known\. If you encounter any, please file a bugreport under https://github\.com/kronn/to_pass/issues
 .
 .SH "COPYRIGHT"
-ToPass is Copyright (C) 2010 Matthias Viehweger
+ToPass is Copyright (C) 2010 Matthias Viehweger\. It is open sourced under a MIT\-license\.
 .
 .SH "SEE ALSO"
 to_pass\-converter(5), to_pass\-algorithm(5)

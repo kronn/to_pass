@@ -4,9 +4,11 @@ to_pass(1) -- transform a string to a password
 ## SYNOPSIS
 
 `to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br>
-`to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;<br>
-`password_of` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] string<br>
-`password_of` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; &lt;file&gt;
+`to_pass` [-a ALG | --algorithm ALG] [--pipe | --no-pipe] &lt; FILE<br>
+`to_pass` [-A|--algorithms]<br>
+`to_pass` [-C|--converters]
+
+`password_of` is an alias of `to_pass`
 
 ## DESCRIPTION
 
@@ -15,7 +17,7 @@ password. The transformation is done according to a algorithm which basically is
 a list of conversion steps.
 
 Some algorithms and conversions are supplied, but you can easily add your own.
-User supplied Algorithms are searched in `~/.to_pass/algorithms/`, converter
+User supplied algorithms are searched in `~/.to_pass/algorithms/`, converter
 classes are searched in `~/.to_pass/converters/`.
 
 to_pass-algorithm(5) files are written in yaml(3pm), to_pass-converter(5) classes are
@@ -23,11 +25,12 @@ ruby(1) classes.
 
 ## FILES
 
-The `to_pass` command can reads both algorithms and converters.
+The `to_pass` command can read both algorithms and converters.
 
 Algorithm names should match the filenames so that the library can find and
 load them.  Search locations are the user-directory ~/.to_pass/algorithm/ and
-the bundled algorithms. The file is expected to have a ".yml"-extension
+the bundled algorithms. The file is expected to have a ".yml"-extension.
+Details can be found in to_pass-algorithm(5).
 
 Converters should be named like the method they provide. Details about the
 expected class can be found in to_pass-converter(5).
@@ -44,6 +47,21 @@ The following options are supported:
     Output just the resulting string, without a line-ending.
 
 
+### ACTIONS
+
+Further, the following switches trigger an action other than converting a
+string to a password
+
+  * `-A`, `--algorithms`:
+    list all available algorithms
+
+  * `-C`, `--converters`:
+    list all converters which can be used for algorithms
+
+  * `-h`, `--help`:
+    show usage information
+
+
 ## EXAMPLES
 
 Transform the word "test" into a password:
@@ -58,11 +76,12 @@ Transform a phrase into a password using a different algorithm:
 
 ## BUGS
 
-So far, no bugs are known.
+So far, no bugs are known. If you encounter any, please file a bugreport under
+https://github.com/kronn/to_pass/issues
 
 ## COPYRIGHT
 
-ToPass is Copyright (C) 2010 Matthias Viehweger
+ToPass is Copyright (C) 2010 Matthias Viehweger. It is open sourced under a MIT-license.
 
 ## SEE ALSO
 
