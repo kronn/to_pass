@@ -2,6 +2,8 @@
 # require 'pathname'
 # require 'yaml'
 
+require 'pathname'
+
 module ToPass
   # a generic Filereader, abstracting (among others) ToPass::AlgorithmReader
   # and ToPass::ConverterReader.
@@ -11,11 +13,11 @@ module ToPass
   class FileReader
     attr_reader :load_path
 
-    def initialize(file = nil) # :nodoc:
+    def initialize(file = nil, dir_suffix = nil) # :nodoc:
       @file = file
       @load_path = []
 
-      @load_path.concat(standard_directories)
+      @load_path.concat(standard_directories(dir_suffix))
     end
 
     class << self
@@ -29,7 +31,7 @@ module ToPass
         extension = ".#{extension}" if extension
 
         new(nil).load_path.collect do |dir|
-          Dir["#{dir}#{search_pattern}#{extension}"]
+          Dir["#{dir}/#{search_pattern}#{extension}"]
         end.flatten.compact.map do |fn|
           File.basename(fn).gsub('#{extension}', '')
         end
@@ -64,13 +66,15 @@ module ToPass
     private
 
     def standard_directories(suffix = nil)
+      suffix = suffix.to_s
+      suffix = "/#{suffix}" unless suffix =~ /^\//
+
       ToPass::Directories[:standard].map do |dir|
-        dir + suffix.to_s
+        dir + suffix
       end.map do |dir|
         dir = Pathname.new(dir).expand_path
         dir if dir.exist?
       end.compact
     end
-
   end
 end

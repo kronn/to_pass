@@ -1,6 +1,5 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-require 'pathname'
 require 'yaml'
 
 module ToPass
@@ -11,50 +10,23 @@ module ToPass
   # and managed in ToPass::Directories
   #
   # see ToPass::Converter for usage of the loaded algorithm
-  class AlgorithmReader
-    attr_reader :load_path
-
+  class AlgorithmReader < FileReader
     def initialize(algorithm) # :nodoc:
-      @algorithm = algorithm
-      @load_path = []
-      ToPass::Directories[:standard].map do |dir|
-        dir + '/algorithms'
-      end.each do |dir|
-        dir = Pathname.new(dir).expand_path
-        @load_path << dir if dir.exist?
-      end
+      super(algorithm, 'algorithms')
     end
 
     class << self
-      # load an algorithm with a given identifier
-      def load(algorithm)
-        new(algorithm).load_from_file
-      end
-
-      # searches for available algorithms
-      def discover
-        new(nil).load_path.collect do |dir|
-          Dir["#{dir}/*.yml"]
-        end.flatten.compact.map do |fn|
-          File.basename(fn).gsub('.yml', '')
-        end
+      def extension # :nodoc:
+        'yml'
       end
     end
 
     def load_from_file # :nodoc:
-      fn = load_path.map do |dir|
-        file = Pathname.new("#{dir}/#{@algorithm}.yml")
-
-        if file.exist?
-          file
-        else
-          next
-        end
-      end.compact.first
-
-      raise LoadError, "algorithm #{@algorithm} could not be found in #{load_path}" if fn.nil?
+      fn = super
 
       YAML.load_file(fn.expand_path)
+    rescue LoadError
+      raise LoadError, "algorithm #{@file} could not be found in #{load_path}" if fn.nil?
     end
   end
 end
