@@ -1,7 +1,5 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-require 'pathname'
-
 module ToPass
   # The ConverterReader's primary API is to load the converters from right
   # directories into an Array
@@ -13,19 +11,13 @@ module ToPass
   # User-provided converters are always required (for now).
   #
   # see ToPass::Converter
-  class ConverterReader
-    attr_reader :load_path, :loaded
+  class ConverterReader < FileReader
+    attr_reader :loaded
 
     def initialize # :nodoc:
-      @load_path  = []
       @loaded     = []
       @discovered = []
-      ToPass::Directories[:standard].map do |dir|
-        dir + '/converters'
-      end.each do |dir|
-        dir = Pathname.new(dir).expand_path
-        @load_path << dir if dir.exist?
-      end
+      super(nil, 'converters')
     end
 
     # loads the converters

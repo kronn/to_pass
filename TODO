@@ -19,6 +19,7 @@ UP NEXT
 - integrate better with YARD
   - add the TODO file, the doc/ directory
   - also show protected and private methods because I want to have a complete documentation
+- make ConverterReader a better child of FileReader
 
 
 SOMEDAY
