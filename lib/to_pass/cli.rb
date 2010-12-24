@@ -82,6 +82,8 @@ module ToPass
           options[:pipe_out] = value
         end
 
+        ## ACTIONS
+
         opts.on('-A', '--algorithms', "list available algorithms") do |value|
           Cli.algorithms
           exit
