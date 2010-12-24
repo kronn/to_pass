@@ -1,0 +1,5 @@
+algorithm: basic_de
+pipe_out: false
+pipe_in: false
+
+# vim:ft=yaml
