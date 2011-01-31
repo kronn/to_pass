@@ -22,6 +22,7 @@ class TestConverter < Test::Unit::TestCase
   end
 
   # mock-tests to ensure presence and calling of protected methods
+  # the result-testing is done in test/test_converters.rb
   def test_replace
     assert_respond_to converter, :replace
     converter.expects(:apply_rule).with("test", {'replace'=>'special'}).once
@@ -47,7 +48,6 @@ class TestConverter < Test::Unit::TestCase
     converter.convert("test test")
   end
 
-
   # more complex/real-life setups
   def test_multiple_rules
     converter(basic_rules.merge({
@@ -65,34 +65,6 @@ class TestConverter < Test::Unit::TestCase
     assert_equal( "Ds1P@dF", converter.convert("Da	steht	ein
 
 Pferd	auf	dem	Flur"))
-  end
-
-
-  # actual result-testing
-  def test_replacement
-    rules = {
-      'replacements' => {
-        'numbers' => {
-          :e => 3,
-          :s => 5
-        }
-      }
-    }
-    result = converter(rules).send(:apply_rule, "test", {'replace'=>'numbers'})
-    assert_equal "t35t", result
-  end
-  def test_case_swapping
-    assert_equal "tEsT", converter.send(:apply_rule, "test", 'swapcase')
-  end
-  def test_case_swapping_ignores_numbers
-    assert_equal "tEsT4fUn", converter.send(:apply_rule, "test4fun", 'swapcase')
-    assert_equal "fUn4TeSt", converter.send(:apply_rule, "fun4test", 'swapcase')
-  end
-  def test_char_collapsing
-    assert_equal "abc", converter.send(:apply_rule, "a b c", 'collapse_chars')
-  end
-  def test_select_first_chars
-    assert_equal "t a t f t", converter.send(:apply_rule, "test all the fucking time", 'first_chars')
   end
 
   protected

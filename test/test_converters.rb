@@ -26,16 +26,41 @@ class TestConverters < Test::Unit::TestCase
     assert_converter 'tset', 'reverse', 'test'
   end
 
-  protected
-
-  def assert_converter(expected, rule, string = 'test')
-    assert_nothing_raised LoadError do
-      result = converter.send(:apply_rule, string, rule)
-      assert_equal expected, result, "Converter '#{rule.inspect}' should convert #{string} to #{expected}."
-    end
+  def test_replacement
+    rules = {
+      'replacements' => {
+        'numbers' => {
+          :e => 3,
+          :s => 5
+        }
+      }
+    }
+    assert_converter 't35t', {'replace'=>'numbers'}, 'test', rules
   end
 
-  def converter
-    ToPass::Converter.new({})
+  def test_case_swapping
+    assert_converter 'tEsT', 'swapcase', 'test'
+  end
+
+  def test_case_swapping_ignores_numbers
+    assert_converter "tEsT4fUn", 'swapcase', "test4fun"
+    assert_converter "fUn4TeSt", 'swapcase', "fun4test"
+  end
+
+  def test_char_collapsing
+    assert_converter "abc", 'collapse_chars', "a b c"
+  end
+
+  def test_select_first_chars
+    assert_converter "t a t f t", 'first_chars', "test all the fucking time"
+  end
+
+  protected
+
+  def assert_converter(expected, rule, string = 'test', rules = {})
+    assert_nothing_raised LoadError do
+      result = ToPass::Converter.new(rules).send(:apply_rule, string, rule)
+      assert_equal expected, result, "Converter '#{rule.inspect}' should convert #{string} to #{expected}."
+    end
   end
 end
