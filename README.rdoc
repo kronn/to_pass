@@ -50,6 +50,8 @@ A more direct approach is the facade provided by ToPass::Base
   irb> require 'to_pass'
   irb> ToPass::Base.new('test', :basic_de).to_s
   # => 't35t'
+  irb> ToPass::Base.new('test', :basic_de).password
+  # => 't35t'
 
 === CLI
 
