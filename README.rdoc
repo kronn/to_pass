@@ -19,7 +19,7 @@ to_pass is distributed as rubygem
 If you want to install from source, you can download a tarball or zipfile from
 github.
 
-  $ curl -L http://github.com/kronn/to_pass/tarball/v0.7.0 -o to_pass.tar.gz
+  $ curl -L https://github.com/kronn/to_pass/tarball/v0.7.0 -o to_pass.tar.gz
   $ tar -xzf to_pass.tar.gz
   $ cd kronn-to_pass-HASHVALUE
   $ ./setup.rb install
