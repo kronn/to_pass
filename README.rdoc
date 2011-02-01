@@ -74,6 +74,14 @@ Likewise, you can get a list of existing converters:
 
   $ to_pass --converters       # or: to_pass -C
 
+=== Configuration
+
+You can customize the default behaviour by adding a configuration file like this
+
+  $ mkdir ~/.to_pass
+  $ echo 'algorithm: basic_de' >> ~/.to_pass/config
+  $ echo 'pipe_out: false' >> ~/.to_pass/config
+  $ echo 'pipe_in: false' >> ~/.to_pass/config
 
 == Development
 

@@ -64,11 +64,7 @@ module ToPass
 
     # parse the options
     def parse_options(options = {})
-      options = {
-        :algorithm => 'basic_de',
-        :pipe_out  => false,
-        :pipe_in   => false
-      }.merge(options)
+      options = ConfigReader.load('config').merge(options)
 
       cli_options = OptionParser.new do |opts|
         opts.banner = "Usage: #{File.basename($0)} [options] passphrase"
