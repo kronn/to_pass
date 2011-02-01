@@ -8,11 +8,8 @@ class TestConfigReader < Test::Unit::TestCase
   end
 
   def test_can_load_config_file
-    assert_not_nil klass.load('config')
-  end
-
-  def test_can_read_config_file
-    assert_kind_of Hash, klass.load('config')
+    assert_not_nil klass.load
+    assert_kind_of Hash, klass.load
   end
 
   protected

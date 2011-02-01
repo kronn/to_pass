@@ -19,6 +19,13 @@ module ToPass
     #     :pipe_in   => false
     #   }
     #
+    # If you want to override always, you can create a config file with the
+    # following name:
+    #
+    #   ~/.to_pass/config
+    #
+    # The file is expected to be a YAML-File. Keys and values are transformed
+    # symbols automatically. See ToPass::ConfigReader for details.
     def initialize(options = {})
       @options =  parse_options(options)
       @string =   get_input_string
@@ -64,7 +71,13 @@ module ToPass
 
     # parse the options
     def parse_options(options = {})
-      options = ConfigReader.load('config').merge(options)
+      options = {
+        :algorithm => 'basic_de',
+        :pipe_out  => false,
+        :pipe_in   => false
+      }.merge(
+        ConfigReader.load
+      ).merge(options)
 
       cli_options = OptionParser.new do |opts|
         opts.banner = "Usage: #{File.basename($0)} [options] passphrase"
