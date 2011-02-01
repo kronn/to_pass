@@ -93,12 +93,8 @@ module ToPass
 
         ## ACTIONS
 
-        opts.on('-A', '--algorithms', "list available algorithms") do |value|
-          Cli.algorithms
-          exit
-        end
-
         # not used at the moment
+        #
         # opts.on('-c', '--config [PATH]', "look in PATH for configurations (instead of ~/.to_pass)") do |value|
         #   if File.exist?(value)
         #     options[:path] = value
@@ -108,6 +104,15 @@ module ToPass
         #     exit 1
         #   end
         # end
+        #
+        # opts.on('--setup', "create a configuration directory") do |value|
+        #   options[:setup] == true
+        # end
+
+        opts.on('-A', '--algorithms', "list available algorithms") do |value|
+          Cli.algorithms
+          exit
+        end
 
         opts.on('-C', '--converters', "list available converters for password algorithms") do |value|
           Cli.converters
