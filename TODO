@@ -1,25 +1,18 @@
 CURRENT
 ============================================================================
-✔ let tests run separated
 - Improve CLI-Code
-  ✔ rescue OptionParser::InvalidOption with help screen
-  ✔ add ability to execute commands == handle CLI with Thor ?
-    => done with switches to avoid having a transform command
-  ✔ add command to output available converters
-  ✔ add command to output available algorithms
   - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
   - add command to generate configuration path
-✔ make default algorithm configurable in .to_passrc [kronn/to_pass GH-1]
+- make secure algorithm default
+- make ConverterReader a better child of FileReader
 
 
 UP NEXT
 ============================================================================
-- make secure algorithm default
 - make tests faster
 - integrate better with YARD
   - add the TODO file, the doc/ directory
   - also show protected and private methods because I want to have a complete documentation
-- make ConverterReader a better child of FileReader
 
 
 SOMEDAY
