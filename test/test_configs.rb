@@ -4,7 +4,15 @@ require File.expand_path('../helper', __FILE__)
 
 class TestConfigs < Test::Unit::TestCase
   def config
-    ToPass::ConfigReader.load('config')
+    @config ||= begin
+                  @config = nil
+
+                  without_config_user_dir do
+                    @config = ToPass::ConfigReader.load('config')
+                  end
+
+                  @config
+                end
   end
 
   def test_default_algorithm_is_basic_de

@@ -74,6 +74,24 @@ Test::Unit::TestCase.class_eval do
     )
   end
 
+  def with_config_in_user_dir(&block)
+    FileUtils.mkpath("#{user_dir}")
+
+    safe_copy(
+      "#{File.dirname(__FILE__)}/fixtures/user_config",
+      "#{user_dir}/config",
+      block
+    )
+  end
+
+  def without_config_user_dir(&block)
+    FileUtils.mkpath("#{user_dir}")
+
+    safe_copy(
+      nil,
+      "#{user_dir}/config",
+      block
+    )
   end
 
   def safe_copy(source, target, block)

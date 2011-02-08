@@ -6,14 +6,18 @@ class TestCli < Test::Unit::TestCase
   test_presence ToPass::Cli
 
   def test_cli_usage_without_algorithm
-    assert_nothing_raised do
-      assert_equal "t35t", `#{binpath}to_pass test`.chomp
+    without_config_user_dir do
+      assert_nothing_raised do
+        assert_equal "t35t", `#{binpath}to_pass test`.chomp
+      end
     end
   end
 
   def test_cli_usage_with_password_of
-    assert_nothing_raised do
-      assert_equal "t35t", `#{binpath}password_of test`.chomp
+    without_config_user_dir do
+      assert_nothing_raised do
+        assert_equal "t35t", `#{binpath}password_of test`.chomp
+      end
     end
   end
 
@@ -24,20 +28,26 @@ class TestCli < Test::Unit::TestCase
   end
 
   def test_cli_usage_with_pipes
-    assert_nothing_raised do
-      assert_equal 't35t', `echo "test" | #{binpath}to_pass`
+    without_config_user_dir do
+      assert_nothing_raised do
+        assert_equal 't35t', `echo "test" | #{binpath}to_pass`
+      end
     end
   end
 
   def test_cli_usage_with_pipe_input
-    assert_nothing_raised do
-      assert_equal 't35t', `echo "test" | #{binpath}to_pass --no-pipe`.chomp
+    without_config_user_dir do
+      assert_nothing_raised do
+        assert_equal 't35t', `echo "test" | #{binpath}to_pass --no-pipe`.chomp
+      end
     end
   end
 
   def test_cli_usage_with_pipe_output
-    assert_nothing_raised do
-      assert_equal 't35t', `#{binpath}to_pass test --pipe`
+    without_config_user_dir do
+      assert_nothing_raised do
+        assert_equal 't35t', `#{binpath}to_pass test --pipe`
+      end
     end
   end
 
@@ -71,6 +81,15 @@ class TestCli < Test::Unit::TestCase
 
     assert_match /Usage/, result, 'should print usage information'
     assert_match /Show this message/, result, 'should contain hint for help'
+  end
+
+  def test_cli_usage_with_user_config
+    with_algorithm_in_user_dir do
+      with_config_in_user_dir do
+        assert_equal "le1/2%z", `#{binpath}to_pass 'leasbpc'`.chomp
+        assert_equal "le1/2%z", `#{binpath}to_pass 'luke eats all sausagages because peter cries'`.chomp
+      end
+    end
   end
 
 

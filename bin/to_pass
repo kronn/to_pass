@@ -8,8 +8,4 @@ $LOAD_PATH << "#{base_path}/lib" unless $LOAD_PATH.include?("#{base_path}/lib")
 
 require 'to_pass'
 
-ToPass::Cli.new({
-  :algorithm => 'basic_de',
-  :pipe_out  => false,
-  :pipe_in   => false
-}).output
+ToPass::Cli.new.output
