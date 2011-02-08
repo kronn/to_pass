@@ -104,7 +104,7 @@ class TestCli < Test::Unit::TestCase
   # end
 
   # def test_cli_has_setup_command
-  #   result = `#{binpath}to_pass --setup 2>&1`
+  #   result = `#{binpath}to_pass --setup --config /tmp/my_to_pass 2>&1`
   #
   #   assert path_not_present
   #   assert_match /successfully created configuration paths/i, result, 'should print success message'
