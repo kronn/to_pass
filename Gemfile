@@ -3,7 +3,7 @@ gemspec
 
 group :optional do
   group :test do
-    gem 'redgreen' #  if Gem.available? 'redgreen'
+    gem 'redgreen' if Gem.available?('redgreen')
     gem 'test_benchmark'
   end
 
