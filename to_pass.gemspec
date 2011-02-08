@@ -16,7 +16,7 @@ spec = Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
   s.executables = ["password_of", "to_pass"]
-  s.files = `git ls-files {bin,lib,data,man,test,doc}`.split("\n") - ['.gitignore']
+  s.files = `git ls-files`.split("\n") - ['.gitignore']
   s.test_files = `git ls-files test`.split("\n")
 
   s.has_rdoc = true
