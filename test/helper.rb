@@ -4,6 +4,7 @@ require 'test/unit'
 require 'mocha'
 require 'rbconfig'
 require 'pathname'
+require 'fileutils'
 
 # optional libraries
 begin
@@ -53,16 +54,42 @@ Test::Unit::TestCase.class_eval do
     dirs
   end
 
-  def with_algorithm_in_user_dir
-    `mkdir -p ~/.to_pass/algorithms; cp -f #{File.dirname(__FILE__)}/fixtures/user_alg.yml ~/.to_pass/algorithms/user_alg.yml`
-    yield
-    `rm ~/.to_pass/algorithms/user_alg.yml`
+  def with_algorithm_in_user_dir(&block)
+    FileUtils.mkpath("#{user_dir}/algorithms")
+
+    safe_copy(
+      "#{File.dirname(__FILE__)}/fixtures/user_alg.yml",
+      "#{user_dir}/algorithms/user_alg.yml",
+      block
+    )
   end
 
-  def with_converters_in_user_dir
-    `mkdir -p ~/.to_pass/converters; cp -f #{File.dirname(__FILE__)}/fixtures/user_converter.rb ~/.to_pass/converters/userize.rb`
-    yield
-    `rm ~/.to_pass/converters/userize.rb`
+  def with_converters_in_user_dir(&block)
+    FileUtils.mkpath("#{user_dir}/converters")
+
+    safe_copy(
+      "#{File.dirname(__FILE__)}/fixtures/user_converter.rb",
+      "#{user_dir}/converters/userize.rb",
+      block
+    )
+  end
+
+  end
+
+  def safe_copy(source, target, block)
+    begin
+      target = File.expand_path(target)
+      backup = "#{target}.backup"
+
+      FileUtils.mv(target, backup) if File.exists?(target)
+      FileUtils.cp(source, target) unless source.nil?
+
+      block.call
+
+      FileUtils.rm(target) unless source.nil?
+    ensure
+      FileUtils.mv(backup, target) if File.exists?(backup)
+    end
   end
 
   def in_to_pass_soure_tree?
