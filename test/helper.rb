@@ -46,7 +46,7 @@ Test::Unit::TestCase.class_eval do
 
   def standard_directories
     dirs = []
-    dirs << Pathname.new('~/.to_pass').expand_path # user
+    dirs << Pathname.new("#{user_dir}").expand_path # user
     dirs << "#{ruby_data_dir}/#{ToPass::APP_NAME}" # installed
     dirs << "#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}" if in_to_pass_soure_tree? # source [in github]
 
@@ -71,6 +71,10 @@ Test::Unit::TestCase.class_eval do
 
   def ruby_data_dir
     RbConfig::CONFIG['data-dir'] || RbConfig::CONFIG['datadir']
+  end
+
+  def user_dir
+    ToPass::Directories[:user]
   end
 end
 
