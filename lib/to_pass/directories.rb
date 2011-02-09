@@ -42,9 +42,9 @@ module ToPass
 
       # return the array of user-supplied paths
       def user_paths
-        @user_keys.map do |key|
+        @user_keys.to_a.map do |key|
           all[key]
-        end.to_a
+        end
       end
 
       # list of all directories used by this project
