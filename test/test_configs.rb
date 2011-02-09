@@ -15,11 +15,11 @@ class TestConfigs < Test::Unit::TestCase
                 end
   end
 
-  def test_default_algorithm_is_basic_de
+  def test_default_algorithm_is_secure
     result = config[:algorithm]
 
     assert_not_nil result, 'the algorithm should be configured by default'
-    assert_equal :basic_de, result
+    assert_equal :secure, result
   end
   def test_default_pipe_out_behaviour_is_false
     result = config[:pipe_out]
@@ -33,5 +33,4 @@ class TestConfigs < Test::Unit::TestCase
     assert_not_nil result
     assert_equal false, result
   end
-
 end

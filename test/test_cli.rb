@@ -8,7 +8,7 @@ class TestCli < Test::Unit::TestCase
   def test_cli_usage_without_algorithm
     without_config_user_dir do
       assert_nothing_raised do
-        assert_equal "t35t", `#{binpath}to_pass test`.chomp
+        assert_equal "$78bRkT5eT0n5Fk", `#{binpath}to_pass test`.chomp
       end
     end
   end
@@ -16,7 +16,7 @@ class TestCli < Test::Unit::TestCase
   def test_cli_usage_with_password_of
     without_config_user_dir do
       assert_nothing_raised do
-        assert_equal "t35t", `#{binpath}password_of test`.chomp
+        assert_equal "$78bRkT5eT0n5Fk", `#{binpath}password_of test`.chomp
       end
     end
   end
@@ -30,7 +30,7 @@ class TestCli < Test::Unit::TestCase
   def test_cli_usage_with_pipes
     without_config_user_dir do
       assert_nothing_raised do
-        assert_equal 't35t', `echo "test" | #{binpath}to_pass`
+        assert_equal '$78bRkT5eT0n5Fk', `echo "test" | #{binpath}to_pass`
       end
     end
   end
@@ -38,7 +38,7 @@ class TestCli < Test::Unit::TestCase
   def test_cli_usage_with_pipe_input
     without_config_user_dir do
       assert_nothing_raised do
-        assert_equal 't35t', `echo "test" | #{binpath}to_pass --no-pipe`.chomp
+        assert_equal '$78bRkT5eT0n5Fk', `echo "test" | #{binpath}to_pass --no-pipe`.chomp
       end
     end
   end
@@ -46,7 +46,7 @@ class TestCli < Test::Unit::TestCase
   def test_cli_usage_with_pipe_output
     without_config_user_dir do
       assert_nothing_raised do
-        assert_equal 't35t', `#{binpath}to_pass test --pipe`
+        assert_equal '$78bRkT5eT0n5Fk', `#{binpath}to_pass test --pipe`
       end
     end
   end

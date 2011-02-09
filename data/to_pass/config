@@ -1,4 +1,4 @@
-algorithm: basic_de
+algorithm: secure
 pipe_out: false
 pipe_in: false
 
