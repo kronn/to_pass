@@ -29,7 +29,7 @@ single_test = lambda { |m|
 watch '^data/to_pass/(algorithms|converters)/*.rb' do |m|
   single_or_all("test/test_#{m[1]}.rb")
 end
-watch '^data/config' do |m|
+watch '^data/to_pass/config' do |m|
   single_or_all("test/test_configs.rb")
 end
 
