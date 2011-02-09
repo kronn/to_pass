@@ -69,7 +69,7 @@ module ToPass
       suffix = suffix.to_s
       suffix = "/#{suffix}" unless suffix =~ /^\//
 
-      ToPass::Directories[:standard].map do |dir|
+      ToPass::Directories[:all].map do |dir|
         dir + suffix
       end.map do |dir|
         dir = Pathname.new(dir).expand_path
