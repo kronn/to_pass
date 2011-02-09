@@ -36,23 +36,6 @@ class TestBase < Test::Unit::TestCase
     end
   end
 
-  def test_directories
-    dirs = ToPass::Directories
-
-    assert defined?(dirs)
-    assert_respond_to dirs, :[]
-
-    assert_equal '~/.to_pass', dirs[:user]
-    assert_equal "#{ruby_data_dir}/#{ToPass::APP_NAME}", dirs[:data]
-
-    if in_to_pass_soure_tree?
-      assert_equal Pathname.new("#{File.dirname(__FILE__)}/../").expand_path.to_s, dirs[:base]
-      assert_equal Pathname.new("#{File.dirname(__FILE__)}/../data/#{ToPass::APP_NAME}").expand_path.to_s, dirs[:source_data]
-    end
-
-    assert_equal [ dirs[:user], dirs[:data], dirs[:source_data] ], dirs[:standard]
-  end
-
   def test_release_notes
     fn = File.expand_path('../../doc/RELEASE_NOTES', __FILE__)
 
