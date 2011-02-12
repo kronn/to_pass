@@ -55,45 +55,51 @@ Test::Unit::TestCase.class_eval do
   end
 
   def with_algorithm_in_user_dir
-    FileUtils.mkpath("#{user_dir}/algorithms")
-
-    safe_copy(
-      "#{File.dirname(__FILE__)}/fixtures/user_alg.yml",
-      "#{user_dir}/algorithms/user_alg.yml",
-      &Proc.new
-    )
+    with_dir("#{user_dir}/algorithms") do
+      safe_copy(
+        "#{File.dirname(__FILE__)}/fixtures/user_alg.yml",
+        "#{user_dir}/algorithms/user_alg.yml",
+        &Proc.new
+      )
+    end
   end
-
   def with_converters_in_user_dir
-    FileUtils.mkpath("#{user_dir}/converters")
-
-    safe_copy(
-      "#{File.dirname(__FILE__)}/fixtures/user_converter.rb",
-      "#{user_dir}/converters/userize.rb",
-      &Proc.new
-    )
+    with_dir("#{user_dir}/converters") do
+      safe_copy(
+        "#{File.dirname(__FILE__)}/fixtures/user_converter.rb",
+        "#{user_dir}/converters/userize.rb",
+        &Proc.new
+      )
+    end
   end
-
   def with_config_in_user_dir
-    FileUtils.mkpath("#{user_dir}")
-
-    safe_copy(
-      "#{File.dirname(__FILE__)}/fixtures/user_config",
-      "#{user_dir}/config",
-      &Proc.new
-    )
+    with_dir("#{user_dir}") do
+      safe_copy(
+        "#{File.dirname(__FILE__)}/fixtures/user_config",
+        "#{user_dir}/config",
+        &Proc.new
+      )
+    end
   end
-
   def without_config_user_dir
-    FileUtils.mkpath("#{user_dir}")
-
-    safe_copy(
-      nil,
-      "#{user_dir}/config",
-      &Proc.new
-    )
+    with_dir("#{user_dir}") do
+      safe_copy(
+        nil,
+        "#{user_dir}/config",
+        &Proc.new
+      )
+    end
   end
 
+  def with_dir(dir)
+    FileUtils.mkpath("#{dir}")
+
+    result = yield
+
+    Dir.rmdir("#{dir}") if ( Dir.entries("#{dir}") == ['.', '..'] )
+
+    result
+  end
   def safe_copy(source, target)
     begin
       target = File.expand_path(target)
