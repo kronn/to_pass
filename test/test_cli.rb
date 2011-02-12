@@ -103,9 +103,9 @@ class TestCli < Test::Unit::TestCase
       assert_match %r!to_pass --setup --config /tmp/my_to_pass!, result, 'should provide a hint how to fix it'
     end
 
-    # with_algorithm_in_user_dir('/tmp/my_to_pass') do
-    #   help is not shown, path is picked up
-    # end
+    with_algorithm_in_user_dir('/tmp/my_to_pass') do
+      assert_equal 'te/t', `#{binpath}to_pass test -c /tmp/my_to_pass -a user_alg`.chomp
+    end
   end
 
   # def test_cli_has_setup_command

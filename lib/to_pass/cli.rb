@@ -92,11 +92,12 @@ module ToPass
         end
 
         opts.on('-c', '--config [PATH]', "look in PATH for configurations (instead of ~/.to_pass)") do |value|
-          if File.exist?(value)
-          #   options[:path] = value
+          dir = Pathname.new(value).expand_path
+          if dir.exist?
+            options[:path] = dir
           else
             puts 'configuration path not found'
-            puts "run '#{File.basename($0)} --setup --config #{value}' to set it up"
+            puts "run '#{File.basename($0)} --setup --config #{dir}' to set it up"
             exit 1
           end
         end
@@ -149,7 +150,7 @@ module ToPass
 
     # perform "heavy" work
     def transform
-      Base.new( @string, @options[:algorithm] ).to_s
+      Base.new(@string, @options[:algorithm], :path => @options[:path]).to_s
     end
   end
 end
