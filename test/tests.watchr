@@ -32,6 +32,9 @@ end
 watch '^data/to_pass/config' do |m|
   single_or_all("test/test_configs.rb")
 end
+watch '^test/(helper|all).rb' do |m|
+  run_all
+end
 
 # simple mappings
 watch '^lib/to_pass/(.*).rb',  &single_test
