@@ -54,11 +54,11 @@ Test::Unit::TestCase.class_eval do
     dirs
   end
 
-  def with_algorithm_in_user_dir
-    with_dir("#{user_dir}/algorithms") do
+  def with_algorithm_in_user_dir(dir = "#{user_dir}/algorithms")
+    with_dir(dir) do
       safe_copy(
         "#{File.dirname(__FILE__)}/fixtures/user_alg.yml",
-        "#{user_dir}/algorithms/user_alg.yml",
+        "#{dir}/user_alg.yml",
         &Proc.new
       )
     end
