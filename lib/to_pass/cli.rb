@@ -91,20 +91,19 @@ module ToPass
           options[:pipe_out] = value
         end
 
+        opts.on('-c', '--config [PATH]', "look in PATH for configurations (instead of ~/.to_pass)") do |value|
+          if File.exist?(value)
+          #   options[:path] = value
+          else
+            puts 'configuration path not found'
+            puts "run '#{File.basename($0)} --setup --config #{value}' to set it up"
+            exit 1
+          end
+        end
+
         ## ACTIONS
 
-        # not used at the moment
-        #
-        # opts.on('-c', '--config [PATH]', "look in PATH for configurations (instead of ~/.to_pass)") do |value|
-        #   if File.exist?(value)
-        #     options[:path] = value
-        #   else
-        #     puts 'configuration path not found'
-        #     puts "run '#{File.basename($0)} --setup --config #{value}' to set it up"
-        #     exit 1
-        #   end
-        # end
-        #
+
         # opts.on('--setup', "create a configuration directory") do |value|
         #   options[:setup] == true
         # end

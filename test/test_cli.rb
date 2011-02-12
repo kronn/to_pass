@@ -92,16 +92,21 @@ class TestCli < Test::Unit::TestCase
     end
   end
 
+  def test_configuration_path_is_configurable
+    FileUtils.rm_r('/tmp/my_to_pass', :force => true, :secure => true)
 
-  # def test_configuration_path_is_configurable
-  #   [
-  #     `#{binpath}to_pass test -c /tmp/my_to_pass`,
-  #     `#{binpath}to_pass test --config /tmp/my_to_pass`
-  #   ].each do |result|
-  #     assert_match /configuration path not found/, result, 'should output an errormessage'
-  #     assert_match %r!to_pass --setup --config /tmp/my_to_pass!, result, 'should provide a hint how to fix it'
-  #   end
-  # end
+    [
+      `#{binpath}to_pass test -c /tmp/my_to_pass`,
+      `#{binpath}to_pass test --config /tmp/my_to_pass`
+    ].each do |result|
+      assert_match /configuration path not found/, result, 'should output an errormessage'
+      assert_match %r!to_pass --setup --config /tmp/my_to_pass!, result, 'should provide a hint how to fix it'
+    end
+
+    # with_algorithm_in_user_dir('/tmp/my_to_pass') do
+    #   help is not shown, path is picked up
+    # end
+  end
 
   # def test_cli_has_setup_command
   #   result = `#{binpath}to_pass --setup --config /tmp/my_to_pass 2>&1`
