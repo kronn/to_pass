@@ -13,7 +13,8 @@ module ToPass
     attr_reader :password
 
     # transform a string according to a certain algorithm
-    def initialize(string, algorithm)
+    def initialize(string, algorithm, options = {})
+      Directories[:custom] = options[:path] if options[:path]
       rules = AlgorithmReader.load(algorithm)
       converter = Converter.new(rules)
       @password = converter.convert(string)

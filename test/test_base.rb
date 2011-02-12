@@ -12,6 +12,14 @@ class TestBase < Test::Unit::TestCase
     end
   end
 
+  def test_options
+    with_dir('/tmp/my_to_pass') do
+      with_algorithm_in_user_dir('/tmp/my_to_pass/algorithms') do
+        assert_equal 'te/t', ToPass::Base.new('test', :user_alg, :path => Pathname.new('/tmp/my_to_pass').expand_path).to_s
+      end
+    end
+  end
+
   def test_version
     assert_match /\d+.\d+.\d+/, ToPass::VERSION
   end
