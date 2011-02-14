@@ -26,7 +26,7 @@ module ToPass
 
       YAML.load_file(fn.expand_path)
     rescue LoadError
-      raise LoadError, "algorithm #{@file} could not be found in #{load_path}" if fn.nil?
+      raise LoadError, "algorithm #{@file} could not be found in #{load_path.join(', ')}" if fn.nil?
     end
   end
 end
