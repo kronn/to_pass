@@ -1,8 +1,8 @@
 CURRENT
 ============================================================================
-- Improve CLI-Code
-  - add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
-  - add command to generate configuration path
+✔ Improve CLI-Code
+  ✔ add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
+  ✔ add command to generate configuration path
 ✔ make secure algorithm default
 - make ConverterReader a better child of FileReader
 
