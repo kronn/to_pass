@@ -65,6 +65,31 @@ module ToPass
         puts "  ============================================"
         puts ""
       end
+
+      # setup working directory
+      def setup(value = nil)
+        dir = Pathname.new(value || Directories[:user]).expand_path
+
+        dir.mkpath
+        (dir + 'algorithms').mkpath
+        (dir + 'converters').mkpath
+
+        if File.exist?(dir + 'config')
+          puts "configuration in #{dir} not overwritten"
+        else
+          File.open((dir + 'config'), 'w') do |file|
+            config = {}
+
+            ConfigReader.load.each do |key, value|
+              config[key.to_s] = ( value.is_a?(Symbol) ? value.to_s : value )
+            end
+
+            YAML.dump(config, file)
+          end
+        end
+
+        puts "successfully created configuration directory in #{dir}"
+      end
     end
 
     protected
@@ -104,10 +129,10 @@ module ToPass
 
         ## ACTIONS
 
-
-        # opts.on('--setup', "create a configuration directory") do |value|
-        #   options[:setup] == true
-        # end
+        opts.on('--setup [PATH]', "create a configuration directory") do |value|
+          Cli.setup(value)
+          exit
+        end
 
         opts.on('-A', '--algorithms', "list available algorithms") do |value|
           Cli.algorithms

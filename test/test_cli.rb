@@ -108,13 +108,28 @@ class TestCli < Test::Unit::TestCase
     end
   end
 
-  # def test_cli_has_setup_command
-  #   result = `#{binpath}to_pass --setup --config /tmp/my_to_pass 2>&1`
-  #
-  #   assert path_not_present
-  #   assert_match /successfully created configuration paths/i, result, 'should print success message'
-  #   assert path_present
-  # end
+  def test_cli_has_setup_command
+    path = Pathname.new('/tmp/my_to_pass')
+
+    FileUtils.rm_r(path, :force => true, :secure => true)
+
+    assert !path.exist?
+
+    assert_match /successfully created configuration directory in #{path}/i,
+      `#{binpath}to_pass --setup #{path} 2>&1`,
+      'should print success message'
+
+    assert path.exist?
+  end
+
+  def test_cli_has_setup_command_with_default
+    with_config_in_user_dir do
+      dir = Pathname.new(user_dir).expand_path
+      result = `#{binpath}to_pass --setup 2>&1`
+      assert_match /configuration in #{dir} not overwritten/, result
+      assert_match /successfully created configuration directory in #{dir}/i, result, 'should print success message'
+    end
+  end
 
   def test_cli_can_output_algorithms
     algorithms = %w(basic_de basic_en secure)
