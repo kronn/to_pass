@@ -4,7 +4,7 @@
 begin
   desc 'rebuild documentation'
   task :doc do
-    [:'documentation:rdoc', :'documentation:man'].each do |task_symbol|
+    [:'documentation:rdoc', :'documentation:man', :'documentation:vclog'].each do |task_symbol|
       task = Rake::Task[task_symbol]
       task.invoke unless task.nil?
     end
@@ -53,6 +53,13 @@ namespace :documentation do
       end
     end
   rescue LoadError
+  end
+
+  if Gem.available?('vclog')
+    desc 'generate changelog from commit-messages'
+    task :vclog do
+      `vclog release -f gnu  -l '-2' > doc/CHANGELOG`
+    end
   end
 end
 

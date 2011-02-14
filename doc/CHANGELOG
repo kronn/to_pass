@@ -1,83 +1,159 @@
 RELEASE HISTORY
 
-v0.7.0 / 2010-10-13
+v0.9.0 / 2011-02-01
+
+tag v0.9.0 (Matthias Viehweger <kronn@kronn.de>)
+
+Changes:
+
+* 9 General Enhancements
+
+    * IM IN UR PROJEKTZ, WATHCIN UR TESTZ
+    * made the filename optional and added some hard-coded defaults
+    * make default algorithm configurable in ~/.to_pass/config
+    * added a ConfigReader which can read the built-in configuration and (later on) user-supplied configurations
+    * added a basic file_reader-class which will be the basis for the algorithm- and converterreader
+    * added a note on how to make a gem purely optional (and, by accident) not installable through bundle install
+    * starting .to_passrc-feature
+    * added ability to output available algorithms and converters
+    * The test can now be run separated from the source-tree, thereby only testing the library itself. This is useful if you want to package the library, and reorganize the directory structure.
+
+* 8 Minor Enhancements, Refactorings and Cleanups
+
+    * moved code around
+    * moved converter-testing into the right test-class
+    * moved configuration testing into its own test class
+    * changed ConverterReader to be a subclass of FileReader
+    * change AlgorithmReader to be a subclass of FileReader
+    * added some coded notes for a changeable configuration path
+    * moved output of converters into Cli-class
+    * moved output of algorithms into Cli-class
+
+
+v0.8.0 / 2010-12-15
+
+tag v0.8.0 (Matthias Viehweger <kronn@kronn.de>)
+
+Changes:
+
+* 12 General Enhancements
+
+    * append the lib-dir to the LOAD_PATH instead of the basedir
+    * try harder to discover the right to_pass for stand-alone tests
+    * use File.expand_path better
+    * let test run normal and stand-alone with one rake task
+    * express gemspec-test without using Pathname
+    * require Pathname in the test/helper to avoid loading issues
+    * working on rake test:standalone and planing a rake test:all
+    * added test:stand_alone Raketask
+    * added stand-alone tests
+    * Gemfile: group optional stuff in an 'optional' group
+    * rescue OptionParser::InvalidOption with help screen
+    * started development after 0.7.0
+
+* 1 Bug Fixes
+
+    * fix vim-modelines
+
+* 6 Minor Enhancements, Refactorings and Cleanups
+
+    * remove obsolete stand_alone-test directory
+    * extracted ruby_data_dir to cope with inconsistencies
+    * begin refactoring standalone-rake task
+    * move rake test to rake test:normal
+    * testcode change to have tests run separately
+    * corrected path to lib-directory
+
+
+v0.7.0 / 2010-10-25
 
 tag v0.7.0 (Matthias Viehweger <kronn@kronn.de>)
 
 Changes:
 
-* 28 General Enhancements
+* 18 General Enhancements
 
     * setup the $LOAD_PATH better
     * added ability to include RELEASE_NOTES (which are then also displayed after installing...)
     * made gem-release an optional development dependency
-    * properly namespace documentation tasks in Rakefile
-    * add the ability to Benchmark tests
     * added truly optional gems to Gemfile to have some means to install them
-    * fixed typos
-    * moved list of extra_rdoc_files into version.rb
+    * add the ability to Benchmark tests
+    * properly namespace documentation tasks in Rakefile
     * added doc/CHANGELOG
-    * moved LICENSE into doc directory
     * declare the constants defensively
-    * move meta-information into version.rb-file
-    * updated idea/todo list
     * include LICENSE again in Documentation
-    * move tests to [test/all, test/helper]-pattern
-    * the gem has all the files which are under version control
-    * ruby 1.9.2 compatibility
     * don't rely on . being in $LOAD_PATH anymore (1.9.2 compat)
-    * fix vim-modeline (works as ruby 1.9 encoding-hint also)
-    * removed redundant require
-    * fixed manpage locations and links
+    * ruby 1.9.2 compatibility
+    * the gem has all the files which are under version control
     * Version 0.6.0 brings mostly "debian compatiblity" as far as i can test it for now.
-    * added note on redgreen, which is purely optional
-    * documentation update
     * include all methods in RDoc to make it actually useful
+    * documentation update
+    * added note on redgreen, which is purely optional
     * added data-dir to gemspec
-    * extracted ToPass::DIRECTORIES into a real class
     * assume Debian compatibility for now
 
+* 3 Bug Fixes
 
-v0.6.0 / 2010-08-18
+    * fixed typos
+    * fix vim-modeline (works as ruby 1.9 encoding-hint also)
+    * fixed manpage locations and links
+
+* 6 Minor Enhancements, Refactorings and Cleanups
+
+    * moved list of extra_rdoc_files into version.rb
+    * moved LICENSE into doc directory
+    * move meta-information into version.rb-file
+    * move tests to [test/all, test/helper]-pattern
+    * removed redundant require
+    * extracted ToPass::DIRECTORIES into a real class
+
+
+v0.6.0 / 2010-08-19
 
 tag v0.6.0 (Matthias Viehweger <kronn@kronn.de>)
 
 Changes:
 
-* 16 General Enhancements
+* 8 General Enhancements
 
     * check off 'use setup.rb' as this part works
     * added setup.rb-leftovers to .gitignore
-    * updated TODO
     * ronn is a development dependency
-    * move manpages into the right directory after creation for setup.rb compatibility
-    * fix typo and whitespace in setup.rb
-    * moved algorithms and converters into namespaced data-dirs
     * added setup.rb
-    * moved converters into the right place
     * some documentation
-    * refactored reader-classes to use ToPass::DIRECTORIES
     * rewrote the ToPass::DIRECTORIES-Table into an anonymous Class
     * prepared central lookup point for directories
-    * moved algorithms into data-dir (think /usr/share/to_pass)
     * last maintainance steps to go to version 0.5.2 and leave jeweler behind.
+
+* 1 Bug Fixes
+
+    * fix typo and whitespace in setup.rb
+
+* 6 Minor Enhancements, Refactorings and Cleanups
+
+    * move manpages into the right directory after creation for setup.rb compatibility
+    * moved algorithms and converters into namespaced data-dirs
+    * moved converters into the right place
+    * refactored reader-classes to use ToPass::DIRECTORIES
+    * moved algorithms into data-dir (think /usr/share/to_pass)
     * removed jeweler-part of Rakefile
 
 
-v0.5.2 / 2010-08-09
+v0.5.2 / 2010-08-10
 
 tag v0.5.2 (Matthias Viehweger <kronn@kronn.de>)
 
 Changes:
 
-* 6 General Enhancements
+* 3 General Enhancements
 
-    * moved meta-information into version.rb
     * rewrote gemspec to not depend on jeweler
     * added jeweler-generated gemfile
     * create a Gemfile with definitions from gemspec to install dependencies easier
-    * notes to TODO added
-    * Version bump to 0.5.1
+
+* 1 Minor Enhancements, Refactorings and Cleanups
+
+    * moved meta-information into version.rb
 
 
 v0.5.1 / 2010-07-26
@@ -86,11 +162,9 @@ Version bump to 0.5.1 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 3 General Enhancements
+* 1 Minor Enhancements, Refactorings and Cleanups
 
     * changed behaviour of expand_below converter
-    * maintained TODO-list
-    * Version bump to 0.5.0
 
 
 v0.5.0 / 2010-07-26
@@ -99,16 +173,13 @@ Version bump to 0.5.0 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 24 General Enhancements
+* 18 General Enhancements
 
     * added tests for the bundled algorithms
     * added converter "expand_below"
     * added converter "reverse"
     * added new converter ideas as empty tests
-    * refactored converters-test
     * added a 'secure' algorithm which generate fairly secure passwords
-    * added remove_repetition converter
-    * moved downcase-test into converter-testcase
     * pathnames in exception-messages should be readable
     * added hint to password_of in manpage.
     * finished to_pass-algorithm(5)
@@ -118,13 +189,20 @@ Changes:
     * added draft for to_pass-algorithm(5)
     * added to_pass-converter(5)
     * add man index
-    * fix typos in to_pass(1)
     * added Raketask to generate manpages
     * added downcase converter
     * added man page for to_pass(1)
     * use the right binary name for the help output
-    * added some TODOs
-    * Version bump to 0.4.0
+
+* 1 Bug Fixes
+
+    * fix typos in to_pass(1)
+
+* 3 Minor Enhancements, Refactorings and Cleanups
+
+    * refactored converters-test
+    * added remove_repetition converter
+    * moved downcase-test into converter-testcase
 
 
 v0.4.0 / 2010-06-29
@@ -133,11 +211,10 @@ Version bump to 0.4.0 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 3 General Enhancements
+* 2 General Enhancements
 
     * output available algorithms with `rake algorithms`
     * output a list of available converter with `rake converters`
-    * Version bump to 0.3.0
 
 
 v0.3.0 / 2010-06-29
@@ -146,26 +223,28 @@ Version bump to 0.3.0 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 18 General Enhancements
+* 7 General Enhancements
 
     * reorganized converter to utilize the ConverterReader to find and load the conversions
     * rename table to replace in algorithms
-    * rename StringConversions to Converters and moved individual algorithms into single files
-    * fix typo in documentation
     * Tie ConverterReader into Converter
-    * add ConverterReader-class
     * disable the inclusion of StringConversion-Module
+    * add ConverterReader-class
+    * improved pipe usage
+    * made sdoc optional
+
+* 2 Bug Fixes
+
+    * fix typo in documentation
+    * fixed the directory-name in the test_helper (thanks, CI)
+
+* 5 Minor Enhancements, Refactorings and Cleanups
+
+    * rename StringConversions to Converters and moved individual algorithms into single files
     * remove the current task from the "someday"-section
     * extracted converters info their own classes
-    * improved pipe usage
-    * added manpage-help to TODO
-    * added Debian compatibility as as TODO
     * move algorithms-directory into the to_pass-dir for portability
-    * extended TODO with some more ideas
-    * fixed the directory-name in the test_helper (thanks, CI)
     * removed jeweler-specific code
-    * made sdoc optional
-    * Version bump to 0.2.4
 
 
 v0.2.4 / 2010-06-24
@@ -174,11 +253,13 @@ Version bump to 0.2.4 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 3 General Enhancements
+* 1 General Enhancements
+
+    * added encoding-info to all ruby files
+
+* 1 Bug Fixes
 
     * moved CLI-interface into its own class (including some debugging along the way)
-    * added encoding-info to all ruby files
-    * Version bump to 0.2.3
 
 
 v0.2.3 / 2010-06-14
@@ -187,9 +268,12 @@ Version bump to 0.2.3 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 2 General Enhancements
+* 1 General Enhancements
 
     * tested integration with user-dir algorithms
+
+* 1 Bug Fixes
+
     * fixed directory lookup of user-dir
 
 
@@ -199,26 +283,26 @@ bumped version because of upcoming release (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 18 General Enhancements
+* 12 General Enhancements
 
     * renamed the library from to_pwd to to_pass
-    * moved string_conversion-tests into its own testcase.
-    * removed rcov-Tasks as it does not produce useful information
-    * readded TODO and some coded thoughts
     * activated rcov in the Rakefile
     * documented the code
     * added APP_NAME constant
     * added VERSION-constant
-    * deleted TODO as it's empty at the moment
     * shortended tests
     * made AlgorithmReader#load_from_file use the load_path
-    * removed unused tests
     * added AlgorithmReader#load_path
     * added an AlgorithmReader
     * excluded packaged gems and documentation from project
     * made dependency on sdoc explicit
     * added documentation (sdoc) task and tweaked README
-    * Version bump to 0.2.1
+
+* 3 Minor Enhancements, Refactorings and Cleanups
+
+    * moved string_conversion-tests into its own testcase.
+    * removed rcov-Tasks as it does not produce useful information
+    * removed unused tests
 
 
 v0.2.1 / 2010-06-03
@@ -227,13 +311,9 @@ Version bump to 0.2.1 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 1 General Enhancements
+* 1 Minor Enhancements, Refactorings and Cleanups
 
-    * Version bump to 0.2.0
-
-* 1 Cleanup Enhancements
-
-    * redgreen is only needed and wanted for tests
+    * cleanup: redgreen is only needed and wanted for tests
 
 
 v0.2.0 / 2010-05-30
@@ -242,33 +322,21 @@ Version bump to 0.2.0 (Matthias Viehweger kronn@kronn.de)
 
 Changes:
 
-* 2 Cleanup Enhancements
-
-    * deleted outdated version
-    * moved dependency-requirements into man lib-file
-
-* 29 General Enhancements
+* 22 General Enhancements
 
     * preparation for creating a gem from this library
     * added Rakefile to run all tests
     * added module for direct integration into existing objects.
-    * fixed usage with pipes
     * some more integration tests and basic_en-algorithm
     * baseclass and integration-test added
-    * refactoring
     * testing if multiple rules are applied
     * test extended to cover alternate scenario of case swapping
-    * comment out old implementation
-    * removed tests of methods which are neither needed nor used externally
     * case swapping ignores numbers
     * naming improved
     * first module-definition added
     * test and implementation for string converter added
-    * refactored executable towards OptionParser usage
     * renamed lib-file
     * added draft for algorithm spec
-    * changed indentation from tabs to spaces
-    * added TODO
     * basic executable added and gitignore added for algorithms
     * PasswordString contains a String, its not really a String
     * Datei in richtiges Verzeichnis geschoben
@@ -279,16 +347,62 @@ Changes:
     * README added
     * Initial commit
 
+* 1 Bug Fixes
 
-HEAD / 2010-10-25
+    * fixed usage with pipes
+
+* 6 Minor Enhancements, Refactorings and Cleanups
+
+    * cleanup: deleted outdated version
+    * cleanup: moved dependency-requirements into man lib-file
+    * refactoring
+    * removed tests of methods which are neither needed nor used externally
+    * refactored executable towards OptionParser usage
+    * changed indentation from tabs to spaces
+
+
+HEAD / 2011-02-15
 
 Current Development (Matthias Viehweger)
 
 Changes:
 
-* 3 General Enhancements
+* 20 General Enhancements
 
-    * started development after 0.7.0
-    * version bump to 0.7.0
-    * corrected path to lib-directory
+    * integrate with travis, potentially
+    * integrate better with YARD
+    * postpone things which are not urgent right now
+    * mark as done whats done
+    * add option to setup the configuration directory
+    * make the error-msg a little more readable
+    * ToPass::Directories[:all] is special like [:standard]
+    * enable custom config directory in cli
+    * enable options (currently: path) on ToPass::Base
+    * let the user_alg be copied to a custom directory
+    * added option to tweak the configuration path, not fully working but a help message for a nonexistant path is shown
+    * using Proc.new instead of &block
+    * add the ability to extend the directories which are searched
+    * make secure algorithm default
+    * correct path to supplied config in tests.watchr
+    * write down idea completely :)
+    * include all project files in gemspec (except for .gitignore) for gemtest and completeness
+    * add .gemtest to enable `gem test to_pass`
+    * make redgreen optional in Gemfile
+    * ToPass::Base#password returns the password
+
+* 3 Bug Fixes
+
+    * fix wrongly setup test
+    * Bugfix to ensure the right directories are searched
+    * Bugfix: the directory-list should be generateable out of the box
+
+* 7 Minor Enhancements, Refactorings and Cleanups
+
+    * change help message of to_pass -c /nonexistant
+    * extract directory creation/teardown into test-helper method
+    * change the search directory list for all file-readers
+    * reliably test user-configs and remove unnecessary defaults in executables
+    * housekeeping
+    * abstract the way fixtures are put into the filesystem (along with some improvements)
+    * extract user_dir into method
 

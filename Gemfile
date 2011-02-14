@@ -9,5 +9,6 @@ group :optional do
 
   group :development do
     gem 'gem-release'
+    gem 'vclog'
   end
 end
