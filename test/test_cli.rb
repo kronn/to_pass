@@ -100,7 +100,7 @@ class TestCli < Test::Unit::TestCase
       `#{binpath}to_pass test --config /tmp/my_to_pass`
     ].each do |result|
       assert_match /configuration path not found/, result, 'should output an errormessage'
-      assert_match %r!to_pass --setup --config /tmp/my_to_pass!, result, 'should provide a hint how to fix it'
+      assert_match %r!to_pass --setup /tmp/my_to_pass!, result, 'should provide a hint how to fix it'
     end
 
     with_algorithm_in_user_dir('/tmp/my_to_pass') do

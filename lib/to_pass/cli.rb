@@ -97,7 +97,7 @@ module ToPass
             options[:path] = dir
           else
             puts 'configuration path not found'
-            puts "run '#{File.basename($0)} --setup --config #{dir}' to set it up"
+            puts "run '#{File.basename($0)} --setup #{dir}' to set it up"
             exit 1
           end
         end
