@@ -70,7 +70,7 @@ module ToPass
       suffix = "/#{suffix}" unless suffix =~ /^\//
 
       ToPass::Directories[:all].map do |dir|
-        dir + suffix
+        dir.to_s + suffix
       end.map do |dir|
         dir = Pathname.new(dir).expand_path
         dir if dir.exist?
