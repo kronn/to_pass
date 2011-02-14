@@ -7,3 +7,4 @@ pkg/*
 Gemfile.lock
 SetupReceipt
 .DS_Store
+.yardoc/*
