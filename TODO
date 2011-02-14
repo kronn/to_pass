@@ -4,12 +4,10 @@ CURRENT
   ✔ add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
   ✔ add command to generate configuration path
 ✔ make secure algorithm default
-- make ConverterReader a better child of FileReader
 
 
 UP NEXT
 ============================================================================
-- make tests faster
 - integrate better with YARD
   - add the TODO file, the doc/ directory
   - also show protected and private methods because I want to have a complete documentation
@@ -23,6 +21,8 @@ SOMEDAY
   check out and maybe integrate https://github.com/stephencelis/rdoctest
   i18n && l10n of messages
   ?? replace Rake with Thor
+  make ConverterReader a better child of FileReader
+  make tests faster
 
 
 LEGEND
