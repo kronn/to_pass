@@ -103,7 +103,7 @@ class TestCli < Test::Unit::TestCase
       assert_match %r!to_pass --setup /tmp/my_to_pass!, result, 'should provide a hint how to fix it'
     end
 
-    with_algorithm_in_user_dir('/tmp/my_to_pass') do
+    with_algorithm_in_user_dir('/tmp/my_to_pass/algorithms') do
       assert_equal 'te/t', `#{binpath}to_pass test -c /tmp/my_to_pass -a user_alg`.chomp
     end
   end
