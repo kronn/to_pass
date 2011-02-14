@@ -12,7 +12,7 @@ module ToPass
       # get a directory or a list of directories
       def [](key)
         case key
-        when *all.keys - [:standard]
+        when *all.keys - [:standard, :all]
           all[key]
         when :standard
           [ all[:user], all[:data], all[:source_data] ]
