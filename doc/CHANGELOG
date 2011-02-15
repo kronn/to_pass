@@ -1,5 +1,52 @@
 RELEASE HISTORY
 
+v1.0.0 / 2011-02-15
+
+release version 1.0.0, finally (Matthias Viehweger kronn@kronn.de)
+
+Changes:
+
+* 20 General Enhancements
+
+    * integrate with travis, potentially
+    * integrate better with YARD
+    * postpone things which are not urgent right now
+    * mark as done whats done
+    * add option to setup the configuration directory
+    * make the error-msg a little more readable
+    * ToPass::Directories[:all] is special like [:standard]
+    * enable custom config directory in cli
+    * enable options (currently: path) on ToPass::Base
+    * let the user_alg be copied to a custom directory
+    * added option to tweak the configuration path, not fully working but a help message for a nonexistant path is shown
+    * using Proc.new instead of &block
+    * add the ability to extend the directories which are searched
+    * make secure algorithm default
+    * correct path to supplied config in tests.watchr
+    * write down idea completely :)
+    * include all project files in gemspec (except for .gitignore) for gemtest and completeness
+    * add .gemtest to enable `gem test to_pass`
+    * make redgreen optional in Gemfile
+    * ToPass::Base#password returns the password
+
+* 3 Bug Fixes
+
+    * fix wrongly setup test
+    * Bugfix to ensure the right directories are searched
+    * Bugfix: the directory-list should be generateable out of the box
+
+* 8 Minor Enhancements, Refactorings and Cleanups
+
+    * add rake-task to regenerate the changelog with vclog
+    * change help message of to_pass -c /nonexistant
+    * extract directory creation/teardown into test-helper method
+    * change the search directory list for all file-readers
+    * reliably test user-configs and remove unnecessary defaults in executables
+    * housekeeping
+    * abstract the way fixtures are put into the filesystem (along with some improvements)
+    * extract user_dir into method
+
+
 v0.9.0 / 2011-02-01
 
 tag v0.9.0 (Matthias Viehweger <kronn@kronn.de>)
@@ -359,50 +406,4 @@ Changes:
     * removed tests of methods which are neither needed nor used externally
     * refactored executable towards OptionParser usage
     * changed indentation from tabs to spaces
-
-
-HEAD / 2011-02-15
-
-Current Development (Matthias Viehweger)
-
-Changes:
-
-* 20 General Enhancements
-
-    * integrate with travis, potentially
-    * integrate better with YARD
-    * postpone things which are not urgent right now
-    * mark as done whats done
-    * add option to setup the configuration directory
-    * make the error-msg a little more readable
-    * ToPass::Directories[:all] is special like [:standard]
-    * enable custom config directory in cli
-    * enable options (currently: path) on ToPass::Base
-    * let the user_alg be copied to a custom directory
-    * added option to tweak the configuration path, not fully working but a help message for a nonexistant path is shown
-    * using Proc.new instead of &block
-    * add the ability to extend the directories which are searched
-    * make secure algorithm default
-    * correct path to supplied config in tests.watchr
-    * write down idea completely :)
-    * include all project files in gemspec (except for .gitignore) for gemtest and completeness
-    * add .gemtest to enable `gem test to_pass`
-    * make redgreen optional in Gemfile
-    * ToPass::Base#password returns the password
-
-* 3 Bug Fixes
-
-    * fix wrongly setup test
-    * Bugfix to ensure the right directories are searched
-    * Bugfix: the directory-list should be generateable out of the box
-
-* 7 Minor Enhancements, Refactorings and Cleanups
-
-    * change help message of to_pass -c /nonexistant
-    * extract directory creation/teardown into test-helper method
-    * change the search directory list for all file-readers
-    * reliably test user-configs and remove unnecessary defaults in executables
-    * housekeeping
-    * abstract the way fixtures are put into the filesystem (along with some improvements)
-    * extract user_dir into method
 

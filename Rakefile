@@ -58,6 +58,7 @@ namespace :documentation do
   if Gem.available?('vclog')
     desc 'generate changelog from commit-messages'
     task :vclog do
+      puts 'Generating CHANGELOG...'
       `vclog release -f gnu  -l '-2' > doc/CHANGELOG`
     end
   end

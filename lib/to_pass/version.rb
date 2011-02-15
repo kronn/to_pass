@@ -3,7 +3,7 @@
 unless defined?(ToPass::VERSION)
   module ToPass
     # version of gem
-    VERSION = '0.9.0'
+    VERSION = '1.0.0'
 
     # name of gem
     APP_NAME = 'to_pass'

@@ -1,28 +1,21 @@
 CURRENT
 ============================================================================
-✔ Improve CLI-Code
-  ✔ add option '-c, --config PATH - Configuration Path (default is ~/.to_pass)'
-  ✔ add command to generate configuration path
-✔ make secure algorithm default
-
+✔ release 1.0.0, finally
 
 UP NEXT
 ============================================================================
-- integrate better with YARD
-  - add the TODO file, the doc/ directory
-  - also show protected and private methods because I want to have a complete documentation
 
 
 SOMEDAY
 ============================================================================
-  test on windows
-  move decision wether a string is a word or a sentence into algorithm definition.
-  add task to validate user supplied algorithms and converters
-  check out and maybe integrate https://github.com/stephencelis/rdoctest
-  i18n && l10n of messages
-  ?? replace Rake with Thor
-  make ConverterReader a better child of FileReader
-  make tests faster
+- test on windows
+- move decision wether a string is a word or a sentence into algorithm definition.
+- add task to validate user supplied algorithms and converters
+- check out and maybe integrate https://github.com/stephencelis/rdoctest
+- i18n && l10n of messages
+- ?? replace Rake with Thor
+- make ConverterReader a better child of FileReader
+- make tests faster
 
 
 LEGEND
