@@ -8,7 +8,7 @@ class TestDirectories < Test::Unit::TestCase
   def test_directories
     assert_respond_to dirs, :[]
 
-    assert_equal '~/.to_pass', dirs[:user]
+    assert_equal Pathname.new('~/.to_pass').expand_path.to_s, dirs[:user]
     assert_equal "#{ruby_data_dir}/#{ToPass::APP_NAME}", dirs[:data]
 
     if in_to_pass_soure_tree?
@@ -37,7 +37,7 @@ class TestDirectories < Test::Unit::TestCase
 
     # assert_include(needle, haystack[, msg]) uses include? to verify.
     assert_include :user, dirs
-    assert_include '~/.to_pass', dirs
+    assert_include Pathname.new('~/.to_pass').expand_path.to_s, dirs
   end
 
   protected

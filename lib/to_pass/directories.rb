@@ -50,7 +50,7 @@ module ToPass
       # list of all directories used by this project
       def all
         @all ||= {
-          :user => "~/.#{APP_NAME}",
+          :user => File.expand_path("~/.#{APP_NAME}"),
           :data => "#{ruby_data_dir}/#{APP_NAME}",
           :base => File.expand_path("#{File.dirname(__FILE__)}/../.."),
           :source_data => File.expand_path("#{File.dirname(__FILE__)}/../../data/#{APP_NAME}"),
