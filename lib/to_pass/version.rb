@@ -1,6 +1,5 @@
 # vim:ft=ruby:fileencoding=utf-8
 
-unless defined?(ToPass::VERSION)
   module ToPass
     # version of gem
     VERSION = '1.0.1'
@@ -31,4 +30,3 @@ unless defined?(ToPass::VERSION)
       File.read(fn) if File.size?(fn)
     end
   end
-end
