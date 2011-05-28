@@ -6,8 +6,7 @@ end
 
 # helper methods
 def run_all
-  puts "\rrunning all tests. Hit CTRL-\\ to quit."
-  sleep(1)
+  exit() if @wants_to_quit
   system "ruby test/all.rb"
 end
 def single_or_all(fn)
@@ -42,9 +41,23 @@ end
 watch '^lib/to_pass/(.*).rb',  &single_test
 watch '^test/test_(.*).rb', &single_test
 
+# signals
 Signal.trap 'QUIT' do
-  abort("\n")
+  abort('\n')
 end
+
+@interrupted = false
+@wants_to_quit = false
+
 Signal.trap 'INT' do
-  run_all
+  if @interrupted then
+    @wants_to_quit = true
+    abort("\n")
+  else
+    puts "Interrupt a second time to quit"
+    @interrupted = true
+    Kernel.sleep 1.5
+    # raise Interrupt, nil # let the run loop catch it
+    run_all
+  end
 end
