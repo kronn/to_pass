@@ -128,12 +128,12 @@ namespace :test do
 end
 
 desc "list available algorithms"
-task :algorithms, :needs => [:to_pass] do
+task :algorithms => :to_pass do
   ToPass::Cli.algorithms
 end
 
 desc "list available converters"
-task :converters, :needs => [:to_pass] do
+task :converters => :to_pass do
   ToPass::Cli.converters
 end
 
