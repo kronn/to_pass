@@ -18,7 +18,7 @@ namespace :documentation do
   end
 
   begin
-    require 'rake/rdoctask'
+    require 'rdoc/task'
     Rake::RDocTask.new() do |rdoc|
       require File.expand_path('../lib/to_pass/version', __FILE__)
 
