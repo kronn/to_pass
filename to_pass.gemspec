@@ -25,6 +25,7 @@ spec = Gem::Specification.new do |s|
 
 
   # for tests, needed
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'mocha'
 
   # for release and doc generation, more less optional
